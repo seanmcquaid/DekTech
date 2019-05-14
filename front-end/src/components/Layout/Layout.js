@@ -1,5 +1,6 @@
 import React from "react";
 import Aux from "../../hoc/Aux/Aux";
+import Footer from "../Footer/Footer";
 
 const Layout = props => {
     return(
@@ -7,6 +8,7 @@ const Layout = props => {
             <div className="main-content">
                 {props.children}
             </div>
+            <Footer/>
         </Aux>
     )
 }
