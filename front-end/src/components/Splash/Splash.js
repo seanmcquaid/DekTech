@@ -3,15 +3,16 @@ import styles from "./Splash.module.css";
 
 const Splash = props => {
     return(
-        <div>
-            <div className="top">
+        <div className={styles.splashContainer}>
+            <div className={styles.topSection}>
                 <h1>Magic The Gathering - Deck Builder</h1>
             </div>
-            <div className="middle">
-                <h4>What is MTG Deck Builder?</h4>
+            <div className={styles.middleSection}>
+                <h3>What is MTG Deck Builder?</h3>
                 <p>Informational Text here</p>
             </div>
-            <div className="bottom">
+            <div className={styles.bottomSection}>
+                <h3>Interested?</h3>
                 <p>Information about registering</p>
             </div>
         </div>
