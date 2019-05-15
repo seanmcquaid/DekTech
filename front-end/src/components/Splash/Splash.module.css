@@ -8,17 +8,17 @@
 }
 
 .topSection {
-    margin-top: 9rem;
+    margin: 10rem;
     background-color: blue;
 }
 
 .middleSection {
-    margin-top: 9rem;
+    margin: 7rem;
     width: 80%;
     background-color: yellow;
 }
 
 .bottomSection{
-    margin-top: 9rem;
+    margin: 7rem;
     background-color: purple;
 }
