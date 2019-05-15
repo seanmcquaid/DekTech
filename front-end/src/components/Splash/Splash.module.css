@@ -4,12 +4,15 @@
 
 .topSection {
     margin-top: 9rem;
+    background-color: blue;
 }
 
 .middleSection {
     margin-top: 9rem;
+    background-color: yellow;
 }
 
 .bottomSection{
     margin-top: 9rem;
+    background-color: purple;
 }
