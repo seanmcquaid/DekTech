@@ -1,5 +1,10 @@
 .splashContainer {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
 }
 
 .topSection {
@@ -9,6 +14,7 @@
 
 .middleSection {
     margin-top: 9rem;
+    width: 80%;
     background-color: yellow;
 }
 
