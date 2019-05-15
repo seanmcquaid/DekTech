@@ -1,13 +1,15 @@
 import React, {Component} from "react";
-// import {Route, Redirect} from "react-router-dom";
+import {Route, Redirect} from "react-router-dom";
 import {connect} from "react-redux";
+import Aux from "../../hoc/Aux/Aux";
+import Splash from "../../components/Splash/Splash";
 
 class Protected extends Component {
     render(){
         return(
-            <div>
-                <h1>STUFF WILL BE HERE SOON</h1>
-            </div>
+            <Aux>
+                <Route to="/" component={Splash}/>
+            </Aux>
         )
     }
 }
