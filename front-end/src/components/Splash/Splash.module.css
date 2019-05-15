@@ -8,17 +8,74 @@
 }
 
 .topSection {
-    margin: 10rem;
-    background-color: blue;
+    margin-top: 10rem;
+    width: 100%;
+    max-width: 30rem;
 }
 
 .middleSection {
-    margin: 7rem;
-    width: 80%;
-    background-color: yellow;
+    margin-top: 8rem;
+    width: 100%;
+    max-width: 50rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.middleSectionText {
+    margin: 1rem;
+    width: 100%;
+    max-width: 30rem;
+}
+
+.middleSectionImage{
+    margin: 1rem;
+}
+
+.appDescription{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 50rem;
+}
+
+.appInstructionsStepOne{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 50rem;
+}
+
+.appInstructionsStepTwo{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 50rem;
+}
+
+.appInstructionsStepThree{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 50rem;
 }
 
 .bottomSection{
-    margin: 7rem;
+    margin: 8rem 0 8rem 0;
+    width: 100%;
     background-color: purple;
 }

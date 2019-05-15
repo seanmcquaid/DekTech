@@ -5,11 +5,46 @@ const Splash = props => {
     return(
         <div className={styles.splashContainer}>
             <div className={styles.topSection}>
-                <h1>Magic The Gathering - Deck Builder</h1>
+                <h1>Dek Tech</h1>
+                <p>A deck building tool for Magic The Gathering's Commander Format</p>
             </div>
             <div className={styles.middleSection}>
-                <h3>What is MTG Deck Builder?</h3>
-                <p>Bacon ipsum dolor amet pork chop sausage sirloin turkey prosciutto beef chuck leberkas fatback kevin frankfurter drumstick ribeye. T-bone jerky drumstick porchetta cupim. Meatloaf capicola turkey jerky tongue. Picanha kielbasa tail alcatra swine. Shank chuck spare ribs, burgdoggen swine beef ribs brisket biltong bresaola meatball turkey. Prosciutto ham doner, meatball tail beef andouille turducken hamburger porchetta pork belly fatback ham hock. Turkey short ribs tongue doner spare ribs.</p>
+                <div className={styles.appDescription}>
+                    <div className={styles.middleSectionText}>
+                        <h3>What is Dek Tech?</h3>
+                        <p>Dek Tech is an app that will revolutize how you approach deck building in Magic The Gathering's Commander format.</p>
+                    </div>
+                    <div className={styles.middleSectionImage}>
+                        <img className={styles.middleImage}src="https://via.placeholder.com/200" alt="placeholder"/>
+                    </div>
+                </div>
+                <div className={styles.appInstructionsStepOne}>
+                    <div className={styles.middleSectionText}>
+                        <h3>Create An Account</h3>
+                        <p>Instructions here</p>
+                    </div>
+                    <div className={styles.middleSectionImage}>
+                        <img className={styles.middleImage}src="https://via.placeholder.com/200" alt="placeholder"/>
+                    </div>
+                </div>
+                <div className={styles.appInstructionsStepTwo}>
+                    <div className={styles.middleSectionText}>
+                        <h3>Create A Deck</h3>
+                        <p>Instructions here</p>
+                    </div>
+                    <div className={styles.middleSectionImage}>
+                        <img className={styles.middleImage}src="https://via.placeholder.com/200" alt="placeholder"/>
+                    </div>
+                </div>
+                <div className={styles.appInstructionsStepThree}>
+                    <div className={styles.middleSectionText}>
+                        <h3>Start Searching and Adding Cards!</h3>
+                        <p>Instructions here</p>
+                    </div>
+                    <div className={styles.middleSectionImage}>
+                        <img className={styles.middleImage}src="https://via.placeholder.com/200" alt="placeholder"/>
+                    </div>
+                </div>
             </div>
             <div className={styles.bottomSection}>
                 <h3>Interested?</h3>

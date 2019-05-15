@@ -8,7 +8,7 @@ class Navbar extends Component {
         return(
             <div className={styles.navBar}>
                 <div className={styles.leftNav}>
-                    <div className={styles.leftNavLink}>MTG-Deck-Builder</div>
+                    <div className={styles.leftNavLink}>Dek Tech</div>
                 </div>
                 <div className={styles.rightNav}>
                     <div className={styles.rightNavLinks}>Register</div>       
