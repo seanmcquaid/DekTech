@@ -10,13 +10,13 @@
 .topSection {
     margin-top: 10rem;
     width: 100%;
-    max-width: 30rem;
+    max-width: 40rem;
 }
 
 .middleSection {
     margin-top: 8rem;
     width: 100%;
-    max-width: 50rem;
+    max-width: 40rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -27,7 +27,7 @@
 .middleSectionText {
     margin: 1rem;
     width: 100%;
-    max-width: 30rem;
+    max-width: 40rem;
 }
 
 .middleSectionImage{
@@ -41,7 +41,17 @@
     align-content: center;
     align-items: center;
     width: 100%;
-    max-width: 50rem;
+    max-width: 40rem;
+}
+
+.howDoesItWork{
+    width: 100%;
+    max-width: 40rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
 }
 
 .appInstructionsStepOne{
@@ -51,7 +61,7 @@
     align-content: center;
     align-items: center;
     width: 100%;
-    max-width: 50rem;
+    max-width: 40rem;
 }
 
 .appInstructionsStepTwo{
@@ -61,7 +71,7 @@
     align-content: center;
     align-items: center;
     width: 100%;
-    max-width: 50rem;
+    max-width: 40rem;
 }
 
 .appInstructionsStepThree{
@@ -71,11 +81,11 @@
     align-content: center;
     align-items: center;
     width: 100%;
-    max-width: 50rem;
+    max-width: 40rem;
 }
 
 .bottomSection{
     margin: 8rem 0 8rem 0;
     width: 100%;
-    background-color: purple;
+    max-width: 24rem;
 }
