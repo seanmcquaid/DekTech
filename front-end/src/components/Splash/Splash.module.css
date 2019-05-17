@@ -7,10 +7,33 @@
     align-items: center;
 }
 
+.sectionHeader {
+    color:  #F25F5C;
+    font-family: 'Roboto Slab', serif;
+    font-size: 2rem;
+}
+
+.paragraphText {
+    font-size: 1rem;
+}
+
 .topSection {
-    margin-top: 10rem;
+    margin-top: 8rem;
     width: 100%;
     max-width: 40rem;
+}
+
+.appName{
+    font-family: "Roboto Slab", serif;
+    font-size: 3rem;
+}
+
+.dek{
+    color: #F25F5C;
+}
+
+.tech{
+    color: #0072BB;
 }
 
 .middleSection {
@@ -44,14 +67,15 @@
     max-width: 40rem;
 }
 
-.howDoesItWork{
+.appSteps{
     width: 100%;
     max-width: 40rem;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-content: center;
     align-items: center;
+    margin-top: 8rem;
 }
 
 .appInstructionsStepOne{
@@ -85,7 +109,13 @@
 }
 
 .bottomSection{
-    margin: 8rem 0 8rem 0;
+    margin-top: 8rem;
     width: 100%;
-    max-width: 24rem;
+    max-width: 40rem;
+}
+
+@media(max-width: 600px){
+    .appInstructionsStepOne, .appInstructionsStepTwo, .appInstructionsStepThree{
+        flex-direction: column-reverse;
+    }
 }
