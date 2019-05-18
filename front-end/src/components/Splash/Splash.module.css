@@ -5,6 +5,7 @@
     justify-content: center;
     align-content: center;
     align-items: center;
+    margin-top: 8rem;
 }
 
 .sectionHeader {
@@ -18,7 +19,6 @@
 }
 
 .topSection {
-    margin-top: 8rem;
     width: 100%;
     max-width: 40rem;
 }

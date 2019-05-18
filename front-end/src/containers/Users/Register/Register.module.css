@@ -1,0 +1,60 @@
+.registerContainer {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    margin-top: 8rem;
+}
+
+.registerHeaderContainer{
+    width: 80%;
+    max-width: 40rem;
+}
+
+.registerHeader{
+    color:  #F25F5C;
+    font-family: 'Roboto Slab', serif;
+    font-size: 2rem;
+}
+
+.registerHeaderSubtext{
+    font-size: 1rem;
+}
+
+.registerFormContainer{
+    margin-top: 8rem;
+    width: 100%;
+    max-width: 40rem;
+}
+
+.registerForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.userInput{
+    margin: 0.5rem;
+    font-size: 0.75rem;
+    width: 100%;
+    max-width: 12rem;
+    padding: 0.5rem;
+    border-radius: 16px;
+    font-family: 'Raleway', sans-serif;
+    border: 1px solid #50514F;
+}
+
+.registerButton{
+    margin: 1rem;
+    font-family: 'Raleway', sans-serif;
+    border-radius: 10px;
+    padding: 0.75rem;
+    width: 100%;
+    max-width: 5rem;
+    text-align: center;
+    border: 1px solid #50514F;;
+}

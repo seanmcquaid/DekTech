@@ -1,5 +1,8 @@
 import React, {Component} from "react";
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
 import styles from "./Register.module.css";
+import registerAction from "../../../actions/registerAction";
 
 class Register extends Component {
     constructor(){
@@ -14,6 +17,7 @@ class Register extends Component {
 
     componentWillReceiveProps(newProps){
         // check errorMessage from redux store
+        console.log(newProps)
     }
 
     emailChangeHandler = (event) => {
@@ -40,24 +44,28 @@ class Register extends Component {
         // const userEmail = this.state.email;
         // const userPassword = this.state.password;
         // const duplicatePassword = this.state.duplicatePassword
-        this.props.regiserAction({
+        // if(userPassword !== duplicatePassword){
+
+        // } else {
+        //     this.props.registerAction({
             
-        })
+        //     })
+        // }
     }
 
     render(){
         return(
-            <div className="registerContainer">
-                <div className="registerHeader">
-                    <h1>Register</h1>
-                    <p>Type in a valid email address and provide a password that has at least 7 characters with at least one number!</p>
+            <div className={styles.registerContainer}>
+                <div className={styles.registerHeaderContainer}>
+                    <h1 className={styles.registerHeader}>Register</h1>
+                    <p className={styles.registerHeaderSubtext}>Type in a valid email address and provide a password that has at least 7 characters with at least one number!</p>
                 </div>
-                <div className="registerForm">
-                    <form>
-                        <input/>
-                        <input/>
-                        <input/>
-                        <button>Register</button>
+                <div className={styles.registerFormContainer}>
+                    <form className={styles.registerForm} onSubmit={this.handleRegister}>
+                        <input className={styles.userInput} value={this.state.email} onChange={this.emailChangeHandler} placeholder="Email"/>
+                        <input className={styles.userInput} value={this.state.password} onChange={this.passwordChangeHandler} placeholder="Password"/>
+                        <input className={styles.userInput} value={this.state.duplicatePassword} onChange={this.duplicatePasswordChangeHandler} placeholder="Re-type Password Here"/>
+                        <button className={styles.registerButton} type="submit">Register</button>
                     </form>
                 </div>
             </div>
@@ -65,4 +73,16 @@ class Register extends Component {
     }
 }
 
-export default Register;
+const mapStateToProps = (state) => {
+    return {
+        auth : state.auth
+    }
+}
+
+const mapDispatchToProps = (dispatcher) => {
+    return bindActionCreators({
+        registerAction : registerAction
+    },dispatcher)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register);
