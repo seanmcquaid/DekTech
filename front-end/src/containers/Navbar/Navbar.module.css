@@ -31,3 +31,8 @@
 .rightNavLinks {
     margin-right: 1.5rem;
 }
+
+.rightNavLink{
+    text-decoration: none;
+    color: white;
+}

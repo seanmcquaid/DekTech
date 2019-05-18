@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
+import {Link} from "react-router-dom";
 
 import styles from "./Navbar.module.css"
 
@@ -11,7 +12,7 @@ class Navbar extends Component {
                     <div className={styles.leftNavLink}>Dek Tech</div>
                 </div>
                 <div className={styles.rightNav}>
-                    <div className={styles.rightNavLinks}>Register</div>       
+                    <div className={styles.rightNavLinks}><Link to="/register"className={styles.rightNavLink}>Register</Link></div>       
                     <div className={styles.rightNavLinks}>Login</div>
                 </div>
             </div>
