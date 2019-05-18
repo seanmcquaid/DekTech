@@ -5,7 +5,7 @@
     justify-content: center;
     align-content: center;
     align-items: center;
-    margin-top: 8rem;
+    margin-top: 6rem;
 }
 
 .sectionHeader {
@@ -19,7 +19,7 @@
 }
 
 .topSection {
-    width: 100%;
+    width: 80%;
     max-width: 40rem;
 }
 
@@ -37,7 +37,7 @@
 }
 
 .middleSection {
-    margin-top: 8rem;
+    margin-top: 6rem;
     width: 100%;
     max-width: 40rem;
     display: flex;
@@ -75,7 +75,7 @@
     justify-content: center;
     align-content: center;
     align-items: center;
-    margin-top: 8rem;
+    margin-top: 6rem;
 }
 
 .appInstructionsStepOne{
@@ -110,7 +110,7 @@
 
 .bottomSection{
     margin: 8rem 0 8rem 0;
-    width: 100%;
+    width: 80%;
     max-width: 40rem;
 }
 

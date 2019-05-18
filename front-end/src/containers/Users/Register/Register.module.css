@@ -24,7 +24,7 @@
 }
 
 .registerFormContainer{
-    margin-top: 8rem;
+    margin-top: 6rem;
     width: 100%;
     max-width: 40rem;
 }
@@ -46,6 +46,7 @@
     border-radius: 16px;
     font-family: 'Raleway', sans-serif;
     border: 1px solid #50514F;
+    outline: none;
 }
 
 .registerButton{

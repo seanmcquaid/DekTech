@@ -62,9 +62,9 @@ class Register extends Component {
                 </div>
                 <div className={styles.registerFormContainer}>
                     <form className={styles.registerForm} onSubmit={this.handleRegister}>
-                        <input className={styles.userInput} value={this.state.email} onChange={this.emailChangeHandler} placeholder="Email"/>
-                        <input className={styles.userInput} value={this.state.password} onChange={this.passwordChangeHandler} placeholder="Password"/>
-                        <input className={styles.userInput} value={this.state.duplicatePassword} onChange={this.duplicatePasswordChangeHandler} placeholder="Re-type Password Here"/>
+                        <input className={styles.userInput} value={this.state.email} onChange={this.emailChangeHandler} type="email" placeholder="Email"/>
+                        <input className={styles.userInput} value={this.state.password} onChange={this.passwordChangeHandler} type="password" placeholder="Password"/>
+                        <input className={styles.userInput} value={this.state.duplicatePassword} onChange={this.duplicatePasswordChangeHandler} type="password" placeholder="Re-type Password Here"/>
                         <button className={styles.registerButton} type="submit">Register</button>
                     </form>
                 </div>
