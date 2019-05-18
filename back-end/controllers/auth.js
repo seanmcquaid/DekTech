@@ -1,3 +1,4 @@
+const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
 const sendGridTransport = require("nodemailer-sendgrid-transport");
@@ -10,6 +11,10 @@ const transporter = nodemailer.createTransport(sendGridTransport({
 }));
 
 
-exports.postLogin = (req,res,next) =>{
+exports.postLogin = (req,res,next) => {
     
-}
+};
+
+exports.postRegister = (req,res,next) => {
+
+};
