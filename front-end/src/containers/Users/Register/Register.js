@@ -7,7 +7,8 @@ class Register extends Component {
         this.state = {
             errorMessage : "",
             email : "",
-            password: ""
+            password: "",
+            duplicatePassword: ""
         }
     }
 
@@ -27,17 +28,38 @@ class Register extends Component {
         })
     }
 
+    duplicatePasswordChangeHandler = (event) => {
+        this.setState({
+            duplicatePassword : event.target.value
+        })
+    }
+
+
     handleRegister = (event) => {
         event.preventDefault();
         // const userEmail = this.state.email;
         // const userPassword = this.state.password;
+        // const duplicatePassword = this.state.duplicatePassword
+        this.props.regiserAction({
+            
+        })
     }
 
     render(){
         return(
             <div className="registerContainer">
-                <div className="registerHeader"></div>
-                <div className="registerForm"></div>
+                <div className="registerHeader">
+                    <h1>Register</h1>
+                    <p>Type in a valid email address and provide a password that has at least 7 characters with at least one number!</p>
+                </div>
+                <div className="registerForm">
+                    <form>
+                        <input/>
+                        <input/>
+                        <input/>
+                        <button>Register</button>
+                    </form>
+                </div>
             </div>
         )
     }
