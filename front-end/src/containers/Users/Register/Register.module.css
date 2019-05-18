@@ -51,10 +51,13 @@
 .registerButton{
     margin: 1rem;
     font-family: 'Raleway', sans-serif;
+    font-size: 1rem;
     border-radius: 10px;
-    padding: 0.75rem;
+    padding: 1rem;
     width: 100%;
-    max-width: 5rem;
+    max-width: 6rem;
     text-align: center;
-    border: 1px solid #50514F;;
+    border: 1px solid #50514F;
+    background-color:  #F25F5C;
+    color: white;
 }
