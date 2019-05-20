@@ -27,7 +27,6 @@ exports.postRegister = (req,res,next) => {
             } else {
                 return bcrypt.hash(userPassword, 12)
                 .then(hashedPassword => {
-                    console.log(hashedPassword)
                     const user = new User({
                         email : userEmail,
                         password : hashedPassword
