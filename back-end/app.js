@@ -23,7 +23,13 @@ app.use((req,res,next)=>{
     next();
 });
 
-
+app.use(
+    session({
+        secret : "super secret!",
+        resave: false,
+        saveUninitialized: false
+    })
+);
 
 app.use(logger('dev'));
 app.use(express.json());
