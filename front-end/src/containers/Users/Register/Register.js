@@ -13,45 +13,48 @@ class Register extends Component {
             password: "",
             duplicatePassword: ""
         }
-    }
+    };
 
     componentWillReceiveProps(newProps){
         // check errorMessage from redux store
         console.log(newProps)
-    }
+    };
 
     emailChangeHandler = (event) => {
         this.setState({
             email : event.target.value
         })
-    }
+    };
 
     passwordChangeHandler = (event) => {
         this.setState({
             password : event.target.value
         })
-    }
+    };
 
     duplicatePasswordChangeHandler = (event) => {
         this.setState({
             duplicatePassword : event.target.value
         })
-    }
+    };
 
 
     handleRegister = (event) => {
         event.preventDefault();
-        // const userEmail = this.state.email;
-        // const userPassword = this.state.password;
-        // const duplicatePassword = this.state.duplicatePassword
-        // if(userPassword !== duplicatePassword){
-
-        // } else {
-        //     this.props.registerAction({
-            
-        //     })
-        // }
-    }
+        const userEmail = this.state.email;
+        const userPassword = this.state.password;
+        const duplicatePassword = this.state.duplicatePassword
+        if(userPassword !== duplicatePassword){
+            this.setState({
+                errorMessage : "Your passwords don't match!"
+            });
+        } else {
+            this.props.registerAction({
+                userEmail,
+                userPassword
+            });
+        }
+    };
 
     render(){
         return(

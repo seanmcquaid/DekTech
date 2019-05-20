@@ -16,5 +16,5 @@ exports.postLogin = (req,res,next) => {
 };
 
 exports.postRegister = (req,res,next) => {
-
+    res.json(req.body)
 };
