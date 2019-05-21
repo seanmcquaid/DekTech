@@ -13,7 +13,7 @@ class Navbar extends Component {
                 </div>
                 <div className={styles.rightNav}>
                     <div className={styles.rightNavLinks}><Link to="/register"className={styles.rightNavLink}>Register</Link></div>       
-                    <div className={styles.rightNavLinks}>Login</div>
+                    <div className={styles.rightNavLinks}><Link to="/login"className={styles.rightNavLink}>Login</Link></div>
                 </div>
             </div>
         )

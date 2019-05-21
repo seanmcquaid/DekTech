@@ -1,0 +1,71 @@
+.loginContainer {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    margin-top: 8rem;
+}
+
+.loginHeaderContainer{
+    width: 80%;
+    max-width: 40rem;
+}
+
+.loginHeader{
+    color:  #F25F5C;
+    font-family: 'Roboto Slab', serif;
+    font-size: 2rem;
+}
+
+.loginHeaderSubtext{
+    font-size: 1rem;
+}
+
+.displayMessage{
+    color: #0072BB;
+    margin: 2rem;
+    width: 100%;
+    max-width: 40rem;
+}
+
+.loginFormContainer{
+    margin-top: 4rem;
+    width: 100%;
+    max-width: 40rem;
+}
+
+.loginForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.userInput{
+    margin: 0.5rem;
+    font-size: 0.75rem;
+    width: 100%;
+    max-width: 12rem;
+    padding: 0.5rem;
+    border-radius: 16px;
+    font-family: 'Raleway', sans-serif;
+    border: 1px solid #50514F;
+    outline: none;
+}
+
+.loginButton{
+    margin: 0.5rem;
+    font-family: 'Raleway', sans-serif;
+    font-size: 1rem;
+    border-radius: 10px;
+    padding: 1rem;
+    width: 100%;
+    max-width: 6rem;
+    text-align: center;
+    border: 1px solid #50514F;
+    background-color:  #F25F5C;
+    color: white;
+}

@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import Aux from "../../hoc/Aux/Aux";
 import Splash from "../../components/Splash/Splash";
 import Register from "../Users/Register/Register";
+import Login from "../Users/Login/Login";
 
 class Protected extends Component {
 
@@ -14,6 +15,7 @@ class Protected extends Component {
             <Aux>
                 <Route exact path="/" component={Splash}/>
                 <Route exact path="/register" component={Register}/>
+                <Route exact path="/login" component={Login}/>
             </Aux>
         )
     }
