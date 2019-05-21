@@ -8,7 +8,7 @@ class Register extends Component {
     constructor(){
         super()
         this.state = {
-            errorMessage : "",
+            message : "",
             email : "",
             password: "",
             duplicatePassword: ""
@@ -17,7 +17,18 @@ class Register extends Component {
 
     componentWillReceiveProps(newProps){
         // check errorMessage from redux store
-        console.log(newProps)
+        // console.log(newProps)
+        if(newProps.auth.message === "User already exists"){
+            this.setState({
+                message : "User already exists, try again"
+            });
+        } else if (newProps.auth.message === "Successfully registered"){
+            this.props.history.push("/");
+        } else {
+            this.setState({
+                message : "Incorrect information, try again"
+            });
+        }
     };
 
     emailChangeHandler = (event) => {
@@ -43,10 +54,10 @@ class Register extends Component {
         event.preventDefault();
         const userEmail = this.state.email;
         const userPassword = this.state.password;
-        const duplicatePassword = this.state.duplicatePassword
+        const duplicatePassword = this.state.duplicatePassword;
         if(userPassword !== duplicatePassword){
             this.setState({
-                errorMessage : "Your passwords don't match!"
+                message : "Your passwords don't match!"
             });
         } else {
             this.props.registerAction({
@@ -63,6 +74,7 @@ class Register extends Component {
                     <h1 className={styles.registerHeader}>Register</h1>
                     <p className={styles.registerHeaderSubtext}>Type in a valid email address and provide a password that has at least 7 characters with at least one number!</p>
                 </div>
+                <div className={styles.displayMessage}>{this.state.message}</div>
                 <div className={styles.registerFormContainer}>
                     <form className={styles.registerForm} onSubmit={this.handleRegister}>
                         <input className={styles.userInput} value={this.state.email} onChange={this.emailChangeHandler} type="email" placeholder="Email"/>

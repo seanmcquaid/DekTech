@@ -22,7 +22,7 @@ exports.postRegister = (req,res,next) => {
         .then(user => {
             if(user){
                 return res.json({
-                    errorMessage : "User already exists"
+                    message : "User already exists"
                 });
             } else {
                 return bcrypt.hash(userPassword, 12)
@@ -31,15 +31,13 @@ exports.postRegister = (req,res,next) => {
                         email : userEmail,
                         password : hashedPassword
                     });
-                    return user.save();
+                    return user.save().then(result => {
+                        return res.json({
+                            message : "Successfully registered"
+                        })
+                    });
                 });
             }
-        })
-        .then(result => {
-            console.log("success")
-            return res.json({
-                message : "Successfully registered"
-            })
         })
         .catch(err => {
             console.log(err)
