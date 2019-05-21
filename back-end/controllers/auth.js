@@ -12,7 +12,7 @@ const transporter = nodemailer.createTransport(sendGridTransport({
 
 
 exports.postLogin = (req,res,next) => {
-    
+    console.log(req.body);
 };
 
 exports.postRegister = (req,res,next) => {

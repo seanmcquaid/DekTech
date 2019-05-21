@@ -1,5 +1,8 @@
 import React, {Component} from "react";
 import styles from "./Login.module.css";
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
+import loginAction from "../../../actions/loginAction";
 
 class Login extends Component {
     constructor(){
@@ -12,7 +15,7 @@ class Login extends Component {
     }
 
     componentWillReceiveProps(newProps){
-        // check errorMessage from redux store
+        console.log(newProps)
     }
 
     emailChangeHandler = (event) => {
@@ -29,8 +32,12 @@ class Login extends Component {
 
     handleLogin = (event) => {
         event.preventDefault();
-        // const userEmail = this.state.email;
-        // const userPassword = this.state.password;
+        const userEmail = this.state.email;
+        const userPassword = this.state.password;
+        this.props.loginAction({
+            userEmail,
+            userPassword
+        });
     }
 
     render(){
@@ -53,4 +60,16 @@ class Login extends Component {
     }
 }
 
-export default Login;
+const mapStateToProps = (state) => {
+    return {
+        auth : state.auth
+    }
+}
+
+const mapDispatchToProps = (dispatcher) => {
+    return bindActionCreators({
+        loginAction : loginAction
+    },dispatcher)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
