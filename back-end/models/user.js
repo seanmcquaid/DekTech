@@ -11,20 +11,20 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-})
+});
 
 userSchema.methods = {
-    checkPassword : inputPassword => {
+    checkPassword : function(inputPassword){
         return bcrypt.compareSync(inputPassword, this.password);
     },
     hashPassword : password => {
         return bcrypt.hashSync(password, 12)
     }
-}
+};
 
-userSchema.pre("save", (next)=> {
+userSchema.pre("save", function(next) {
     this.password = this.hashPassword(this.password);
     next();
-})
+});
 
 module.exports = mongoose.model("User", userSchema);

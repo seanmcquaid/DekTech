@@ -16,8 +16,8 @@ class Register extends Component {
     };
 
     componentWillReceiveProps(newProps){
-        // check errorMessage from redux store
-        // console.log(newProps)
+        // check errorMessage from redux storey
+        console.log(newProps)
         if(newProps.auth.message === "User already exists"){
             this.setState({
                 message : "User already exists, try again"
@@ -52,17 +52,17 @@ class Register extends Component {
 
     handleRegister = (event) => {
         event.preventDefault();
-        const userEmail = this.state.email;
-        const userPassword = this.state.password;
+        const username = this.state.email;
+        const password = this.state.password;
         const duplicatePassword = this.state.duplicatePassword;
-        if(userPassword !== duplicatePassword){
+        if(password !== duplicatePassword){
             this.setState({
                 message : "Your passwords don't match!"
             });
         } else {
             this.props.registerAction({
-                userEmail,
-                userPassword
+                username,
+                password
             });
         }
     };

@@ -9,11 +9,7 @@ const config = require("./config");
 
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
-const passport = require("passport");
-
-const csrf = require("csurf");
-const flash = require("connect-flash");
-
+const passport = require("./passport/passport");
 
 const authRoutes = require('./routes/auth');
 
