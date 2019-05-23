@@ -32,11 +32,10 @@ class Login extends Component {
 
     handleLogin = (event) => {
         event.preventDefault();
-        const userEmail = this.state.email;
-        const userPassword = this.state.password;
+        const {email, password} = this.state;
         this.props.loginAction({
-            userEmail,
-            userPassword
+            username : email,
+            password : password
         });
     }
 

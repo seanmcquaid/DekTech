@@ -10,14 +10,18 @@ const transporter = nodemailer.createTransport(sendGridTransport({
     }
 }));
 
-exports.postLogin =  (req,res,next) => {
-    passport.authenticate("local"), (req,res) => {
-        const userInfo = {
-            username : req.user.username
-        }
-        console.log(userInfo)
-    res.send(userInfo)
-    }
+exports.postLogin = (req, res, next) => {
+    console.log('routes/user.js, login, req.body: ');
+    console.log(req.body)
+    next()
+}
+
+exports.passPortLogin = passport.authenticate('local'), (req, res) => {
+    console.log('logged in', req.user);
+    var userInfo = {
+        username: req.user.username
+    };
+    res.json(userInfo);
 };
 
 exports.postRegister = (req,res,next) => {

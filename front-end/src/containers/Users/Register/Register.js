@@ -52,17 +52,15 @@ class Register extends Component {
 
     handleRegister = (event) => {
         event.preventDefault();
-        const username = this.state.email;
-        const password = this.state.password;
-        const duplicatePassword = this.state.duplicatePassword;
+        const {email, password, duplicatePassword} = this.state;
         if(password !== duplicatePassword){
             this.setState({
                 message : "Your passwords don't match!"
             });
         } else {
             this.props.registerAction({
-                username,
-                password
+                username : email,
+                password : password
             });
         }
     };
