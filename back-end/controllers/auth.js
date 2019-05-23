@@ -10,11 +10,14 @@ const transporter = nodemailer.createTransport(sendGridTransport({
     }
 }));
 
-// https://github.com/thechutrain/mern-passport/blob/master/server/auth/index.js
-
-
-exports.postLogin = (req,res,next) => {
-    
+exports.postLogin =  (req,res,next) => {
+    passport.authenticate("local"), (req,res) => {
+        const userInfo = {
+            username : req.user.username
+        }
+        console.log(userInfo)
+    res.send(userInfo)
+    }
 };
 
 exports.postRegister = (req,res,next) => {
@@ -24,7 +27,8 @@ exports.postRegister = (req,res,next) => {
         .then(user => {
             if(user){
                 return res.json({
-                    message : "User already exists"
+                    message : "User already exists",
+                    loggedIn : false
                 });
             }
             const newUser = new User({
@@ -34,7 +38,8 @@ exports.postRegister = (req,res,next) => {
             return newUser.save()
                 .then((user)=>{
                     return res.json({
-                        message : "Successfully registered"
+                        message : "Successfully registered",
+                        loggedIn : true
                     })
                 });
         })
