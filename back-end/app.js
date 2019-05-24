@@ -9,7 +9,7 @@ const config = require("./config");
 
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
-const passport = require("./passport/passport");
+const passport = require("./authentication/passport");
 
 const authRoutes = require('./routes/auth');
 
@@ -30,7 +30,7 @@ app.use(
 );
 
 app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.session());
 
 // app.use((req,res,next)=>{
 //     console.log(req.session)

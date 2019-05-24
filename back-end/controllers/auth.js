@@ -11,9 +11,33 @@ const transporter = nodemailer.createTransport(sendGridTransport({
 }));
 
 exports.postLogin = (req,res,next) => {
-
+    
 }
 
 exports.postRegister = (req,res,next) => {
-    
+    passport.authenticate("register", (err,user,info)=> {
+        console.log(info)
+        if(err){
+            console.log(err)
+        }
+        if(info != undefined){
+            console.log(info.message)
+            res.json(info.message)
+        } else{
+            req.logIn(user, err => {
+                const data = {
+                    username : req.body.username,
+                    password : req.body.password
+                }
+                User.findOne({username: username})
+                    .then((user) => {
+                        console.log(user)
+                        console.log("user created in db")
+                        res.json({message : "user created"})
+                    })
+                    .catch();
+            })
+        }
+    })
+    (req,res,next);
 };
