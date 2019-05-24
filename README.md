@@ -22,7 +22,7 @@ The MTG Deck Builder is a MERN stack web application that will allow users to cr
 - Scryfall API
 
 ## Challenges & Solutions
-
+* Passport implementation with JWT
 
 ## MVP
 * User should be able to create an account

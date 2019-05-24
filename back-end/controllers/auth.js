@@ -25,10 +25,6 @@ exports.postRegister = (req,res,next) => {
             res.json(info.message)
         } else{
             req.logIn(user, err => {
-                const data = {
-                    username : req.body.username,
-                    password : req.body.password
-                }
                 User.findOne({username: username})
                     .then((user) => {
                         console.log(user)
