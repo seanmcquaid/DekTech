@@ -2,11 +2,12 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const cors = require("cors")
+const cors = require("cors");
 
 const mongoose = require("mongoose");
 const config = require("./config");
 
+const User = require("./models/user");
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 
@@ -29,10 +30,22 @@ app.use(
 );
 
 
+app.use((req,res,next)=>{
+    console.log(req.session)
+    next();
+});
+
 // app.use((req,res,next)=>{
-//     console.log(req.session)
-//     next();
-// })
+//     if(!req.session.user){
+//        return next();
+//     }
+//     User.findOne({username : req.session.username})
+//         .then(user => {
+//             req.user = user;
+//             next();
+//         })
+//         .catch(err => console.log(err));
+// });
 
 app.use(logger('dev'));
 app.use(express.json());

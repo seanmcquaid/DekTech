@@ -23,7 +23,7 @@ class Register extends Component {
                 message : "User already exists, try again"
             });
         } else if (newProps.auth.message === "Successfully registered"){
-            this.props.history.push("/");
+            this.props.history.push("/login");
         } else {
             this.setState({
                 message : "Incorrect information, try again"
