@@ -24,9 +24,18 @@ class Navbar extends Component {
 
     componentWillReceiveProps = newProps => {
         console.log(newProps)
+        
     }
 
     render(){
+        let leftNavHomeLink, rightNavLinks;
+        if(this.props.auth){
+            leftNavHomeLink = "/userHome";
+            rightNavLinks = "";
+        } else {
+            leftNavHomeLink = "/";
+            rightNavLinks = "";
+        }
         return(
             <div className={styles.navBar}>
                 <div className={styles.leftNav}>
