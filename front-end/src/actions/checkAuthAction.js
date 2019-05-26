@@ -2,12 +2,11 @@ import axios from "axios";
 
 export default userData => {
     const axiosPromise = axios({
-        url : `${window.apiHost}/auth/login`,
-        method : "POST",
-        data : userData
+        url : `${window.apiHost}/auth/checkSession`,
+        method : "GET"
     });
     return {
-        type : "LOGIN_ACTION",
+        type : "CHECK_SESSION_ACTION",
         payload : axiosPromise
     };
 }

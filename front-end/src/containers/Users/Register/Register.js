@@ -15,8 +15,8 @@ class Register extends Component {
         }
     };
 
-    componentWillReceiveProps(newProps){
-        // check errorMessage from redux storey
+    componentWillReceiveProps = (newProps) => {
+        // check errorMessage from redux store
         console.log(newProps)
         if(newProps.auth.message === "User already exists"){
             this.setState({
@@ -31,26 +31,26 @@ class Register extends Component {
         }
     };
 
-    emailChangeHandler = (event) => {
+    emailChangeHandler = event => {
         this.setState({
             email : event.target.value
         })
     };
 
-    passwordChangeHandler = (event) => {
+    passwordChangeHandler = event => {
         this.setState({
             password : event.target.value
         })
     };
 
-    duplicatePasswordChangeHandler = (event) => {
+    duplicatePasswordChangeHandler = event => {
         this.setState({
             duplicatePassword : event.target.value
         })
     };
 
 
-    handleRegister = (event) => {
+    handleRegister = event => {
         event.preventDefault();
         const {email, password, duplicatePassword} = this.state;
         if(password !== duplicatePassword){

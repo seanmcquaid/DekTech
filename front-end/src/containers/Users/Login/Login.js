@@ -14,23 +14,33 @@ class Login extends Component {
         }
     }
 
-    componentWillReceiveProps(newProps){
-        console.log(newProps)
+    componentWillReceiveProps = newProps => {
+        if(newProps.auth.message === "User doesn't exist"){
+            this.setState({
+                message : "No user information matches the email you provided, try again!"
+            });
+        } else if(newProps.auth.message === "Successfully logged in!"){
+            this.props.history.push("/");
+        } else if(newProps.auth.message === "Incorrect password, try again!"){
+            this.setState({
+                message : newProps.auth.message
+            });
+        }
     }
 
-    emailChangeHandler = (event) => {
+    emailChangeHandler = event => {
         this.setState({
             email : event.target.value
         });
     }
 
-    passwordChangeHandler = (event) => {
+    passwordChangeHandler = event => {
         this.setState({
             password : event.target.value
         });
     }
 
-    handleLogin = (event) => {
+    handleLogin = event => {
         event.preventDefault();
         const {email, password} = this.state;
         this.props.loginAction({
@@ -59,13 +69,13 @@ class Login extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
     return {
         auth : state.auth
     }
 }
 
-const mapDispatchToProps = (dispatcher) => {
+const mapDispatchToProps = dispatcher => {
     return bindActionCreators({
         loginAction : loginAction
     },dispatcher)

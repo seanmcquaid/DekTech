@@ -30,22 +30,22 @@ app.use(
 );
 
 
-app.use((req,res,next)=>{
-    console.log(req.session)
-    next();
-});
-
 // app.use((req,res,next)=>{
-//     if(!req.session.user){
-//        return next();
-//     }
-//     User.findOne({username : req.session.username})
-//         .then(user => {
-//             req.user = user;
-//             next();
-//         })
-//         .catch(err => console.log(err));
+//     console.log(req.session)
+//     next();
 // });
+
+app.use((req,res,next)=>{
+    if(!req.session.userInfo){
+       return next();
+    }
+    User.findOne({username : req.session.userInfo._id})
+        .then(user => {
+            req.user = user;
+            next();
+        })
+        .catch(err => console.log(err));
+});
 
 app.use(logger('dev'));
 app.use(express.json());

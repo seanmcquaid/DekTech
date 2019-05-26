@@ -10,8 +10,54 @@ const transporter = nodemailer.createTransport(sendGridTransport({
     }
 }));
 
+exports.checkUserSession = (req,res,next) => {
+    if(req.session.userInfo){
+        console.log(req.session)
+        res.json({
+            userId : req.session.userInfo._id,
+            isLoggedIn : req.session.isLoggedIn
+        });
+    } else {
+        res.json({
+            isLoggedIn : false
+        });
+    }
+}
+
 exports.postLogin = (req,res,next) => {
-    
+    const {username, password} = req.body;
+    User.findOne({username : username})
+        .then(userDoc => {
+            if(!userDoc){
+                return res.json({
+                    isLoggedIn : false,
+                    message : "User doesn't exist"
+                });
+            }
+            bcrypt.compare(password, userDoc.password)
+                        .then(passwordMatch => {
+                            if(passwordMatch){
+                                req.session.userInfo = userDoc;
+                                req.session.isLoggedIn = true;
+                                console.log(req.session);
+                                req.session.save(err => {
+                                    return res.json({
+                                        message : "Successfully logged in!",
+                                        userId : req.session.userInfo._id,
+                                        isLoggedIn : req.session.isLoggedIn
+                                    });
+                                });
+                            } else {
+                                return res.json({
+                                    message : "Incorrect password, try again!",
+                                    userId : req.session.userInfo._id,
+                                    isLoggedIn : req.session.isLoggedIn
+                                });
+                            }
+                        });
+
+        })
+        .catch(err => console.log(err))
 }
 
 exports.postRegister = (req,res,next) => {
@@ -30,15 +76,16 @@ exports.postRegister = (req,res,next) => {
                                 password : hashedPassword
                             });
                             req.session.userInfo = newUser;
+                            req.session.isLoggedIn = true;
                             newUser.save();
-                            return res.json({
-                                message : "Successfully registered",
-                                userId : req.session.userInfo._id
+                            req.session.save(err => {
+                                return res.json({
+                                    message : "Successfully registered",
+                                    userId : req.session.userInfo._id,
+                                    isLoggedIn : req.session.isLoggedIn
+                                });
                             });
                         });
-        })
-        .then(result => {
-            console.log(result)
         })
         .catch(err => console.log(err));
 };
