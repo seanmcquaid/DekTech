@@ -52,7 +52,6 @@ exports.postLogin = (req,res,next) => {
                             } else {
                                 return res.json({
                                     message : "Incorrect password, try again!",
-                                    userId : req.session.userInfo._id,
                                     isLoggedIn : req.session.isLoggedIn
                                 });
                             }

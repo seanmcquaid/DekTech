@@ -16,7 +16,7 @@ class Navbar extends Component {
     }
     
     componentDidMount = () => {
-        console.log(this.props.auth)
+        // console.log(this.props.auth)
         // use this to constantly check auth for loggedIn status
         if(!this.props.auth.isLoggedIn){
             this.props.checkAuthAction();
@@ -30,21 +30,21 @@ class Navbar extends Component {
 
     render(){
         let leftNavHomeLink, rightNavLinks, rightNavMobileLinks;
-        console.log(this.props.auth)
         if(this.props.auth.isLoggedIn){
             leftNavHomeLink = "/userHome";
             rightNavLinks = 
             <Aux>
-                <div><Link></Link></div>
-                <div><Link></Link></div>
-                <div><Link></Link></div>
+                <div className={styles.rightNavLinks}><Link to="/currentDeck" className={styles.rightNavLink}>Current Deck</Link></div>
+                <div className={styles.rightNavLinks}><Link to="/cardSearch" className={styles.rightNavLink}>Card Search</Link></div>
+                <div className={styles.rightNavLinks}><Link to="/userProfile" className={styles.rightNavLink}>Profile</Link></div>
+                <div className={styles.rightNavLinks}>Logout</div>
             </Aux>;
         } else {
             leftNavHomeLink = "/";
             rightNavLinks = 
             <Aux>
-                <div className={styles.rightNavLinks}><Link to="/register"className={styles.rightNavLink}>Register</Link></div>       
-                <div className={styles.rightNavLinks}><Link to="/login"className={styles.rightNavLink}>Login</Link></div>
+                <div className={styles.rightNavLinks}><Link to="/register" className={styles.rightNavLink}>Register</Link></div>       
+                <div className={styles.rightNavLinks}><Link to="/login" className={styles.rightNavLink}>Login</Link></div>
             </Aux>;
         }
         return(

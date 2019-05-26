@@ -20,7 +20,7 @@ class Login extends Component {
                 message : "No user information matches the email you provided, try again!"
             });
         } else if(newProps.auth.message === "Successfully logged in!"){
-            this.props.history.push("/");
+            this.props.history.push("/userHome");
         } else if(newProps.auth.message === "Incorrect password, try again!"){
             this.setState({
                 message : newProps.auth.message
