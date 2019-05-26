@@ -16,8 +16,13 @@
     width: 50%;
 }
 
-.leftNavLink {
+.leftNavLinks {
     margin-left: 1.5rem;
+}
+
+.leftNavLink {
+    text-decoration: none;
+    color: white;
 }
 
 .rightNav {

@@ -22,13 +22,14 @@ app.use(
         secret : config.secret,
         store : new MongoDBStore({
             uri : config.MONGODB_URI,
-            collection : "sessions"
+            collection : "sessions",
+            ttl: 24 * 60 * 60
         }),
         cookie: {
             maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
         },
-        resave: false,
-        saveUninitialized: false
+        resave: true,
+        saveUninitialized: true
     })
 );
 

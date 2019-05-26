@@ -11,6 +11,11 @@ class Protected extends Component {
     // check auth status and change allowed routes based on that
 
     render(){
+        if(this.props.auth.loggedIn){
+
+        } else {
+            
+        }
         return(
             <Aux>
                 <Route exact path="/" component={Splash}/>

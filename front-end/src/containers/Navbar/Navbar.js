@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {Link} from "react-router-dom";
 import checkAuthAction from "../../actions/checkAuthAction";
+import Aux from "../../hoc/Aux/Aux";
 
 import styles from "./Navbar.module.css"
 
@@ -28,22 +29,31 @@ class Navbar extends Component {
     }
 
     render(){
-        let leftNavHomeLink, rightNavLinks;
-        if(this.props.auth){
+        let leftNavHomeLink, rightNavLinks, rightNavMobileLinks;
+        console.log(this.props.auth)
+        if(this.props.auth.isLoggedIn){
             leftNavHomeLink = "/userHome";
-            rightNavLinks = "";
+            rightNavLinks = 
+            <Aux>
+                <div><Link></Link></div>
+                <div><Link></Link></div>
+                <div><Link></Link></div>
+            </Aux>;
         } else {
             leftNavHomeLink = "/";
-            rightNavLinks = "";
+            rightNavLinks = 
+            <Aux>
+                <div className={styles.rightNavLinks}><Link to="/register"className={styles.rightNavLink}>Register</Link></div>       
+                <div className={styles.rightNavLinks}><Link to="/login"className={styles.rightNavLink}>Login</Link></div>
+            </Aux>;
         }
         return(
             <div className={styles.navBar}>
                 <div className={styles.leftNav}>
-                    <div className={styles.leftNavLink}>Dek Tech</div>
+                    <div className={styles.leftNavLinks}><Link className={styles.leftNavLink} to={leftNavHomeLink}>Dek Tech</Link></div>
                 </div>
                 <div className={styles.rightNav}>
-                    <div className={styles.rightNavLinks}><Link to="/register"className={styles.rightNavLink}>Register</Link></div>       
-                    <div className={styles.rightNavLinks}><Link to="/login"className={styles.rightNavLink}>Login</Link></div>
+                    {rightNavLinks}
                 </div>
             </div>
         )
