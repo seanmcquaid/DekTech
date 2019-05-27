@@ -6,13 +6,11 @@ import MenuButton from "../Utility/MenuButton/MenuButton";
 const UserHome = props => {
     return(
         <div className={styles.userHomeContainer}>
-            <div className={styles.userHomeTitle}>UserHome Title</div>
-            <div className={styles.userHomeMenuContainer}>
-                <div className={styles.userHomeMenuOptions}>
-                    <MenuButton>Hello</MenuButton>
-                    <MenuButton>Hello</MenuButton>
-                    <MenuButton>Hello</MenuButton>
-                </div>
+            <div className={styles.userHomeTitle}>Welcome!</div>
+            <div className={styles.userHomeMenuOptions}>
+                <MenuButton route="/currentDeck">Current Deck</MenuButton>
+                <MenuButton route="/cardSearch">Card Search</MenuButton>
+                <MenuButton route="/userProfile">User Profile</MenuButton>
             </div>
         </div>
     )

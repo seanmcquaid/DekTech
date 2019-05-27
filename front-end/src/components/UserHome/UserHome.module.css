@@ -5,5 +5,26 @@
     justify-content: center;
     align-content: center;
     align-items: center;
-    margin-top: 6rem;
+    margin-top: 8rem;
+    width: 100%;
+}
+
+.userHomeTitle {
+    color: #F25F5C;
+    font-size: 2rem;
+    font-family: 'Roboto Slab', serif;
+}
+
+.userHomeMenuOptions {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+@media(max-width: 700px){
+    .userHomeMenuOptions{
+        flex-direction: column;
+    }
 }

@@ -1,0 +1,18 @@
+.menuButton {
+    background-color: #0072BB;
+    text-align: center;
+    margin: 6rem 2.5rem;
+    width: 8rem;
+    height: 8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+}
+
+@media(max-width: 700px){
+    .menuButton{
+        margin: 2.5rem;
+    }
+}

@@ -1,11 +1,12 @@
 import React from "react";
 import styles from "./MenuButton.module.css";
+import {Link} from "react-router-dom";
 
 const MenuButton = props => {
     return(
-        <div className={styles.menuButton}>
+        <Link className={styles.menuButton} to={props.route}>
             {props.children}
-        </div>
+        </Link>
     )
 };
 
