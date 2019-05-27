@@ -16,18 +16,20 @@ The MTG Deck Builder is a MERN stack web application that will allow users to cr
 
 ## Technologies
 - HTML/CSS/JavaScript
-- MongoDB
+- CSS Modules
+- MongoDB/Mongoose
 - Node.js/Express
 - React/Redux
 - Scryfall API
 
 ## Challenges & Solutions
 * Authentication
-* Considering how to check user logged in status on backend to communicate on front end
+* Creating persistent sessions to communicate back end session to front end
+* Design
 
 ## MVP
 * User should be able to create an account
-* User should be able to search for cards using various conditions (Mana color, Converted Mana Cost, Power)
+* User should be able to search for cards using various conditions (Mana color, Converted Mana Cost, Power, etc)
 * User should be able to create a deck of 100 cards
 
 
