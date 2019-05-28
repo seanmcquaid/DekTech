@@ -36,7 +36,8 @@ app.use(
 
 
 app.use((req,res,next)=>{
-    console.log(req.session)
+    // USE THIS TO FIND THE SESSION IN THE DATABASE
+    console.log(req.sessionID)
     next();
 });
 
