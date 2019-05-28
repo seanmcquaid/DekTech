@@ -26,7 +26,8 @@ app.use(
             ttl: 24 * 60 * 60
         }),
         cookie: {
-            maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
+            maxAge: 1000 * 60 * 60 * 24 * 7,
+            secure : false 
         },
         resave: false,
         saveUninitialized: false
@@ -34,10 +35,10 @@ app.use(
 );
 
 
-// app.use((req,res,next)=>{
-//     console.log(req.session)
-//     next();
-// });
+app.use((req,res,next)=>{
+    console.log(req.session)
+    next();
+});
 
 app.use((req,res,next)=>{
     if(!req.session.userInfo){
