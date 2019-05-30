@@ -19,15 +19,17 @@ app.use(cors());
 
 app.use(
     session({
+        name : config.sessionName,
         secret : config.secret,
         store : new MongoDBStore({
             uri : config.MONGODB_URI,
             collection : "sessions",
-            ttl: 24 * 60 * 60
+            ttl: config.sessionLifetime
         }),
         cookie: {
-            maxAge: 1000 * 60 * 60 * 24 * 7,
-            secure : false 
+            sameSite: true,
+            secure: false,
+            maxAge: config.sessionLifetime,
         },
         resave: false,
         saveUninitialized: false
@@ -37,20 +39,13 @@ app.use(
 
 app.use((req,res,next)=>{
     // USE THIS TO FIND THE SESSION IN THE DATABASE
-    console.log(req.sessionID)
-    next();
-});
-
-app.use((req,res,next)=>{
-    if(!req.session.userInfo){
-       return next();
+    if(req.session.userInfo){
+        res.locals.loggedIn = true;
+    } else {
+        res.locals.loggedIn = false;
     }
-    User.findOne({username : req.session.userInfo._id})
-        .then(user => {
-            req.user = user;
-            next();
-        })
-        .catch(err => console.log(err));
+    console.log(res.locals.loggedIn)
+    next();
 });
 
 app.use(logger('dev'));

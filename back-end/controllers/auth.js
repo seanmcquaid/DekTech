@@ -11,7 +11,7 @@ const transporter = nodemailer.createTransport(sendGridTransport({
 }));
 
 exports.checkUserSession = (req,res,next) => {
-    // console.log(req.sessionStore)
+    // console.log(req.session)
     if(req.session.userInfo){
         // console.log(req.session)
         res.json({
