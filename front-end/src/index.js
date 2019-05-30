@@ -11,6 +11,15 @@ const middleware = applyMiddleware(reduxPromise);
 const theStore = middleware(createStore);
 const theStoreWithMiddlewareAndReducers = theStore(reducers);
 
+const saveToLocalStorage = (state) => {
+    try {
+        const serializedState = JSON.stringify(state);
+        localStorage.setItem("state", serializedState);
+    } catch(err){
+        console.log(err)
+    }
+}
+
 ReactDOM.render(
     <Provider store={theStoreWithMiddlewareAndReducers}>
         <App />
