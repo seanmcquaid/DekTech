@@ -1,0 +1,27 @@
+.currentDeckContainer {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    margin-top: 8rem;
+    width: 100%;
+}
+
+.currentDeckTitle {
+    color: #F25F5C;
+    font-size: 2rem;
+    font-family: 'Roboto Slab', serif;
+}
+
+
+.cardsContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    width: 100%;
+}
+
+.cardInfo {
+    margin: 2rem;
+}

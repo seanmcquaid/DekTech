@@ -6,6 +6,7 @@ import Splash from "../../components/Splash/Splash";
 import Register from "../Users/Register/Register";
 import Login from "../Users/Login/Login";
 import UserHome from "../../components/UserHome/UserHome";
+import CurrentDeck from "../CurrentDeck/CurrentDeck";
 
 class Protected extends Component {
 
@@ -35,6 +36,7 @@ class Protected extends Component {
                 <Route exact path="/register" component={Register}/>
                 <Route exact path="/login" component={Login}/>
                 <Route exact path="/userHome" component={UserHome}/>
+                <Route exact path="/currentDeck" component={CurrentDeck}/>
             </Aux>
         )
     }
