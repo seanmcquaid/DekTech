@@ -24,8 +24,11 @@ The MTG Deck Builder is a MERN stack web application that will allow users to cr
 
 ## Challenges & Solutions
 * Authentication
+- Still working on, maybe implement JWT? 
 * Creating persistent sessions to communicate back end session to front end
+- Local Storage
 * Design
+- Color Palette research
 
 ## MVP
 * User should be able to create an account
