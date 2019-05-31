@@ -9,7 +9,6 @@ import "./index.css";
 
 const middleware = applyMiddleware(reduxPromise);
 const theStore = middleware(createStore);
-const theStoreWithMiddlewareAndReducers = theStore(reducers);
 
 const saveToLocalStorage = (state) => {
     try {
@@ -18,7 +17,25 @@ const saveToLocalStorage = (state) => {
     } catch(err){
         console.log(err)
     }
-}
+};
+
+const loadFromLocalStorage = () => {
+    try{
+        const serializedState = localStorage.getItem("state");
+        if(serializedState === null){
+            return undefined;
+        }
+        return JSON.parse(serializedState);
+    } catch(err){
+        console.log(err);
+    }
+};
+
+const persistedState = loadFromLocalStorage();
+
+const theStoreWithMiddlewareAndReducers = theStore(reducers, persistedState);
+
+theStoreWithMiddlewareAndReducers.subscribe( () => saveToLocalStorage(theStoreWithMiddlewareAndReducers.getState())) 
 
 ReactDOM.render(
     <Provider store={theStoreWithMiddlewareAndReducers}>
