@@ -21,6 +21,7 @@ class Navbar extends Component {
     }
 
     render(){
+        console.log(this.props)
         let leftNavHomeLink, rightNavLinks, rightNavMobileLinks;
         if(this.props.auth.isLoggedIn){
             leftNavHomeLink = "/userHome";
