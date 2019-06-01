@@ -14,14 +14,6 @@ class Navbar extends Component {
             isLoggedIn : false
         }
     }
-    
-    componentDidMount = () => {
-        // console.log(this.props.auth)
-        // use this to constantly check auth for loggedIn status
-        if(!this.props.auth.isLoggedIn){
-            this.props.checkAuthAction();
-        }
-    }
 
     componentWillReceiveProps = newProps => {
         console.log(newProps)
