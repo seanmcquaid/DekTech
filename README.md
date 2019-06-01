@@ -29,6 +29,7 @@ The MTG Deck Builder is a MERN stack web application that will allow users to cr
 - Local Storage
 * Design
 - Color Palette research
+- Refactoring / Reorganizing
 
 ## MVP
 * User should be able to create an account
