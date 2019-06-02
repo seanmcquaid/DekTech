@@ -35,17 +35,17 @@ exports.postRegister = (req,res,next) => {
                                 username : username,
                                 password : hashedPassword
                             });
-                            jwt.sign(
+                            newUser.save();
+                            const token = jwt.sign(
                                 {id : newUser._id},
                                 config.jwtSecret,
                                 {expiresIn : 3600},
-                                token => {
-                                    res.json({
-                                        token,
-                                        userInfo : newUser,
-                                        loggedIn : true
-                                    });
-                                });
+                            );
+                            res.json({
+                                token,
+                                userInfo : newUser,
+                                loggedIn : true
+                            });
                         })
         })
         .catch(err => console.log(err));
