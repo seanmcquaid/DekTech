@@ -1,6 +1,5 @@
 import axios from "axios";
 import {
-    USER_LOADING,
     USER_LOADED,
     AUTH_ERROR,
     LOGIN_SUCCESS,
@@ -10,7 +9,7 @@ import {
     REGISTER_FAIL,
 } from "./authActionTypes";
 
-export const getToken = () => {
+export const tokenConfig = () => {
     const token = localStorage.getItem("token");
 
     const config = {
@@ -24,24 +23,96 @@ export const getToken = () => {
     }
 
     return config;
-}
+};
 
-export const loadUser = (dispatch, getState) => {
-    dispatch({
-        type : USER_LOADING
-    });
+export const loadUser = () => {
 
-    axios.get(`${window.apiHost}/getUserInfo`)
+    const token = tokenConfig();
+
+    axios.get(`${window.apiHost}/auth/getUserInfo`, token)
         .then(response => {
-            dispatch({
+            return{
                 type : USER_LOADED,
                 payload : response.data
-            })
+            }
         })
         .catch(err => {
-            dispatch(returnErrors(err.response.data, err.response.status));
-            dispatch({
-                type : AUTH_ERROR
-            })
+            return{
+                type : AUTH_ERROR,
+                payload: {
+                    errResponse : err.response.data,
+                    errStatus : err.response.status
+                }
+            }
         });
-}
+};
+
+export const registerUser = (username, password) => {
+
+    const config = {
+        headers : {
+            "Content-type" : "application/json"
+        }
+    };
+
+    const requestBody = JSON.stringify({
+        username,
+        password,
+    });
+
+    axios.post(`${window.apiHost}/auth/register`, requestBody, config)
+        .then(response => {
+            return {
+                type : REGISTER_SUCCESS,
+                payload : response.data
+            }
+        })
+        .catch(err => {
+            return{
+                type : REGISTER_FAIL,
+                payload: {
+                    errResponse : err.response.data,
+                    errStatus : err.response.status
+                }
+            }
+        })
+
+};
+
+export const loginUser = (username, password) => {
+
+    const config = {
+        headers : {
+            "Content-type" : "application/json"
+        }
+    };
+
+    const requestBody = JSON.stringify({
+        username,
+        password
+    });
+
+    axios.post(`${window.apiHost}/auth/login`, requestBody, config)
+        .then(response => {
+            return({
+                type : LOGIN_SUCCESS,
+                payload : response.data
+            });
+        })
+        .catch(err => {
+            return{
+                type : LOGIN_FAIL,
+                payload: {
+                    errResponse : err.response.data,
+                    errStatus : err.response.status
+                }
+            }
+        });
+
+};
+
+export const logoutUser = () => {
+    return({
+        type : LOGOUT_SUCCESS
+    });
+};
