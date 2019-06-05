@@ -92,22 +92,13 @@ export const loginUser = (username, password) => {
         password
     });
 
-    axios.post(`${window.apiHost}/auth/login`, requestBody, config)
-        .then(response => {
-            return({
-                type : LOGIN_SUCCESS,
-                payload : response.data
-            });
-        })
-        .catch(err => {
-            return{
-                type : LOGIN_FAIL,
-                payload: {
-                    errResponse : err.response.data,
-                    errStatus : err.response.status
-                }
-            }
-        });
+    const axiosPromise = axios.post(`${window.apiHost}/auth/login`, requestBody, config);
+
+    return {
+        type : LOGIN_SUCCESS,
+        payload : axiosPromise
+    }
+        
 
 };
 

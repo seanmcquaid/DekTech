@@ -19,6 +19,7 @@ export default (state = initialState, action) => {
         case USER_LOADED:
         case AUTH_ERROR:
         case LOGIN_SUCCESS:
+            return action.payload.data
         case LOGIN_FAIL:
         case LOGOUT_SUCCESS:
         case REGISTER_SUCCESS:
