@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import styles from "./Register.module.css";
-import registerAction from "../../../actions/registerAction";
+import {registerUser} from "../../../actions/authActions/authActions";
 
 class Register extends Component {
     constructor(){
@@ -58,7 +58,7 @@ class Register extends Component {
                 message : "Your passwords don't match!"
             });
         } else {
-            this.props.registerAction({
+            this.props.registerUser({
                 username : email,
                 password : password
             });
@@ -94,7 +94,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatcher) => {
     return bindActionCreators({
-        registerAction : registerAction
+        registerUser : registerUser
     },dispatcher)
 }
 

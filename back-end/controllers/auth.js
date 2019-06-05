@@ -12,6 +12,7 @@ const transporter = nodemailer.createTransport(sendGridTransport({
 }));
 
 exports.postLogin = (req,res,next) => {
+    console.log("i work")
     const {username, password} = req.body;
     if(!username || !password){
         return res.status(400).json({
@@ -22,6 +23,7 @@ exports.postLogin = (req,res,next) => {
 
     User.findOne({username})
         .then(user => {
+            console.log(user)
             if(!user){
                 return res.status(400).json({
                     message : "User doesn't exist!",

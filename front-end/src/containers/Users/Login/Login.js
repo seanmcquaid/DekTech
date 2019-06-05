@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import styles from "./Login.module.css";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import loginAction from "../../../actions/loginAction";
+import {loginUser} from "../../../actions/authActions/authActions";
 
 class Login extends Component {
     constructor(){
@@ -43,10 +43,7 @@ class Login extends Component {
     handleLogin = event => {
         event.preventDefault();
         const {email, password} = this.state;
-        this.props.loginAction({
-            username : email,
-            password : password
-        });
+        this.props.loginUser(email, password);
     }
 
     render(){
@@ -77,7 +74,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatcher => {
     return bindActionCreators({
-        loginAction : loginAction
+        loginUser : loginUser
     },dispatcher)
 }
 

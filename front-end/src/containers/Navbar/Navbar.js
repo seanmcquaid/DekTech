@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {Link} from "react-router-dom";
-import checkAuthAction from "../../actions/checkAuthAction";
+import {loadUser} from "../../actions/authActions/authActions";
 import Aux from "../../hoc/Aux/Aux";
 
 import styles from "./Navbar.module.css"
@@ -61,7 +61,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatcher) => {
     return bindActionCreators({
-        checkAuthAction : checkAuthAction
+        loadUser :loadUser
     }, dispatcher)
 }
 
