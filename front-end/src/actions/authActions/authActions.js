@@ -3,7 +3,6 @@ import {
     USER_LOADED,
     AUTH_ERROR,
     LOGIN_SUCCESS,
-    LOGIN_FAIL,
     LOGOUT_SUCCESS,
     REGISTER_SUCCESS,
     REGISTER_FAIL,
@@ -29,22 +28,12 @@ export const loadUser = () => {
 
     const token = tokenConfig();
 
-    axios.get(`${window.apiHost}/auth/getUserInfo`, token)
-        .then(response => {
-            return{
-                type : USER_LOADED,
-                payload : response.data
-            }
-        })
-        .catch(err => {
-            return{
-                type : AUTH_ERROR,
-                payload: {
-                    errResponse : err.response.data,
-                    errStatus : err.response.status
-                }
-            }
-        });
+    const axiosPromise = axios.get(`${window.apiHost}/auth/getUserInfo`, token);
+    
+    return{
+        type : USER_LOADED,
+        payload : axiosPromise
+    }
 };
 
 export const registerUser = (username, password) => {
@@ -60,23 +49,12 @@ export const registerUser = (username, password) => {
         password,
     });
 
-    axios.post(`${window.apiHost}/auth/register`, requestBody, config)
-        .then(response => {
-            return {
-                type : REGISTER_SUCCESS,
-                payload : response.data
-            }
-        })
-        .catch(err => {
-            return{
-                type : REGISTER_FAIL,
-                payload: {
-                    errResponse : err.response.data,
-                    errStatus : err.response.status
-                }
-            }
-        })
-
+    const axiosPromise = axios.post(`${window.apiHost}/auth/register`, requestBody, config);
+    
+    return{
+        type : REGISTER_SUCCESS,
+        payload : axiosPromise
+    }
 };
 
 export const loginUser = (username, password) => {

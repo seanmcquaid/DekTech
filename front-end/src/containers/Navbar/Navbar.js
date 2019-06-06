@@ -52,16 +52,16 @@ class Navbar extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
     return{
         auth: state.auth
     }
 }
 
-const mapDispatchToProps = (dispatcher) => {
+const mapDispatchToProps = dispatch => {
     return bindActionCreators({
         loadUser :loadUser
-    }, dispatcher)
+    }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
