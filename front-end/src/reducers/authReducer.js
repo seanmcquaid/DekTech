@@ -10,6 +10,7 @@ import {
 
 const initialState = {
     token : localStorage.getItem("token"),
+    message : "",
     isAuthenticated : null,
     userInfo : null
 };
@@ -19,16 +20,22 @@ export default (state = initialState, action) => {
         case USER_LOADED:
         case AUTH_ERROR:
         case LOGIN_SUCCESS:
-            localStorage.setItem("token", action.payload.data.token)
-            return action.payload.data;
+                localStorage.setItem("token", action.payload.data.token)
+            return {
+                ...action.payload.data,
+            };
         case LOGIN_FAIL:
         case LOGOUT_SUCCESS:
             localStorage.removeItem("token");
-            return initialState;
+            return {
+                ...state,
+            };
         case REGISTER_SUCCESS:
             localStorage.setItem("token", action.payload.data.token)
         case REGISTER_FAIL:
         default :
-            return state;
+            return {
+                ...state,
+            }
     }
 }

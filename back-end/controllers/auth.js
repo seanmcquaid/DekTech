@@ -12,12 +12,13 @@ const transporter = nodemailer.createTransport(sendGridTransport({
 }));
 
 exports.postLogin = (req,res,next) => {
-    console.log("i work")
     const {username, password} = req.body;
     if(!username || !password){
-        return res.status(400).json({
+        return res.json({
+            token : null,
             message : "Please enter all fields!",
-            loggedIn : false,
+            isAuthenticated : false,
+            userInfo : null,
         });
     }
 
@@ -25,18 +26,22 @@ exports.postLogin = (req,res,next) => {
         .then(user => {
             console.log(user)
             if(!user){
-                return res.status(400).json({
+                return res.json({
+                    token : null,
                     message : "User doesn't exist!",
-                    loggedIn : false,
+                    isAuthenticated : false,
+                    userInfo : null,
                 });
             }
 
             return bcrypt.compare(password, user.password)
                 .then(isMatch => {
                     if(!isMatch){
-                        return res.status(400).json({
+                        return res.json({
+                            token : null,
                             message : "Invalid password!",
-                            loggedIn : false,
+                            isAuthenticated : false,
+                            userInfo : null,
                         });
                     };
 
@@ -48,8 +53,9 @@ exports.postLogin = (req,res,next) => {
 
                     return res.json({
                         token,
+                        message : "Logged in successfully!",
+                        isAuthenticated : true,
                         userInfo : user,
-                        loggedIn : true
                     });
 
                 })
@@ -62,17 +68,21 @@ exports.postLogin = (req,res,next) => {
 exports.postRegister = (req,res,next) => {
     const {username, password} = req.body;
     if(!username || !password){
-        return res.status(400).json({
+        return res.json({
+            token : null,
             message : "Be sure to fill out all fields!",
-            loggedIn : false,
+            isAuthenticated : false,
+            userInfo : null
         });
     }
     User.findOne({username})
         .then(user => {
             if(user){
-                return res.status(400).json({
-                    message : "User already exists!",
-                    loggedIn : false,
+                return res.json({
+                    token : null,
+                    message : "User already exists",
+                    isAuthenticated : false,
+                    userInfo : null
                 });
             }
             return bcrypt.hash(password, 12)
@@ -90,7 +100,7 @@ exports.postRegister = (req,res,next) => {
                             res.json({
                                 token,
                                 userInfo : newUser,
-                                loggedIn : true,
+                                isAuthenticated : true,
                             });
                         })
         })
