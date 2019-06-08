@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import styles from "./Login.module.css";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import {loginUser} from "../../../actions/authActions/authActions";
+import {loginAction} from "../../../actions/authActions/authActions";
 
 class Login extends Component {
     constructor(){
@@ -15,7 +15,7 @@ class Login extends Component {
     }
 
     componentWillReceiveProps = newProps => {
-        if(newProps.auth.message === "User doesn't exist"){
+        if(newProps.auth.message === "User doesn't exist!"){
             this.setState({
                 message : "No user information matches the email you provided, try again!"
             });
@@ -43,7 +43,7 @@ class Login extends Component {
     handleLogin = event => {
         event.preventDefault();
         const {email, password} = this.state;
-        this.props.loginUser(email, password);
+        this.props.loginAction(email, password);
     }
 
     render(){
@@ -74,7 +74,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatcher => {
     return bindActionCreators({
-        loginUser : loginUser
+        loginAction
     },dispatcher)
 }
 

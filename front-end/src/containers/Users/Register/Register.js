@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import styles from "./Register.module.css";
-import {registerUser} from "../../../actions/authActions/authActions";
+import {registerAction} from "../../../actions/authActions/authActions";
 
 class Register extends Component {
     constructor(){
@@ -23,7 +23,11 @@ class Register extends Component {
                 message : "User already exists, try again"
             });
         } else if (newProps.auth.message === "Successfully registered"){
-            this.props.history.push("/login");
+            this.props.history.push("/userHome");
+        } else if (newProps.auth.message === "Be sure to fill out all fields!"){
+            this.setState({
+                message : newProps.auth.message
+            });
         } else {
             this.setState({
                 message : "Incorrect information, try again"
@@ -58,7 +62,7 @@ class Register extends Component {
                 message : "Your passwords don't match!"
             });
         } else {
-            this.props.registerUser({
+            this.props.registerAction({
                 username : email,
                 password : password
             });
@@ -94,7 +98,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatcher) => {
     return bindActionCreators({
-        registerUser : registerUser
+        registerAction
     },dispatcher)
 }
 

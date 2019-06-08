@@ -39,7 +39,7 @@ exports.postLogin = (req,res,next) => {
                     if(!isMatch){
                         return res.json({
                             token : null,
-                            message : "Invalid password!",
+                            message : "Incorrect password, try again!",
                             isAuthenticated : false,
                             userInfo : null,
                         });
@@ -53,7 +53,7 @@ exports.postLogin = (req,res,next) => {
 
                     return res.json({
                         token,
-                        message : "Logged in successfully!",
+                        message : "Successfully logged in!",
                         isAuthenticated : true,
                         userInfo : user,
                     });
@@ -99,6 +99,7 @@ exports.postRegister = (req,res,next) => {
                             );
                             res.json({
                                 token,
+                                message : "Successfully registered",
                                 userInfo : newUser,
                                 isAuthenticated : true,
                             });

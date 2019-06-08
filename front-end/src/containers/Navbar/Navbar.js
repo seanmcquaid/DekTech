@@ -2,27 +2,21 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {Link} from "react-router-dom";
-import {loadUser} from "../../actions/authActions/authActions";
+import {loadUserAction} from "../../actions/authActions/authActions";
 import Aux from "../../hoc/Aux/Aux";
 
 import styles from "./Navbar.module.css"
 
 class Navbar extends Component {
-    constructor(){
-        super()
-        this.state = {
-            isLoggedIn : false
-        }
-    }
-
     componentWillReceiveProps = newProps => {
         console.log(newProps)
         
     }
 
     render(){
+        console.log(this.props)
         let leftNavHomeLink, rightNavLinks, rightNavMobileLinks;
-        if(this.props.auth.isLoggedIn){
+        if(this.props.auth.isAuthenticated){
             leftNavHomeLink = "/userHome";
             rightNavLinks = 
             <Aux>
@@ -60,7 +54,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return bindActionCreators({
-        loadUser :loadUser
+        loadUserAction
     }, dispatch)
 }
 
