@@ -7,6 +7,7 @@ import Register from "../Users/Register/Register";
 import Login from "../Users/Login/Login";
 import UserHome from "../../components/UserHome/UserHome";
 import CurrentDeck from "../CurrentDeck/CurrentDeck";
+import CardSearch from "../CardSearch/CardSearch";
 
 class Protected extends Component {
 
@@ -37,6 +38,7 @@ class Protected extends Component {
                 <Route exact path="/login" component={Login}/>
                 <Route exact path="/userHome" component={UserHome}/>
                 <Route exact path="/currentDeck" component={CurrentDeck}/>
+                <Route exact path="/cardSearch" component={CardSearch}/>
             </Aux>
         )
     }

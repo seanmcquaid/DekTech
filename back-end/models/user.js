@@ -14,7 +14,7 @@ const userSchema = new Schema({
         cards : [
             {
                 cardId : {
-                    type : Schema.types.ObjectId,
+                    type : Schema.Types.ObjectId,
                     ref : "Card",
                     required : true,
                 },
@@ -27,6 +27,18 @@ const userSchema = new Schema({
     },
 });
 
-// create methods to add to deck
+userSchema.methods.addToDeck = function(card){
+
+};
+
+userSchema.methods.removeFromDeck = function(cardId){
+    
+};
+
+userSchema.methods.clearDeck = function(){
+
+};
+
+// create methods to add to deck, delete card from deck, 
 
 module.exports = mongoose.model("User", userSchema);
