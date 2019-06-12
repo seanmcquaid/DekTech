@@ -39,6 +39,7 @@ class Protected extends Component {
                 <Route exact path="/userHome" component={UserHome}/>
                 <Route exact path="/currentDeck" component={CurrentDeck}/>
                 <Route exact path="/cardSearch" component={CardSearch}/>
+                <Route exact path={`/cardInfo/:cardId`} component={}/>
             </Aux>
         )
     }
