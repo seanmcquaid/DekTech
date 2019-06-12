@@ -8,6 +8,7 @@ import Login from "../Users/Login/Login";
 import UserHome from "../../components/UserHome/UserHome";
 import CurrentDeck from "../CurrentDeck/CurrentDeck";
 import CardSearch from "../CardSearch/CardSearch";
+import CardInfo from "../CardInfo/CardInfo";
 
 class Protected extends Component {
 
@@ -39,7 +40,7 @@ class Protected extends Component {
                 <Route exact path="/userHome" component={UserHome}/>
                 <Route exact path="/currentDeck" component={CurrentDeck}/>
                 <Route exact path="/cardSearch" component={CardSearch}/>
-                <Route exact path={`/cardInfo/:cardId`} component={}/>
+                <Route exact path={`/cardInfo/:cardId`} component={CardInfo}/>
             </Aux>
         )
     }

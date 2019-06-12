@@ -19,3 +19,5 @@ class CardInfo extends Component {
         )
     }
 }
+
+export default CardInfo;
