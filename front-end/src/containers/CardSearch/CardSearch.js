@@ -7,15 +7,35 @@ class CardSearch extends Component {
         super();
         this.state = {
             searchResults : [],
-            sortFilters : [],
-            colors : ["Red", "White", "Green", "Blue", "Black", "Colorless", ],
-            cardType : ["Legendary", "Creature", "Artifact", "Sorcery", "Instant", "Enchantment", "Planeswalker",],
-            convertedManaCost : [1,2,3,4,5,6,7,8,9,10],
-            rarity : [],
-            cardText : "",
-            powerToughnessLoyalty : [],
-            spellsPermsEffects : [],
-            priceRange : [],
+            color1Choice : "",
+            color2Choice : "",
+            color3Choice : "",
+            colors : [
+                "Red", 
+                "White", 
+                "Green", 
+                "Blue", 
+                "Black", 
+                "Colorless", 
+            ],
+            cardType : [
+                "Legendary", 
+                "Creature", 
+                "Artifact", 
+                "Sorcery", 
+                "Instant", 
+                "Enchantment", 
+                "Planeswalker",
+            ],
+            cardTypeChoice : "",
+            convertedManaCost : "",
+            rarity : [
+                "Common", 
+                "Uncommon", 
+                "Rare", 
+                "Mythic",
+            ],
+            rarityChoice : "",
         }
     }
 
@@ -34,6 +54,26 @@ class CardSearch extends Component {
     addToDeck = event => {
         event.preventDefault();
     }
+
+    changeColor1 = event => {
+        this.setState({
+            color1Choice : event.target.value
+        });
+    }
+
+    changeColor2 = event => {
+        this.setState({
+            color2Choice : event.target.value
+        });
+    }
+
+    changeColor3 = event => {
+        this.setState({
+            color3Choice : event.target.value
+        });
+    }
+    
+    
     
 
 
@@ -46,29 +86,23 @@ class CardSearch extends Component {
                 <h1>Card Search</h1>
                 <form onSubmit={this.cardSearch} className="">
                     <div className={styles.colorChoices}>
-                        <select className={styles.colorOption1}>
+                        <select className={styles.colorOption1} onChange={this.changeColor1}>
                             <option defaultValue="">Choose a color!</option>
                             {colorOptions}
                         </select>
-                        <select className={styles.colorOption2}>
+                        <select className={styles.colorOption2} onChange={this.changeColor2}>
                             <option defaultValue="">Choose a color!</option>
                             {colorOptions}
                         </select>
-                        <select className={styles.colorOption3}>
+                        <select className={styles.colorOption3} onChange={this.changeColor3}>
                             <option defaultValue="">Choose a color!</option>
                             {colorOptions}
                         </select>
                     </div>
                     <div>
-                        <input placeholder="converted mana cost"/>
-                        <input placeholder="type"/>
-                        <input placeholder="rarity"/>
-                    </div>
-                    <div>
-                        <input placeholder="card text"/>
-                        <input placeholder="power, toughness, loyalty"/>
-                        <input placeholder="spells, perms, effects"/>
-                        <input placeholder="USD prices"/>
+                        <input placeholder="Converted Mana Cost" type="text"/>
+                        <input placeholder="Card Type"/>
+                        <input placeholder="Rarity"/>
                     </div>
                     <button type="submit">Search</button>
                 </form>
