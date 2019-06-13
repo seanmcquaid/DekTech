@@ -18,7 +18,7 @@ class CardSearch extends Component {
                 "Black", 
                 "Colorless", 
             ],
-            cardType : [
+            cardTypes : [
                 "Legendary", 
                 "Creature", 
                 "Artifact", 
@@ -29,7 +29,7 @@ class CardSearch extends Component {
             ],
             cardTypeChoice : "",
             convertedManaCost : "",
-            rarity : [
+            rarities : [
                 "Common", 
                 "Uncommon", 
                 "Rare", 
@@ -73,13 +73,30 @@ class CardSearch extends Component {
         });
     }
     
+    changeCardType = event => {
+        this.setState({
+            cardTypeChoice : event.target.value
+        });
+    }
+
+    changeRarityChoice = event => {
+        this.setState({
+            rarityChoice : event.target.value
+        });
+    }
     
     
 
 
     render(){
-        const colorOptions = this.state.colors.map((color, i)=>{
+        const colorOptions = this.state.colors.map((color, i) => {
             return <option key={i} value={color}>{color}</option>
+        });
+        const cardTypeOptions = this.state.cardTypes.map((cardType,i) => {
+            return <option key={i} value={cardType}>{cardType}</option>
+        }); 
+        const rarityOptions = this.state.rarities.map((rarity, i) => {
+            return <option key={i} value={rarity}>{rarity}</option>
         });
         return (
             <div className={styles.cardSearchContainer}>
@@ -101,8 +118,14 @@ class CardSearch extends Component {
                     </div>
                     <div>
                         <input placeholder="Converted Mana Cost" type="text"/>
-                        <input placeholder="Card Type"/>
-                        <input placeholder="Rarity"/>
+                        <select className={styles.cardTypeOptions} onChange={this.changeCardType}>
+                            <option defaultValue="">Choose a Card Type!</option>
+                            {cardTypeOptions}
+                        </select>
+                        <select onChange={this.changeRarityChoice}>
+                            <option defaultValue="">Choose a rarity</option>
+                            {rarityOptions}
+                        </select>
                     </div>
                     <button type="submit">Search</button>
                 </form>
