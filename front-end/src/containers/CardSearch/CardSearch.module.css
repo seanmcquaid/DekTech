@@ -8,3 +8,13 @@
     margin-top: 8rem;
     width: 100%;
 }
+
+.cardSearchTitle {
+    color: #F25F5C;
+    font-size: 2rem;
+    font-family: 'Roboto Slab', serif;
+}
+
+.dropDown {
+    font-family: 'Raleway', sans-serif;
+}

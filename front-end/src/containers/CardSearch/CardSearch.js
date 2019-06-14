@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import styles from "./CardSearch.module.css";
 import axios from "axios";
+import Card from "../../components/Utility/Card/Card";
 
 class CardSearch extends Component {
     constructor(){
@@ -42,13 +43,14 @@ class CardSearch extends Component {
 
     cardSearch = event => {
         event.preventDefault();
+        console.log(this.state)
         // https://scryfall.com/docs/syntax
         // https://scryfall.com/docs/api/cards/search
-        axios.get("https://api.scryfall.com/cards/search?q=hello")
-            .then(response => {
-                console.log(response.data)
-            })
-            .catch(err => console.log(err));
+        // axios.get("https://api.scryfall.com/cards/search?q=hello")
+        //     .then(response => {
+        //         console.log(response.data)
+        //     })
+        //     .catch(err => console.log(err));
     };
 
     addToDeck = event => {
@@ -98,37 +100,45 @@ class CardSearch extends Component {
         const rarityOptions = this.state.rarities.map((rarity, i) => {
             return <option key={i} value={rarity}>{rarity}</option>
         });
+
+        const searchResults = this.state.searchResults.map((card, i) => {
+            return <Card cardName="" cardId="" imageUrl="" clicked=""/>
+        });
+
         return (
             <div className={styles.cardSearchContainer}>
-                <h1>Card Search</h1>
-                <form onSubmit={this.cardSearch} className="">
+                <h1 className={styles.cardSearchTitle}>Card Search</h1>
+                <form onSubmit={this.cardSearch} className={styles.cardSearchForm}>
                     <div className={styles.colorChoices}>
-                        <select className={styles.colorOption1} onChange={this.changeColor1}>
+                        <select className={styles.dropDown} onChange={this.changeColor1}>
                             <option defaultValue="">Choose a color!</option>
                             {colorOptions}
                         </select>
-                        <select className={styles.colorOption2} onChange={this.changeColor2}>
+                        <select className={styles.dropDown} onChange={this.changeColor2}>
                             <option defaultValue="">Choose a color!</option>
                             {colorOptions}
                         </select>
-                        <select className={styles.colorOption3} onChange={this.changeColor3}>
+                        <select className={styles.dropDown} onChange={this.changeColor3}>
                             <option defaultValue="">Choose a color!</option>
                             {colorOptions}
                         </select>
                     </div>
                     <div>
-                        <input placeholder="Converted Mana Cost" type="text"/>
-                        <select className={styles.cardTypeOptions} onChange={this.changeCardType}>
+                        <input placeholder="Converted Mana Cost" type="text" className={styles.inputText}/>
+                        <select className={styles.dropDown} onChange={this.changeCardType}>
                             <option defaultValue="">Choose a Card Type!</option>
                             {cardTypeOptions}
                         </select>
-                        <select onChange={this.changeRarityChoice}>
+                        <select className={styles.dropDown} onChange={this.changeRarityChoice}>
                             <option defaultValue="">Choose a rarity</option>
                             {rarityOptions}
                         </select>
                     </div>
-                    <button type="submit">Search</button>
+                    <button className={styles.submitButton} type="submit">Search</button>
                 </form>
+                <div className={styles.searchResultsContainer}>
+                    {searchResults}
+                </div>
             </div>
         )
     }
