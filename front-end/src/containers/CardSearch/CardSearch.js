@@ -44,14 +44,16 @@ class CardSearch extends Component {
 
     cardSearch = event => {
         event.preventDefault();
-        console.log(this.state)
         // https://scryfall.com/docs/syntax
         // https://scryfall.com/docs/api/cards/search
-        // axios.get("https://api.scryfall.com/cards/search?q=hello")
-        //     .then(response => {
-        //         console.log(response.data)
-        //     })
-        //     .catch(err => console.log(err));
+        axios.get("https://api.scryfall.com/cards/search?q=hello")
+            .then(response => {
+                // console.log(response)
+                this.setState({
+                    searchResults : response.data.data
+                });
+            })
+            .catch(err => console.log(err));
     };
 
     addToDeck = event => {
@@ -98,6 +100,7 @@ class CardSearch extends Component {
 
 
     render(){
+        console.log(this.state)
         const colorOptions = this.state.colors.map((color, i) => {
             return <option key={i} value={color}>{color}</option>
         });
@@ -112,7 +115,7 @@ class CardSearch extends Component {
         });
 
         const searchResults = this.state.searchResults.map((card, i) => {
-            return <Card cardName="" cardId="" imageUrl="" clicked=""/>
+            return <Card key={i} cardName="" cardId="" imageUrl="" clicked=""/>
         });
 
         return (
