@@ -46,7 +46,27 @@ class CardSearch extends Component {
         event.preventDefault();
         // https://scryfall.com/docs/syntax
         // https://scryfall.com/docs/api/cards/search
-        axios.get("https://api.scryfall.com/cards/search?q=hello")
+        const {color1Choice, color2Choice, color3Choice, cardTypeChoice, convertedManaCostChoice, rarityChoice} = this.state;
+        const colorChoiceCombo = color1Choice.slice(0,1) + color2Choice.slice(0,1) + color3Choice.slice(0,1);
+        let baseUrl = "https://api.scryfall.com/cards/search?q=";
+        if(colorChoiceCombo !== ""){
+            const colorParam = `c:${colorChoiceCombo} `;
+            baseUrl += colorParam;
+        }
+        if(cardTypeChoice !== ""){
+            const cardTypeParam = `t:${cardTypeChoice} `;
+            baseUrl += cardTypeParam;
+        }
+        if(convertedManaCostChoice !== ""){
+            const cmcParam = `cmc:${convertedManaCostChoice} `;
+            baseUrl += cmcParam;
+        }
+        if(rarityChoice !== ""){
+            const rarityParam = `r:${rarityChoice} `;
+            baseUrl += rarityParam;
+        }
+        console.log(baseUrl)
+        axios.get(baseUrl)
             .then(response => {
                 // console.log(response)
                 this.setState({
