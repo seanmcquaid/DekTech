@@ -37,7 +37,9 @@
 }
 
 .searchResultsContainer {
-    width: 100%;
+    width: 80%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 @media(max-width: 770px){

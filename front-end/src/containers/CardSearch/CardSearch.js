@@ -76,8 +76,8 @@ class CardSearch extends Component {
             .catch(err => console.log(err));
     };
 
-    addToDeck = () => {
-        console.log("added to deck!");
+    addToDeck = cardInfo => {
+        console.log(cardInfo);
     }
 
     changeColor1 = event => {
@@ -120,7 +120,7 @@ class CardSearch extends Component {
 
 
     render(){
-        console.log(this.state)
+        // console.log(this.state)
         const colorOptions = this.state.colors.map((color, i) => {
             return <option key={i} value={color}>{color}</option>
         });
@@ -138,7 +138,7 @@ class CardSearch extends Component {
             if(card.image_uris == undefined){
                 return null;
             }
-            return <Card key={i} cardName={card.name} cardId={card.id} imageUrl={card.image_uris.small} clicked={() => this.addToDeck()}/>
+            return <Card key={i} cardName={card.name} cardId={card.id} imageUrl={card.image_uris.small} clicked={() => this.addToDeck(card)}/>
         });
 
         return (
