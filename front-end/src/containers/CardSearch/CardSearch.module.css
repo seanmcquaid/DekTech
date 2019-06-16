@@ -36,6 +36,10 @@
     color: white;
 }
 
+.searchResultsContainer {
+    width: 100%;
+}
+
 @media(max-width: 770px){
     .cardChoices {
         width: 100%;

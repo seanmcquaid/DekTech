@@ -47,6 +47,7 @@ class CardSearch extends Component {
         // https://scryfall.com/docs/syntax
         // https://scryfall.com/docs/api/cards/search
         const {color1Choice, color2Choice, color3Choice, cardTypeChoice, convertedManaCostChoice, rarityChoice} = this.state;
+        // fix so blue = u
         const colorChoiceCombo = color1Choice.slice(0,1) + color2Choice.slice(0,1) + color3Choice.slice(0,1);
         let baseUrl = "https://api.scryfall.com/cards/search?q=";
         if(colorChoiceCombo !== ""){
@@ -65,7 +66,6 @@ class CardSearch extends Component {
             const rarityParam = `r:${rarityChoice} `;
             baseUrl += rarityParam;
         }
-        console.log(baseUrl)
         axios.get(baseUrl)
             .then(response => {
                 // console.log(response)
@@ -76,8 +76,8 @@ class CardSearch extends Component {
             .catch(err => console.log(err));
     };
 
-    addToDeck = event => {
-        event.preventDefault();
+    addToDeck = () => {
+        console.log("added to deck!");
     }
 
     changeColor1 = event => {
@@ -135,7 +135,10 @@ class CardSearch extends Component {
         });
 
         const searchResults = this.state.searchResults.map((card, i) => {
-            return <Card key={i} cardName="" cardId="" imageUrl="" clicked=""/>
+            if(card.image_uris == undefined){
+                return null;
+            }
+            return <Card key={i} cardName={card.name} cardId={card.id} imageUrl={card.image_uris.small} clicked={() => this.addToDeck()}/>
         });
 
         return (
