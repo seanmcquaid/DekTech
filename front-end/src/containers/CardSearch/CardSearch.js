@@ -135,7 +135,7 @@ class CardSearch extends Component {
         });
 
         const searchResults = this.state.searchResults.map((card, i) => {
-            if(card.image_uris == undefined){
+            if(card.image_uris === undefined){
                 return null;
             }
             return <Card key={i} cardName={card.name} cardId={card.id} imageUrl={card.image_uris.small} clicked={() => this.addToDeck(card)}/>

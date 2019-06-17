@@ -24,6 +24,7 @@
 
 .searchButton {
     margin: 0.5rem;
+    outline : none;
     font-family: 'Raleway', sans-serif;
     font-size: 1rem;
     border-radius: 10px;
@@ -37,9 +38,10 @@
 }
 
 .searchResultsContainer {
-    width: 80%;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 4rem;
 }
 
 @media(max-width: 770px){

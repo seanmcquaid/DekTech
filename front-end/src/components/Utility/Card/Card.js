@@ -10,8 +10,8 @@ const Card = (props) => {
                 <img src={props.imageUrl} alt={props.cardName}/>
             </Link>
             <div className={styles.buttonContainer}>
-                <Link to={`/cardInfo/${props.cardId}`}>View Card</Link>
-                <button onClick={props.clicked}>Add To Deck</button>
+                <Link className={styles.viewCardLink} to={`/cardInfo/${props.cardId}`}>View Card</Link>
+                <button className={styles.addToDeckButton} onClick={props.clicked}>Add To Deck</button>
             </div>
         </div>
     )

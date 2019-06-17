@@ -1,3 +1,38 @@
 .cardContainer {
-    width: 15rem;
+    width: 100%;
+    flex-basis: 32%;
+    flex-shrink: 1;
+    margin: 0 auto;
+    padding: 0.25rem;
+}
+
+.viewCardLink {
+    margin: 0.5rem;
+    outline : none;
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.75rem;
+    border-radius: 10px;
+    padding: 1rem;
+    width: 100%;
+    max-width: 7rem;
+    text-align: center;
+    border: 1px solid #50514F;
+    background-color:  #F25F5C;
+    color: white;
+    text-decoration: none;
+}
+
+.addToDeckButton {
+    margin: 0.5rem;
+    outline : none;
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.75rem;
+    border-radius: 10px;
+    padding: 1rem;
+    width: 100%;
+    max-width: 7rem;
+    text-align: center;
+    border: 1px solid #50514F;
+    background-color:  #F25F5C;
+    color: white;
 }
