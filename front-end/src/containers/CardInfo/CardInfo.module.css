@@ -1,0 +1,10 @@
+.cardInfoContainer {
+    margin-top: 8rem;
+}
+
+.cardSpecificInfoContainer {
+    display : flex;
+    justify-content: center;
+    align-content: center;
+    
+}
