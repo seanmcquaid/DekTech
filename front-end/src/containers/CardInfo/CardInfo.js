@@ -26,7 +26,7 @@ class CardInfo extends Component {
                 console.log(response.data)
                 this.setState({
                     cardName : response.data.name,
-                    cardImageUrl : response.data.image_uris.normal,
+                    cardImageUrl : response.data.image_uris.small,
                     ranking : response.data.edhrec_rank,
                     convertedManaCost : response.data.cmc,
                     power : response.data.power,
@@ -38,24 +38,30 @@ class CardInfo extends Component {
             .catch(err => console.log(err));
     }
 
+    addToDeck = () => {
+        console.log(this.state)
+    }
+
     render(){
         return(
             <div className={styles.cardInfoContainer}>
                 <h1 className={styles.cardInfoTitle}>{this.state.cardName}</h1>
                 <div className={styles.cardSpecificInfoContainer}>
                     <div className={styles.cardSpecificInfoLeft}>
-                        <img src={this.state.cardImageUrl} alt={this.state.cardName}/>
+                        <img className={styles.cardImage} src={this.state.cardImageUrl} alt={this.state.cardName}/>
                     </div>
                     <div className={styles.cardSpecificInfoRight}>
-                        <ul>
-                            <li>Ranking : {this.state.ranking}</li>
-                            <li>Converted Mana Cost : {this.state.convertedManaCost}</li>
-                            <li>Power : {this.state.power}</li>
-                            <li>Toughness : {this.state.toughness}</li>
-                            <li>Card Text : {this.state.cardText}</li>
+                        <ul className={styles.cardSpecificInfoText}>
+                            <li className={styles.cardSpecificInfoBullet}>Ranking : {this.state.ranking}</li>
+                            <li className={styles.cardSpecificInfoBullet}>Converted Mana Cost : {this.state.convertedManaCost}</li>
+                            <li className={styles.cardSpecificInfoBullet}>Power : {this.state.power}</li>
+                            <li className={styles.cardSpecificInfoBullet}>Toughness : {this.state.toughness}</li>
+                            <li className={styles.cardSpecificInfoBullet}>Card Text : {this.state.cardText}</li>
                         </ul>
-                        <button>Add to Deck</button>
-                        <Link>Back to Search</Link>
+                        <div className={styles.buttonsContainer}>
+                            <button className={styles.addToDeckButton} onClick={()=> this.addToDeck()}>Add to Deck</button>
+                            <Link className={styles.linkButton} to="/cardSearch">Back to Search</Link>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,10 +1,85 @@
 .cardInfoContainer {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
     margin-top: 8rem;
+    width: 100%;
+}
+
+.cardInfoTitle {
+    margin: 2rem;
+    font-size: 2rem;
+    font-family: 'Roboto Slab', serif;
 }
 
 .cardSpecificInfoContainer {
     display : flex;
     justify-content: center;
     align-content: center;
-    
+}
+
+.cardSpecificInfoLeft {
+    width: 100%; 
+}
+
+.cardImage {
+    width: 100%;
+    max-width: 12rem;
+}
+
+.cardSpecificInfoRight{
+    width: 100%;
+}
+
+.cardSpecificInfoText {
+    text-align:left;
+    list-style-type: none;
+}
+
+.cardSpecificInfoBullet {
+    margin: 1rem;
+}
+
+.buttonsContainer {
+   margin-bottom : 6rem;
+}
+
+.addToDeckButton {
+    margin: 0.5rem;
+    outline : none;
+    font-family: 'Raleway', sans-serif;
+    font-size: 1rem;
+    border-radius: 10px;
+    padding: 1rem;
+    width: 100%;
+    max-width: 6rem;
+    text-align: center;
+    border: 1px solid #50514F;
+    background-color:  #F25F5C;
+    color: white;
+}
+
+.linkButton {
+    text-decoration: none;
+    margin: 0.5rem;
+    outline : none;
+    font-family: 'Raleway', sans-serif;
+    font-size: 1rem;
+    border-radius: 10px;
+    padding: 1rem;
+    width: 100%;
+    max-width: 6rem;
+    text-align: center;
+    border: 1px solid #50514F;
+    background-color:  #F25F5C;
+    color: white;
+}
+
+@media(max-width: 650px){
+    .cardSpecificInfoContainer {
+        flex-direction: column;
+    }
 }
