@@ -1,37 +1,13 @@
-const mongoose = require("mongoose");
+class Card {
+    constructor(name, imageUrl, convertedManaCost, power, toughness, cardText, cardId){
+        this.name = name;
+        this.imageUrl = imageUrl;
+        this.convertedManaCost = convertedManaCost;
+        this.power = power;
+        this.toughness = toughness;
+        this.cardText = cardText;
+        this.cardId = cardId;
+    }
+}
 
-const Schema = mongoose.Schema;
-
-const cardSchema = new Schema({
-    userId : {
-        type : Schema.Types.ObjectId,
-        ref : "User",
-        required : true,
-    },
-    cardName :{
-        type : String,
-        required : true,
-    },
-    cardId : {
-        type : Number,
-        required : true,
-    }, 
-    cardType : {
-        type : String,
-        required : true,
-    },
-    imageUrl : {
-        type : String,
-        required : true,
-    },
-    cardEffect : {
-        type : String,
-        required : true,
-    },
-    convertedManaCost : {
-        type : Number,
-        required : true,
-    },
-});
-
-module.exports = mongoose.model("Card", cardSchema);
+module.exports = Card;

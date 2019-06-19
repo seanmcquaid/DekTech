@@ -13,9 +13,8 @@ const userSchema = new Schema({
     deck : {
         cards : [
             {
-                cardId : {
-                    type : Schema.Types.ObjectId,
-                    ref : "Card",
+                card : {
+                    type : Object,
                     required : true,
                 },
                 quantity : {
@@ -28,7 +27,11 @@ const userSchema = new Schema({
 });
 
 userSchema.methods.addToDeck = function(card){
-
+    this.cards.push({
+        card, 
+        quantity : 1
+    });
+    console.log(this.cards);
 };
 
 userSchema.methods.removeFromDeck = function(cardId){
