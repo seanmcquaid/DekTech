@@ -79,7 +79,9 @@ export const loginAction = (username, password) => {
 };
 
 export const logoutAction = () => {
+    const axiosPromise = "make logout in backend";
     return({
-        type : LOGOUT_ACTION
+        type : LOGOUT_ACTION,
+        payload : axiosPromise,
     });
 };
