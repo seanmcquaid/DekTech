@@ -34,7 +34,7 @@ export const loadUserAction = () => {
     }
 };
 
-export const registerAction = (username, password) => {
+export const registerAction = (registerData) => {
 
     const config = {
         headers : {
@@ -42,12 +42,7 @@ export const registerAction = (username, password) => {
         }
     };
 
-    const requestBody = JSON.stringify({
-        username,
-        password,
-    });
-
-    const axiosPromise = axios.post(`${window.apiHost}/auth/register`, requestBody, config);
+    const axiosPromise = axios.post(`${window.apiHost}/auth/register`, registerData, config);
     
     return{
         type : REGISTER_ACTION,
@@ -55,7 +50,7 @@ export const registerAction = (username, password) => {
     }
 };
 
-export const loginAction = (username, password) => {
+export const loginAction = (loginData) => {
 
     const config = {
         headers : {
@@ -63,12 +58,7 @@ export const loginAction = (username, password) => {
         }
     };
 
-    const requestBody = JSON.stringify({
-        username,
-        password
-    });
-
-    const axiosPromise = axios.post(`${window.apiHost}/auth/login`, requestBody, config);
+    const axiosPromise = axios.post(`${window.apiHost}/auth/login`, loginData, config);
 
     return {
         type : LOGIN_ACTION,

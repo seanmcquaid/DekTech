@@ -90,6 +90,7 @@ exports.postRegister = (req,res,next) => {
                             const newUser = new User({
                                 username : username,
                                 password : hashedPassword,
+                                deck : []
                             });
                             newUser.save();
                             const token = jwt.sign(
