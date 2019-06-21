@@ -9,7 +9,9 @@ exports.getDeck = (req,res,next) => {
 
 exports.addToDeck = (req,res,next) => {
     // check user info, check for duplicates then add to db if no duplicates
-    console.log(req.user);
+    const user = req.user;
+    
+    console.log(req.body.card);
     next();
 }
 

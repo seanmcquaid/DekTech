@@ -48,7 +48,7 @@ exports.postLogin = (req,res,next) => {
                     const token = jwt.sign(
                         {id : user._id},
                         config.jwtSecret,
-                        {expiresIn: 3600}
+                        {expiresIn: 3600000}
                     );
 
                     return res.json({
@@ -90,7 +90,9 @@ exports.postRegister = (req,res,next) => {
                             const newUser = new User({
                                 username : username,
                                 password : hashedPassword,
-                                deck : []
+                                deck : {
+                                    cards : []
+                                }
                             });
                             newUser.save();
                             const token = jwt.sign(

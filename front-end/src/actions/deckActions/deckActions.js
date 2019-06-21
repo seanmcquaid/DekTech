@@ -5,7 +5,7 @@ import {
     REMOVE_FROM_DECK_ACTION,
     CLEAR_DECK_ACTION,
 } from "./deckActionTypes";
-import tokenConfig from "../authActions/authActions";
+import {tokenConfig} from "../authActions/authActions";
 
 export const getDeckAction = () => {
     const token = tokenConfig();
@@ -18,8 +18,11 @@ export const getDeckAction = () => {
 
 export const addToDeckAction = card => {
     const token = tokenConfig();
-    const requestBody = "";
-    const axiosPromise = "";
+    console.log(card)
+    const requestBody = {
+        card
+    };
+    const axiosPromise = axios.post(`${window.apiHost}/deck/addToDeck`, requestBody, token);
     return {
         type : ADD_TO_DECK_ACTION,
         payload : axiosPromise,

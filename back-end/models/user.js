@@ -27,11 +27,17 @@ const userSchema = new Schema({
 });
 
 userSchema.methods.addToDeck = function(card){
-    this.cards.push({
-        card, 
-        quantity : 1
-    });
-    console.log(this.cards);
+    const cardIndex = this.deck.cards.findIndex(searchCard => card === searchCard);
+    if(cardIndex >= 0){
+        return null;
+    } else {
+        this.deck.cards.push({
+            card, 
+            quantity : 1
+        });
+    }
+    console.log(this.deck.cards);
+    return this.save();
 };
 
 userSchema.methods.removeFromDeck = function(cardId){
