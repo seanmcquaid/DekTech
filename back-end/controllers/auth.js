@@ -11,6 +11,10 @@ const transporter = nodemailer.createTransport(sendGridTransport({
     }
 }));
 
+exports.getUserInfo = (req,res,next) => {
+    
+}
+
 exports.postLogin = (req,res,next) => {
     const {username, password} = req.body;
     if(!username || !password){

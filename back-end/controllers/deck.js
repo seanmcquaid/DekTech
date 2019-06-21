@@ -9,9 +9,18 @@ exports.getDeck = (req,res,next) => {
 
 exports.addToDeck = (req,res,next) => {
     // check user info, check for duplicates then add to db if no duplicates
-    const user = req.user;
-    
-    console.log(req.body.card);
+    const userId = req.user.id;
+    User.findOne({_id : userId})
+        .then(user => {
+            // {cardInfo here} = req.body.card;
+            const card = new Card({
+
+            });
+            user.addToDeck().then(userInfo => {
+                console.log(userInfo)
+            })
+        })
+        .catch(err => console.log(err))
     next();
 }
 

@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 
 const auth = (req, res, next) => {
     const token = req.header("x-auth-token");
-    console.log(token)
+    // console.log(token)
     if(!token){
         return res.status(401).json({
             message : "No token, access denied!"
@@ -12,12 +12,16 @@ const auth = (req, res, next) => {
     
     try {
         const decodedToken = jwt.verify(token, config.jwtSecret);
-        console.log(decodedToken);
+
         req.user = decodedToken;
         next();
     } catch(err){
+        console.log()
         res.status(400).json({
-            message : "Token is not valid"
+            token : null,
+            message : "Expired token",
+            isAuthenticated : false,
+            userInfo : null,
         })
     };
 };

@@ -15,6 +15,9 @@ const initialState = {
 export default (state = initialState, action) => {
     switch(action.type){
         case LOAD_USER_ACTION:
+            return {
+                ...action.payload.data,
+            };
         case LOGIN_ACTION:
                 localStorage.setItem("token", action.payload.data.token)
             return {

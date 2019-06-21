@@ -8,6 +8,12 @@ import Aux from "../../hoc/Aux/Aux";
 import styles from "./Navbar.module.css"
 
 class Navbar extends Component {
+    componentDidMount = () => {
+        if(this.props.auth.isAuthenticated){
+            // this.props.loadUserAction();
+        }
+    }
+
     componentWillReceiveProps = newProps => {
         console.log(newProps)
         
