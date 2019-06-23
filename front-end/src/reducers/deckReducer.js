@@ -5,7 +5,10 @@ import {
     CLEAR_DECK_ACTION,
 } from "../actions/deckActions/deckActionTypes";
 
-const initialState = [];
+const initialState = {
+    deck : [],
+    message : "",
+}
 
 export default (state = initialState, action) => {
     switch(action.type){

@@ -18,9 +18,14 @@ export const getDeckAction = () => {
 
 export const addToDeckAction = card => {
     const token = tokenConfig();
-    console.log(card)
     const requestBody = {
-        card
+        name : card.name,
+        imageUrl : card.image_uris.small,
+        convertedManaCost : card.cmc,
+        power : card.power,
+        toughness : card.toughness,
+        cardText : card.oracle_text,
+        cardId : card.id,
     };
     const axiosPromise = axios.post(`${window.apiHost}/deck/addToDeck`, requestBody, token);
     return {

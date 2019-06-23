@@ -10,14 +10,28 @@ exports.getDeck = (req,res,next) => {
 exports.addToDeck = (req,res,next) => {
     // check user info, check for duplicates then add to db if no duplicates
     const userId = req.user.id;
+    if(!userId){
+        res.json({
+            deck : [],
+            message : "invalid token"
+        });
+    }
+    const {name, imageUrl, convertedManaCost, power, toughness, cardText, cardId} = req.body;
     User.findOne({_id : userId})
         .then(user => {
             // {cardInfo here} = req.body.card;
             const card = new Card({
-
+                name,
+                imageUrl,
+                convertedManaCost,
+                power,
+                toughness,
+                cardText,
+                cardId,
             });
-            user.addToDeck().then(userInfo => {
-                console.log(userInfo)
+            const cardJson = JSON.stringify(card);
+            user.addToDeck(cardJson).then(userInfo => {
+                console.log(userInfo.deck.cards)
             })
         })
         .catch(err => console.log(err))
