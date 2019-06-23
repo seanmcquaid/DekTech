@@ -7,7 +7,6 @@ import {
 
 const initialState = {
     deck : [],
-    message : "",
 }
 
 export default (state = initialState, action) => {

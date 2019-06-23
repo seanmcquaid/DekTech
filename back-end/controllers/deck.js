@@ -20,7 +20,7 @@ exports.addToDeck = (req,res,next) => {
     User.findOne({_id : userId})
         .then(user => {
             // {cardInfo here} = req.body.card;
-            const card = {
+            const card = new Card(
                 name,
                 imageUrl,
                 convertedManaCost,
@@ -28,13 +28,16 @@ exports.addToDeck = (req,res,next) => {
                 toughness,
                 cardText,
                 cardId,
-            };
-            user.addToDeck(card).then(userInfo => {
-                console.log(userInfo.deck.cards)
+            );
+            const cardObject = card.classToObject();
+            console.log(cardObject);
+            user.addToDeck(cardObject).then(userInfo => {
+                res.json({
+                    deck : userInfo.deck.cards
+                })
             })
         })
         .catch(err => console.log(err))
-    next();
 }
 
 exports.removeFromDeck = (req,res,next) => {

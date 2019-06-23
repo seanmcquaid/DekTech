@@ -8,6 +8,18 @@ class Card {
         this.cardText = cardText;
         this.cardId = cardId;
     }
+
+    classToObject(){
+        return {
+            name : this.name,
+            imageUrl : this.imageUrl,
+            convertedManaCost : this.convertedManaCost,
+            power : this.power,
+            toughness : this.toughness,
+            cardText : this.cardText,
+            cardId : this.cardId,
+        }
+    }
 }
 
 module.exports = Card;

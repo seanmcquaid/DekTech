@@ -36,7 +36,6 @@ userSchema.methods.addToDeck = function(card){
             quantity : 1
         });
     }
-    console.log(this.deck.cards);
     return this.save();
 };
 

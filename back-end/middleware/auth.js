@@ -5,19 +5,17 @@ const auth = (req, res, next) => {
     const token = req.header("x-auth-token");
     // console.log(token)
     if(!token){
-        return res.status(401).json({
+        return res.json({
             message : "No token, access denied!"
         });
     };
     
     try {
         const decodedToken = jwt.verify(token, config.jwtSecret);
-
         req.user = decodedToken;
         next();
     } catch(err){
-        console.log()
-        res.status(400).json({
+        res.json({
             token : null,
             message : "Expired token",
             isAuthenticated : false,
