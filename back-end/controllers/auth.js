@@ -15,7 +15,13 @@ exports.checkToken = (req,res,next) => {
     const userId = req.user.id;
     User.findOne({_id : userId})
         .then(user => {
+            const token = jwt.sign(
+                {id : user._id},
+                config.jwtSecret,
+                {expiresIn: 36000000}
+            );
             res.json({
+                token: token,
                 message : "Valid token",
                 isAuthenticated : true,
                 userInfo : user,
@@ -61,7 +67,7 @@ exports.postLogin = (req,res,next) => {
                     const token = jwt.sign(
                         {id : user._id},
                         config.jwtSecret,
-                        {expiresIn: 3600000}
+                        {expiresIn: 36000000}
                     );
 
                     return res.json({
@@ -111,7 +117,7 @@ exports.postRegister = (req,res,next) => {
                             const token = jwt.sign(
                                 {id : newUser._id},
                                 config.jwtSecret,
-                                {expiresIn : 3600},
+                                {expiresIn : 360000000},
                             );
                             res.json({
                                 token,

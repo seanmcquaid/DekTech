@@ -18,7 +18,7 @@ const auth = (req, res, next) => {
         req.user = decodedToken;
         next();
     } catch(err){
-        res.json({
+        return res.json({
             token : null,
             message : "Expired token",
             isAuthenticated : false,
