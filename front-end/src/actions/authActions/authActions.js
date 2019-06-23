@@ -22,14 +22,14 @@ export const tokenConfig = () => {
     return config;
 };
 
-export const loadUserAction = () => {
+export const checkTokenAction = () => {
 
     const token = tokenConfig();
 
-    const axiosPromise = axios.get(`${window.apiHost}/auth/getUserInfo`, token);
+    const axiosPromise = axios.get(`${window.apiHost}/auth/checkToken`, token);
     
     return{
-        type : LOAD_USER_ACTION,
+        type : CHECK_TOKEN_ACTION,
         payload : axiosPromise
     }
 };

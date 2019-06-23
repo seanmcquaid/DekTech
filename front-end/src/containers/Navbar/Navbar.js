@@ -2,22 +2,22 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {Link} from "react-router-dom";
-import {loadUserAction} from "../../actions/authActions/authActions";
+import {checkTokenAction} from "../../actions/authActions/authActions";
 import Aux from "../../hoc/Aux/Aux";
 
 import styles from "./Navbar.module.css"
 
 class Navbar extends Component {
     componentDidMount = () => {
-        if(this.props.auth.isAuthenticated){
-            // this.props.loadUserAction();
+        if(this.props.auth.token){
+            this.props.checkTokenAction();
+            // check token here and remove token via redux if invalid
         }
     }
 
-    componentWillReceiveProps = newProps => {
-        console.log(newProps)
-        
-    }
+    // componentWillReceiveProps = newProps => {
+    //     console.log(newProps)
+    // }
 
     render(){
         console.log(this.props)
@@ -60,7 +60,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return bindActionCreators({
-        loadUserAction
+        checkTokenAction
     }, dispatch)
 }
 

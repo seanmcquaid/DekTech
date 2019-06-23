@@ -6,7 +6,10 @@ const auth = (req, res, next) => {
     // console.log(token)
     if(!token){
         return res.json({
-            message : "No token, access denied!"
+            token : null,
+            message : "No valid token found",
+            isAuthenticated : false,
+            userInfo : null,
         });
     };
     

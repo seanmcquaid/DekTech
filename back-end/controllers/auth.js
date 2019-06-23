@@ -11,8 +11,17 @@ const transporter = nodemailer.createTransport(sendGridTransport({
     }
 }));
 
-exports.getUserInfo = (req,res,next) => {
-    
+exports.checkToken = (req,res,next) => {
+    const userId = req.user.id;
+    User.findOne({_id : userId})
+        .then(user => {
+            res.json({
+                message : "Valid token",
+                isAuthenticated : true,
+                userInfo : user,
+            });
+        })
+        .catch(err => console.log(err));
 }
 
 exports.postLogin = (req,res,next) => {

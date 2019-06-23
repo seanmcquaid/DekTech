@@ -9,6 +9,6 @@ router.post("/login", authController.postLogin);
 
 router.post("/register", authController.postRegister);
 
-router.get("/userInfo", auth, authController.getUserInfo);
+router.get("/checkToken", auth, authController.checkToken);
 
 module.exports = router;
