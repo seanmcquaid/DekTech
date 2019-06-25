@@ -80,7 +80,6 @@ class CardSearch extends Component {
 
     addToDeck = cardInfo => {
         this.props.addToDeckAction(cardInfo);
-        console.log(this.props.deck);
     }
 
     changeColor1 = event => {
@@ -123,7 +122,6 @@ class CardSearch extends Component {
 
 
     render(){
-        console.log(this.props)
         const colorOptions = this.state.colors.map((color, i) => {
             return <option key={i} value={color}>{color}</option>
         });

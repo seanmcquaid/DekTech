@@ -40,13 +40,19 @@ userSchema.methods.addToDeck = function(card){
 };
 
 userSchema.methods.removeFromDeck = function(cardId){
-    
+    const cardIndex = this.deck.cards.findIndex(searchCard => cardId === searchCard.id);
+    if(cardIndex >= 0){
+        return null;
+    } else {
+        const filterDeck = this.deck.cards.filter(searchCard => cardId !== searchCard.id);
+        this.deck.cards = filterDeck;
+    }
+    return this.save();
 };
 
 userSchema.methods.clearDeck = function(){
-
+    this.deck.cards = [];
+    return this.save();
 };
-
-// create methods to add to deck, delete card from deck, 
 
 module.exports = mongoose.model("User", userSchema);

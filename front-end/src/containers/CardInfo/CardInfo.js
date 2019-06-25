@@ -2,6 +2,9 @@ import React, {Component} from "react";
 import styles from "./CardInfo.module.css";
 import axios from "axios";
 import {Link} from "react-router-dom";
+import {addToDeckAction} from "../../actions/deckActions/deckActions";
+import { bindActionCreators } from "redux";
+import {connect} from "react-redux";
 
 class CardInfo extends Component {
     constructor(){
@@ -14,6 +17,7 @@ class CardInfo extends Component {
             power : "",
             toughness : "",
             cardText : "",
+            searchResults : "",
         }
     }
 
@@ -23,7 +27,6 @@ class CardInfo extends Component {
         const {cardId} = this.props.match.params;
         axios.get(`https://api.scryfall.com/cards/${cardId}`)
             .then(response => {
-                console.log(response.data)
                 this.setState({
                     cardName : response.data.name,
                     cardImageUrl : response.data.image_uris.small,
@@ -33,13 +36,14 @@ class CardInfo extends Component {
                     toughness : response.data.toughness,
                     cardText : response.data.oracle_text,
                     cardId : response.data.id,
+                    searchResults : response.data,
                 });
             })
             .catch(err => console.log(err));
     }
 
-    addToDeck = () => {
-        console.log(this.state)
+    addToDeck = cardInfo => {
+        this.props.addToDeckAction(cardInfo);
     }
 
     render(){
@@ -59,7 +63,7 @@ class CardInfo extends Component {
                             <li className={styles.cardSpecificInfoBullet}>Card Text : {this.state.cardText}</li>
                         </ul>
                         <div className={styles.buttonsContainer}>
-                            <button className={styles.addToDeckButton} onClick={()=> this.addToDeck()}>Add to Deck</button>
+                            <button className={styles.addToDeckButton} onClick={()=> this.addToDeck(this.state.searchResults)}>Add to Deck</button>
                             <Link className={styles.linkButton} to="/cardSearch">Back to Search</Link>
                         </div>
                     </div>
@@ -69,4 +73,16 @@ class CardInfo extends Component {
     }
 }
 
-export default CardInfo;
+const mapStateToProps = state => {
+    return {
+        deck : state.deck,
+    }
+}
+
+const mapDispatchToProps = dispatcher => {
+    return bindActionCreators({
+        addToDeckAction,
+    },dispatcher);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CardInfo);
