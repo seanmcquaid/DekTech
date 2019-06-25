@@ -1,6 +1,6 @@
 import axios from "axios";
 import {
-    LOAD_USER_ACTION,
+    CHECK_TOKEN_ACTION,
     LOGIN_ACTION,
     LOGOUT_ACTION,
     REGISTER_ACTION,

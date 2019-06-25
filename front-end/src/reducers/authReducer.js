@@ -1,5 +1,5 @@
 import {
-    LOAD_USER_ACTION,
+    CHECK_TOKEN_ACTION,
     LOGIN_ACTION,
     LOGOUT_ACTION,
     REGISTER_ACTION,
@@ -14,7 +14,12 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch(action.type){
-        case LOAD_USER_ACTION:
+        case CHECK_TOKEN_ACTION:
+            if(action.payload.data.token){
+                localStorage.setItem("token", action.payload.data.token);
+            } else {
+                localStorage.removeItem("token");
+            }
             return {
                 ...action.payload.data,
             };
