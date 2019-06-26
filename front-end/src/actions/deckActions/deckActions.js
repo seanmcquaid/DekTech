@@ -9,7 +9,7 @@ import {tokenConfig} from "../authActions/authActions";
 
 export const getDeckAction = () => {
     const token = tokenConfig();
-    const axiosPromise = "";
+    const axiosPromise = axios.get(`${window.apiHost}/deck/getDeck`, token);
     return {
         type : GET_DECK_ACTION,
         payload : axiosPromise,
@@ -46,4 +46,9 @@ export const removeFromDeckAction = card => {
 
 export const clearDeckAction = () => {
     const token = tokenConfig();
+    const axiosPromise = "";
+    return {
+        type : CLEAR_DECK_ACTION,
+        payload : axiosPromise,
+    }
 }

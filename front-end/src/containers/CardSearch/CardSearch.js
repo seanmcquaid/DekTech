@@ -5,6 +5,7 @@ import Card from "../../components/Utility/Card/Card";
 import { bindActionCreators } from "redux";
 import {addToDeckAction} from "../../actions/deckActions/deckActions";
 import { connect } from "react-redux";
+
 class CardSearch extends Component {
     constructor(){
         super();

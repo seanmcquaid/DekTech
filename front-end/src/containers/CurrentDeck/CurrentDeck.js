@@ -1,25 +1,29 @@
 import React, {Component} from "react";
 import styles from "./CurrentDeck.module.css";
+import { getDeckAction } from "../../actions/deckActions/deckActions";
+import {connect} from "react-redux";
+import { bindActionCreators} from "redux";
+
 
 class CurrentDeck extends Component{
     constructor(){
         super();
         this.state = {
-            deck : [1,2,3,5],
-
+            deck : [],
         }
     }
 
     componentDidMount(){
         // will call our backend for user's deck info and update state to reflect this
+        this.props.getDeckAction();
     }
 
     render(){
         let cardDisplay;
-        if(this.state.deck.length === 0){
+        if(this.props.deck.deck === 0){
             cardDisplay = <div>NO CARDS YET!</div>;
         } else {
-            cardDisplay = this.state.deck.map((card, key)=> {
+            cardDisplay = this.props.deck.deck.map((card, key)=> {
                 // will use component here once I set up backend
                 return <div className={styles.cardInfo} key={key}>Card HERE</div>
             })
@@ -35,4 +39,16 @@ class CurrentDeck extends Component{
     }
 }
 
-export default CurrentDeck;
+const mapStateToProps = state => {
+    return {
+        deck : state.deck,
+    }
+}
+
+const mapDispatchToProps = dispatcher => {
+    return bindActionCreators({
+        getDeckAction
+    }, dispatcher);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CurrentDeck);

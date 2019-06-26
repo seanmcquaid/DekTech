@@ -25,7 +25,7 @@ export default (state = initialState, action) => {
             }
         case CLEAR_DECK_ACTION :
             return {
-                ...initialState,
+                ...action.payload.data,
             }
         default :
             return {
