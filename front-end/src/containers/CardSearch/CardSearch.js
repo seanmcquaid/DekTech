@@ -140,7 +140,14 @@ class CardSearch extends Component {
             if(card.image_uris === undefined){
                 return null;
             }
-            return <Card key={i} cardName={card.name} cardId={card.id} imageUrl={card.image_uris.small} clicked={() => this.addToDeck(card)}/>
+            return <Card 
+                key={i} 
+                buttonText={"Add To Deck"}
+                cardName={card.name} 
+                cardId={card.id} 
+                imageUrl={card.image_uris.small} 
+                clicked={() => this.addToDeck(card)}
+            />
         });
 
         return (

@@ -11,7 +11,7 @@ const Card = (props) => {
             </Link>
             <div className={styles.buttonContainer}>
                 <Link className={styles.viewCardLink} to={`/cardInfo/${props.cardId}`}>View Card</Link>
-                <button className={styles.addToDeckButton} onClick={props.clicked}>Add To Deck</button>
+                <button className={styles.deckButton} onClick={props.clicked}>{props.buttonText}</button>
             </div>
         </div>
     )

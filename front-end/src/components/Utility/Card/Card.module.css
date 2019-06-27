@@ -22,7 +22,7 @@
     text-decoration: none;
 }
 
-.addToDeckButton {
+.deckButton {
     margin: 0.5rem;
     outline : none;
     font-family: 'Raleway', sans-serif;
