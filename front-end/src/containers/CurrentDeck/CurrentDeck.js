@@ -1,9 +1,8 @@
 import React, {Component} from "react";
 import styles from "./CurrentDeck.module.css";
-import { getDeckAction } from "../../actions/deckActions/deckActions";
+import { getDeckAction, removeFromDeckAction } from "../../actions/deckActions/deckActions";
 import {connect} from "react-redux";
 import { bindActionCreators} from "redux";
-import Card from "../../components/Utility/Card/Card";
 
 
 class CurrentDeck extends Component{
@@ -20,7 +19,7 @@ class CurrentDeck extends Component{
     }
 
     removeFromDeck = card => {
-
+        
     }
 
     render(){
@@ -61,7 +60,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatcher => {
     return bindActionCreators({
-        getDeckAction
+        getDeckAction,
+        removeFromDeckAction
     }, dispatcher);
 };
 

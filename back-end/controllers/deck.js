@@ -27,17 +27,29 @@ exports.addToDeck = (req,res,next) => {
                 cardId,
             );
             const cardObject = card.classToObject();
-            user.addToDeck(cardObject).then(userInfo => {
+            user.addToDeck(cardObject)
+                .then(userInfo => {
                 res.json({
                     deck : userInfo.deck.cards
                 })
-            })
+            });
         })
-        .catch(err => console.log(err))
+        .catch(err => console.log(err));
 }
 
 exports.removeFromDeck = (req,res,next) => {
     // filter out selected card then replace deck with new deck
+    const {cardId} = req.body;
+    User.findOne({_id : req.user.id})
+        .then(user => {
+            user.removeFromDeck(cardId)
+                .then(userInfo => {
+                    res.json({
+                        deck : userInfo.deck.cards,
+                    })
+                });
+        })
+        .catch(err => console.log(err));
 }
 
 exports.clearDeck = (req,res,next) => {
