@@ -2,7 +2,6 @@ const User = require("../models/user");
 const Card = require("../models/card");
 
 exports.getDeck = (req,res,next) => {
-    // check user info then return deck from db
     User.findOne({_id : req.user.id})
         .then(user => {
             res.json ({
@@ -12,8 +11,6 @@ exports.getDeck = (req,res,next) => {
 }
 
 exports.addToDeck = (req,res,next) => {
-    // check user info, check for duplicates then add to db if no duplicates
-
     const {name, imageUrl, convertedManaCost, power, toughness, cardText, cardId} = req.body;
     User.findOne({_id : req.user.id})
         .then(user => {
@@ -53,5 +50,14 @@ exports.removeFromDeck = (req,res,next) => {
 }
 
 exports.clearDeck = (req,res,next) => {
-    // clear out deck
+    User.findOne({_id : req.user.id})
+        .then(user => {
+            return user.clearDeck();
+        })
+        .then(result => {
+            console.log(result)
+            res.json({
+                deck : result.deck.cards
+            })
+        })
 }

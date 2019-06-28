@@ -9,6 +9,6 @@ router.post("/addToDeck", auth, deckController.addToDeck);
 
 router.post("/removeFromDeck", auth, deckController.removeFromDeck);
 
-router.get("/clearDeck", auth, deckController.clearDeck);
+router.post("/clearDeck", auth, deckController.clearDeck);
 
 module.exports = router;

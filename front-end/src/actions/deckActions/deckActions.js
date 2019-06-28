@@ -48,7 +48,8 @@ export const removeFromDeckAction = card => {
 
 export const clearDeckAction = () => {
     const token = tokenConfig();
-    const axiosPromise = "";
+    const requestBody = {};
+    const axiosPromise = axios.post(`${window.apiHost}/deck/clearDeck`, requestBody, token);
     return {
         type : CLEAR_DECK_ACTION,
         payload : axiosPromise,
