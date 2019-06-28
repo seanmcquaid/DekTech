@@ -34,10 +34,10 @@ export const addToDeckAction = card => {
     }
 }
 
-export const removeFromDeckAction = card => {
+export const removeFromDeckAction = cardId => {
     const token = tokenConfig();
     const requestBody = {
-        cardId : card.id,
+        cardId
     }
     const axiosPromise = axios.post(`${window.apiHost}/deck/removeFromDeck`, requestBody, token);
     return {
