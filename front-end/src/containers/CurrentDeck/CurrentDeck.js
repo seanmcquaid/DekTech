@@ -7,19 +7,10 @@ import Card from "../../components/Utility/Card/Card";
 
 
 class CurrentDeck extends Component{
-    constructor(){
-        super();
-        this.state = {
-            deck : [],
-        }
-    }
 
     componentDidMount(){
         // will call our backend for user's deck info and update state to reflect this
         this.props.getDeckAction();
-        this.setState({
-            deck : this.props.deck.deck
-        });
     }
 
     removeFromDeck = card => {
@@ -28,10 +19,11 @@ class CurrentDeck extends Component{
 
     render(){
         let cardDisplay;
+        console.log(this.props)
         if(this.props.deck.deck.length === 0){
             cardDisplay = <div>NO CARDS YET!</div>;
         } else {
-            cardDisplay = this.state.deck.map((cardInfo, i)=> {
+            cardDisplay = this.props.deck.deck.map((cardInfo, i)=> {
                 // will use component here once I set up backend
                 return <Card
                     key = {i}
