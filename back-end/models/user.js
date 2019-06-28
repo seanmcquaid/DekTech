@@ -40,11 +40,17 @@ userSchema.methods.addToDeck = function(card){
 };
 
 userSchema.methods.removeFromDeck = function(cardId){
-    const cardIndex = this.deck.cards.findIndex(searchCard => cardId === searchCard.id);
-    if(cardIndex >= 0){
+    console.log(cardId)
+    const cardIndex = this.deck.cards.findIndex(searchCard => {
+        console.log(searchCard)
+        return cardId === searchCard.card.cardId;
+    });
+    console.log(cardIndex);
+    if(cardIndex < 0){
         return null;
     } else {
-        const filterDeck = this.deck.cards.filter(searchCard => cardId !== searchCard.id);
+        const filterDeck = this.deck.cards.filter(searchCard => cardId !== searchCard.card.cardId);
+        console.log(filterDeck);
         this.deck.cards = filterDeck;
     }
     return this.save();

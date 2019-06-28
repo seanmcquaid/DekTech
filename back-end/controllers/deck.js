@@ -43,11 +43,7 @@ exports.removeFromDeck = (req,res,next) => {
     User.findOne({_id : req.user.id})
         .then(user => {
             user.removeFromDeck(cardId)
-                .then(userInfo => {
-                    res.json({
-                        deck : userInfo.deck.cards,
-                    })
-                });
+            console.log(user);
         })
         .catch(err => console.log(err));
 }

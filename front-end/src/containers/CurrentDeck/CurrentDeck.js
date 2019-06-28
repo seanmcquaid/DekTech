@@ -17,27 +17,30 @@ class CurrentDeck extends Component{
     componentDidMount(){
         // will call our backend for user's deck info and update state to reflect this
         this.props.getDeckAction();
+        this.setState({
+            deck : this.props.deck.deck
+        });
     }
 
     removeFromDeck = card => {
-        
+        this.props.removeFromDeckAction(card);
     }
 
     render(){
         let cardDisplay;
-        if(this.props.deck.deck === 0){
+        if(this.props.deck.deck.length === 0){
             cardDisplay = <div>NO CARDS YET!</div>;
         } else {
-            cardDisplay = this.props.deck.deck.map((card, key)=> {
+            cardDisplay = this.state.deck.map((cardInfo, i)=> {
                 // will use component here once I set up backend
                 return <Card
-                        key={key}
-                        buttonText={"Remove From Deck"}
-                        cardName={card.card.name} 
-                        cardId={card.card.cardId} 
-                        imageUrl={card.card.imageUrl} 
-                        clicked={() => this.removeFromDeck(card)}
-                    />;
+                    key = {i}
+                    cardName={cardInfo.card.name}
+                    buttonText={"Remove From Deck"}
+                    cardId={cardInfo.card.cardId} 
+                    imageUrl={cardInfo.card.imageUrl} 
+                    clicked={() => this.removeFromDeck(cardInfo.card)}
+                />;
             })
         }
         return(
