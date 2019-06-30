@@ -12,6 +12,8 @@ exports.getDeck = (req,res,next) => {
 
 exports.addToDeck = (req,res,next) => {
     const {name, imageUrl, convertedManaCost, power, toughness, cardText, cardId} = req.body;
+    let originalDeckLength;
+    // check to see if length changed in then statement after adding to deck;
     User.findOne({_id : req.user.id})
         .then(user => {
             const card = new Card(
@@ -23,13 +25,21 @@ exports.addToDeck = (req,res,next) => {
                 cardText,
                 cardId,
             );
+            originalDeckLength = user.deck.cards.length;
             const cardObject = card.classToObject();
-            user.addToDeck(cardObject)
-                .then(userInfo => {
-                res.json({
-                    deck : userInfo.deck.cards
-                })
-            });
+            return user.addToDeck(cardObject)
+                    .then(userInfo => {
+                        let message;
+                        if(userInfo.deck.cards.length === originalDeckLength){
+                            message = "You already have this card in your deck!"
+                        } else {
+                            message = "Card added to deck"
+                        }
+                    return res.json({
+                        deck : userInfo.deck.cards,
+                        message,
+                    })
+                });
         })
         .catch(err => console.log(err));
 }
@@ -40,11 +50,12 @@ exports.removeFromDeck = (req,res,next) => {
     User.findOne({_id : req.user.id})
         .then(user => {
             return user.removeFromDeck(cardId)
-        })
-        .then(result => {
-            res.json({
-                deck : result.deck.cards
-            })
+                    .then(userInfo => {
+                        return res.json({
+                            deck : userInfo.deck.cards,
+                            message : "Card removed from deck"
+                        })
+                    });
         })
         .catch(err => console.log(err));
 }
@@ -52,12 +63,14 @@ exports.removeFromDeck = (req,res,next) => {
 exports.clearDeck = (req,res,next) => {
     User.findOne({_id : req.user.id})
         .then(user => {
-            return user.clearDeck();
+            return user.clearDeck()
+                    .then(userInfo => {
+                        // console.log(userInfo)
+                        res.json({
+                            deck : userInfo.deck.cards,
+                            message : "Deck cleared"
+                        })
+                    });
         })
-        .then(result => {
-            console.log(result)
-            res.json({
-                deck : result.deck.cards
-            })
-        })
+        .catch(err => console.log(err));
 }

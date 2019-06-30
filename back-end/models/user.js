@@ -29,7 +29,7 @@ const userSchema = new Schema({
 userSchema.methods.addToDeck = function(card){
     const cardIndex = this.deck.cards.findIndex(searchCard => card === searchCard);
     if(cardIndex >= 0){
-        return null;
+        return this.save();
     } else {
         this.deck.cards.push({
             card, 
@@ -42,7 +42,7 @@ userSchema.methods.addToDeck = function(card){
 userSchema.methods.removeFromDeck = function(cardId){
     const cardIndex = this.deck.cards.findIndex(searchCard => cardId === searchCard.card.cardId);
     if(cardIndex < 0){
-        return null;
+        return this.save();
     } else {
         const filterDeck = this.deck.cards.filter(searchCard => cardId !== searchCard.card.cardId);
         this.deck.cards = filterDeck;
