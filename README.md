@@ -23,18 +23,20 @@ The MTG Deck Builder is a MERN stack web application that will allow users to cr
 - Scryfall API
 
 ## Challenges & Solutions
-* Authentication
+* Authentication + Middleware
 - JWT
 * Creating persistent sessions to communicate back end session to front end
 - Local Storage
 * Design
 - Color Palette research
 * Refactoring UI to be made with reusable components/ Reorganizing
+* State refactoring / reconceptualizing
+* MVC Architecture with middleware
 
 ## MVP
-* User should be able to create an account
+* User should be able to create an account - Done
 * User should be able to search for cards using various conditions (Mana color, Converted Mana Cost, Power, etc)
-* User should be able to create a deck of 100 cards
+* User should be able to create a deck of 100 cards - Done
 
 
 ## Stretch Goals
