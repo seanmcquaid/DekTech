@@ -24,7 +24,7 @@ class Navbar extends Component {
                 <div className={styles.rightNavLinks}><Link to="/currentDeck" className={styles.rightNavLink}>Current Deck</Link></div>
                 <div className={styles.rightNavLinks}><Link to="/cardSearch" className={styles.rightNavLink}>Card Search</Link></div>
                 <div className={styles.rightNavLinks}><Link to="/userProfile" className={styles.rightNavLink}>Profile</Link></div>
-                <div className={styles.rightNavLinks}><button onClick={() => this.props.logoutAction()}>Logout</button></div>
+                <div className={styles.rightNavLinks}><button className={styles.rightNavLinkButton} onClick={() => this.props.logoutAction()}>Logout</button></div>
             </Aux>;
         } else {
             leftNavHomeLink = "/";

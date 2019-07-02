@@ -32,7 +32,7 @@ class CardSearch extends Component {
                 "Planeswalker",
             ],
             cardTypeChoice : "",
-            convertedManaCostOptions : [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,],
+            convertedManaCostOptions : [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,],
             convertedManaCostChoice : "",
             rarities : [
                 "Common", 
@@ -50,8 +50,8 @@ class CardSearch extends Component {
         // https://scryfall.com/docs/syntax
         // https://scryfall.com/docs/api/cards/search
         const {color1Choice, color2Choice, color3Choice, cardTypeChoice, convertedManaCostChoice, rarityChoice} = this.state;
-        // fix so blue = u
-        const colorChoiceCombo = color1Choice.slice(0,1) + color2Choice.slice(0,1) + color3Choice.slice(0,1);
+        const colorChoiceCombo = color1Choice + " " + color2Choice + " " + color3Choice;
+        // still need to fix more elegant way to approach colors
         let baseUrl = "https://api.scryfall.com/cards/search?q=";
         if(colorChoiceCombo !== ""){
             const colorParam = `c:${colorChoiceCombo} `;

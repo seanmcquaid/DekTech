@@ -41,3 +41,11 @@
     text-decoration: none;
     color: white;
 }
+
+.rightNavLinkButton{
+    color: white;
+    background-color: #0072BB;
+    border: none;
+    font-family: 'Raleway', sans-serif;
+    font-size: 1rem;
+}
