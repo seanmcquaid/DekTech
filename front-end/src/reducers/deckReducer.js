@@ -4,6 +4,7 @@ import {
     REMOVE_FROM_DECK_ACTION,
     CLEAR_DECK_ACTION,
 } from "../actions/deckActions/deckActionTypes";
+import {LOGOUT_ACTION, LOGIN_ACTION} from "../actions/authActions/authActionTypes";
 
 const initialState = {
     deck : [],
@@ -27,6 +28,14 @@ export default (state = initialState, action) => {
         case CLEAR_DECK_ACTION :
             return {
                 ...action.payload.data,
+            }
+        case LOGIN_ACTION :
+            return {
+                ...action.payload.data.userInfo.deck
+            }
+        case LOGOUT_ACTION :
+            return {
+                ...initialState
             }
         default :
             return {

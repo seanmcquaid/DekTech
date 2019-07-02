@@ -34,7 +34,7 @@ export const checkTokenAction = () => {
     }
 };
 
-export const registerAction = (registerData) => {
+export const registerAction = registerData => {
 
     const config = {
         headers : {
@@ -50,7 +50,7 @@ export const registerAction = (registerData) => {
     }
 };
 
-export const loginAction = (loginData) => {
+export const loginAction = loginData => {
 
     const config = {
         headers : {
@@ -69,7 +69,7 @@ export const loginAction = (loginData) => {
 };
 
 export const logoutAction = () => {
-    const axiosPromise = "make logout in backend";
+    const axiosPromise = axios.post(`${window.apiHost}/auth/logout`);
     return({
         type : LOGOUT_ACTION,
         payload : axiosPromise,

@@ -128,5 +128,14 @@ exports.postRegister = (req,res,next) => {
                         })
         })
         .catch(err => console.log(err));
-
 };
+
+exports.postLogout = (req,res,next) => {
+    req.user = null;
+    res.json({
+        token : null,
+        message : "Successfully logged out!",
+        isAuthenticated : false,
+        userInfo : null
+    });
+}

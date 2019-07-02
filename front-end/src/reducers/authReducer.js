@@ -31,7 +31,7 @@ export default (state = initialState, action) => {
         case LOGOUT_ACTION:
             localStorage.removeItem("token");
             return {
-                ...initialState,
+                ...action.payload.data,
             };
         case REGISTER_ACTION:
             localStorage.setItem("token", action.payload.data.token);

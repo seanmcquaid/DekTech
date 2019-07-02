@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {Link} from "react-router-dom";
-import {checkTokenAction} from "../../actions/authActions/authActions";
+import {checkTokenAction, logoutAction} from "../../actions/authActions/authActions";
 import Aux from "../../hoc/Aux/Aux";
 
 import styles from "./Navbar.module.css"
@@ -11,13 +11,8 @@ class Navbar extends Component {
     componentDidMount = () => {
         if(this.props.auth.token){
             this.props.checkTokenAction();
-            // check token here and remove token via redux if invalid
         }
     }
-
-    // componentWillReceiveProps = newProps => {
-    //     console.log(newProps)
-    // }
 
     render(){
         // console.log(this.props)
@@ -29,7 +24,7 @@ class Navbar extends Component {
                 <div className={styles.rightNavLinks}><Link to="/currentDeck" className={styles.rightNavLink}>Current Deck</Link></div>
                 <div className={styles.rightNavLinks}><Link to="/cardSearch" className={styles.rightNavLink}>Card Search</Link></div>
                 <div className={styles.rightNavLinks}><Link to="/userProfile" className={styles.rightNavLink}>Profile</Link></div>
-                <div className={styles.rightNavLinks}>Logout</div>
+                <div className={styles.rightNavLinks}><button onClick={() => this.props.logoutAction()}>Logout</button></div>
             </Aux>;
         } else {
             leftNavHomeLink = "/";
@@ -60,7 +55,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return bindActionCreators({
-        checkTokenAction
+        checkTokenAction,
+        logoutAction
     }, dispatch)
 }
 

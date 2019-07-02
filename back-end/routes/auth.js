@@ -11,4 +11,6 @@ router.post("/register", authController.postRegister);
 
 router.get("/checkToken", auth, authController.checkToken);
 
+router.post("/logout", authController.postLogout);
+
 module.exports = router;
