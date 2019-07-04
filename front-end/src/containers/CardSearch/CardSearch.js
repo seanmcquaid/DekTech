@@ -10,6 +10,7 @@ class CardSearch extends Component {
     constructor(){
         super();
         this.state = {
+            message : "",
             searchResults : [],
             color1Choice : "",
             color2Choice : "",
@@ -42,6 +43,12 @@ class CardSearch extends Component {
             ],
             rarityChoice : "",
         }
+    }
+
+    componentWillReceiveProps = newProps => {
+        this.setState({
+            message : newProps.deck.message,
+        })
     }
 
 

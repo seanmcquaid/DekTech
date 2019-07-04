@@ -4,13 +4,26 @@ import { getDeckAction, removeFromDeckAction, clearDeckAction } from "../../acti
 import {connect} from "react-redux";
 import { bindActionCreators} from "redux";
 import Card from "../../components/Utility/Card/Card";
+import { throws } from "assert";
 
 
 class CurrentDeck extends Component{
+    constructor(){
+        super();
+        this.state = {
+            message : ""
+        }
+    }
 
-    componentDidMount(){
+    componentDidMount = () => {
         // will call our backend for user's deck info and update state to reflect this
         this.props.getDeckAction();
+    }
+
+    componentWillReceiveProps = newProps => {
+        this.setState({
+            message : newProps.deck.message,
+        })
     }
 
     removeFromDeck = card => {
@@ -41,6 +54,7 @@ class CurrentDeck extends Component{
         return(
             <div className={styles.currentDeckContainer}>
                 <h1 className={styles.currentDeckTitle}>Current Deck</h1>
+                <p>{this.state.message}</p>
                 <button className={styles.clearDeck} onClick={this.clearDeck}>Clear Deck</button>
                 <div className={styles.cardsContainer}>
                     {cardDisplay}
