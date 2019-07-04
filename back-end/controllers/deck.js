@@ -4,8 +4,10 @@ const Card = require("../models/card");
 exports.getDeck = (req,res,next) => {
     User.findOne({_id : req.user.id})
         .then(user => {
+            console.log(user)
             res.json ({
-                deck : user.deck.cards
+                cards : user.deck.cards,
+                message : ""
             });
         })
 }
@@ -25,6 +27,12 @@ exports.addToDeck = (req,res,next) => {
                 cardText,
                 cardId,
             );
+            if(user.deck.cards.length === 100){
+                return res.json({
+                    cards : user.deck.cards,
+                    message : "You are at your 100 card limit"
+                })
+            }
             originalDeckLength = user.deck.cards.length;
             const cardObject = card.classToObject();
             return user.addToDeck(cardObject)
@@ -36,7 +44,7 @@ exports.addToDeck = (req,res,next) => {
                             message = "Card added to deck"
                         }
                     return res.json({
-                        deck : userInfo.deck.cards,
+                        cards : userInfo.deck.cards,
                         message,
                     })
                 });
@@ -52,7 +60,7 @@ exports.removeFromDeck = (req,res,next) => {
             return user.removeFromDeck(cardId)
                     .then(userInfo => {
                         return res.json({
-                            deck : userInfo.deck.cards,
+                            cards : userInfo.deck.cards,
                             message : "Card removed from deck"
                         })
                     });
@@ -67,7 +75,7 @@ exports.clearDeck = (req,res,next) => {
                     .then(userInfo => {
                         // console.log(userInfo)
                         res.json({
-                            deck : userInfo.deck.cards,
+                            cards : userInfo.deck.cards,
                             message : "Deck cleared"
                         })
                     });

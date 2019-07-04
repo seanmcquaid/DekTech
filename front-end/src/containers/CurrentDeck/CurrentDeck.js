@@ -23,11 +23,10 @@ class CurrentDeck extends Component{
 
     render(){
         let cardDisplay;
-        console.log(this.props)
-        if(this.props.deck.deck.length === 0){
+        if(this.props.deck.cards.length === 0){
             cardDisplay = <div>NO CARDS YET!</div>;
         } else {
-            cardDisplay = this.props.deck.deck.map((cardInfo, i)=> {
+            cardDisplay = this.props.deck.cards.map((cardInfo, i)=> {
                 // will use component here once I set up backend
                 return <Card
                     key = {i}
