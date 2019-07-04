@@ -160,6 +160,7 @@ class CardSearch extends Component {
         return (
             <div className={styles.cardSearchContainer}>
                 <h1 className={styles.cardSearchTitle}>Card Search</h1>
+                <p>{this.state.message}</p>
                 <form onSubmit={this.cardSearch} className={styles.cardSearchForm}>
                     <div className={styles.cardChoices}>
                         <select className={styles.dropDown} onChange={this.changeColor1}>

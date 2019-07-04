@@ -10,6 +10,7 @@ class CardInfo extends Component {
     constructor(){
         super();
         this.state = {
+            message : "",
             cardName : "",
             cardImageUrl : "",
             ranking : "",
@@ -42,6 +43,12 @@ class CardInfo extends Component {
             .catch(err => console.log(err));
     }
 
+    componentWillReceiveProps = newProps => {
+        this.setState({
+            message : newProps.deck.message,
+        })
+    }
+
     addToDeck = cardInfo => {
         this.props.addToDeckAction(cardInfo);
     }
@@ -50,6 +57,7 @@ class CardInfo extends Component {
         return(
             <div className={styles.cardInfoContainer}>
                 <h1 className={styles.cardInfoTitle}>{this.state.cardName}</h1>
+                <p>{this.state.message}</p>
                 <div className={styles.cardSpecificInfoContainer}>
                     <div className={styles.cardSpecificInfoLeft}>
                         <img className={styles.cardImage} src={this.state.cardImageUrl} alt={this.state.cardName}/>
