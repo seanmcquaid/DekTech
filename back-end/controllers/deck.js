@@ -12,7 +12,7 @@ exports.getDeck = (req,res,next) => {
         })
 }
 
-exports.addToDeck = (req,res,next) => {
+exports.addCardToDeck = (req,res,next) => {
     const {name, imageUrl, convertedManaCost, power, toughness, cardText, cardId} = req.body;
     let originalDeckLength;
     // check to see if length changed in then statement after adding to deck;
@@ -80,9 +80,10 @@ exports.addLandsToDeck = (req,res,next) => {
                         });
 
         })
+        .catch(err => console.log(err));
 }
 
-exports.removeFromDeck = (req,res,next) => {
+exports.removeCardFromDeck = (req,res,next) => {
     // filter out selected card then replace deck with new deck
     const {cardId} = req.body;
     User.findOne({_id : req.user.id})
@@ -98,6 +99,22 @@ exports.removeFromDeck = (req,res,next) => {
         .catch(err => console.log(err));
 }
 
+exports.removeLandsFromDeck = (req,res,next) => {
+    const {numberOfLandsToRemove} = req.body;
+    User.findOne({_id : req.user.id})
+        .then(user => {
+            return user.removeLandsFromDeck(numberOfLandsToRemove)
+                        .then(userInfo => {
+                            return res.json({
+                                cards : userInfo.deck.cards,
+                                lands : userInfo.deck.lands,
+                                message : "Lands removed from deck"
+                            })
+                        })
+        })
+        .catch(err => console.log(err));
+}
+
 exports.clearDeck = (req,res,next) => {
     User.findOne({_id : req.user.id})
         .then(user => {
@@ -106,6 +123,7 @@ exports.clearDeck = (req,res,next) => {
                         // console.log(userInfo)
                         res.json({
                             cards : userInfo.deck.cards,
+                            lands : userInfo.deck.lands,
                             message : "Deck cleared"
                         })
                     });

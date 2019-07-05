@@ -43,6 +43,7 @@ userSchema.methods.addCardToDeck = function(card){
 };
 
 userSchema.methods.addLandsToDeck = function(numberOfLandsToAdd){
+    // if lands added plus everything else is greater than or equal to 100, add lands up to 100
     if(numberOfLandsToAdd + this.deck.cards.length + this.deck.lands >= 100){
         return this.save();
     }
@@ -61,8 +62,13 @@ userSchema.methods.removeFromDeck = function(cardId){
     return this.save();
 };
 
+userSchema.methods.removeLandsFromDeck = function(numberOfLandsToRemove){
+    // If number of lands is greater than current land amount, get rid of current land amount
+}
+
 userSchema.methods.clearDeck = function(){
     this.deck.cards = [];
+    this.deck.lands = 0;
     return this.save();
 };
 
