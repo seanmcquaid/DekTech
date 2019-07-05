@@ -22,11 +22,14 @@ const userSchema = new Schema({
                     required : true,
                 }
             }
-        ]
+        ],
+        lands : {
+            type : Number,
+        }
     },
 });
 
-userSchema.methods.addToDeck = function(card){
+userSchema.methods.addCardToDeck = function(card){
     const cardIndex = this.deck.cards.findIndex(searchCard => card === searchCard);
     if(cardIndex >= 0){
         return this.save();
@@ -38,6 +41,14 @@ userSchema.methods.addToDeck = function(card){
     }
     return this.save();
 };
+
+userSchema.methods.addLandsToDeck = function(numberOfLandsToAdd){
+    if(numberOfLandsToAdd + this.deck.cards.length + this.deck.lands >= 100){
+        return this.save();
+    }
+    this.deck.lands += numberOfLandsToAdd;
+    return this.save();
+}
 
 userSchema.methods.removeFromDeck = function(cardId){
     const cardIndex = this.deck.cards.findIndex(searchCard => cardId === searchCard.card.cardId);

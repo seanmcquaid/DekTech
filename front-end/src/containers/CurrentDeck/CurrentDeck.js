@@ -4,7 +4,6 @@ import { getDeckAction, removeFromDeckAction, clearDeckAction } from "../../acti
 import {connect} from "react-redux";
 import { bindActionCreators} from "redux";
 import Card from "../../components/Utility/Card/Card";
-import { throws } from "assert";
 
 
 class CurrentDeck extends Component{
@@ -40,7 +39,6 @@ class CurrentDeck extends Component{
             cardDisplay = <div>NO CARDS YET!</div>;
         } else {
             cardDisplay = this.props.deck.cards.map((cardInfo, i)=> {
-                // will use component here once I set up backend
                 return <Card
                     key = {i}
                     cardName={cardInfo.card.name}
@@ -55,7 +53,17 @@ class CurrentDeck extends Component{
             <div className={styles.currentDeckContainer}>
                 <h1 className={styles.currentDeckTitle}>Current Deck</h1>
                 <p>{this.state.message}</p>
-                <button className={styles.clearDeck} onClick={this.clearDeck}>Clear Deck</button>
+                <div>
+                    <form className={styles.addLandsToDeckForm}>
+                        <input type="text"/>
+                        <button type="submit">Submit</button>
+                    </form>
+                    <form className={styles.removeLandsFromDeckForm}>
+                        <input type="text"/>
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+                <button className={styles.clearDeckButton} onClick={this.clearDeck}>Clear Deck</button>
                 <div className={styles.cardsContainer}>
                     {cardDisplay}
                 </div>
