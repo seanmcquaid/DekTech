@@ -7,6 +7,7 @@ exports.getDeck = (req,res,next) => {
             console.log(user.deck)
             res.json ({
                 cards : user.deck.cards,
+                lands : user.deck.lands,
                 message : ""
             });
         })
@@ -92,6 +93,7 @@ exports.removeCardFromDeck = (req,res,next) => {
                     .then(userInfo => {
                         return res.json({
                             cards : userInfo.deck.cards,
+                            lands : userInfo.deck.lands,
                             message : "Card removed from deck"
                         })
                     });

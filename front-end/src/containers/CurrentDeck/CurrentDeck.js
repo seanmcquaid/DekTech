@@ -34,21 +34,30 @@ class CurrentDeck extends Component{
 
     addLandsToDeck = event => {
         event.preventDefault();
-        console.log("event firing off")
         const numberOfLandsToAdd = parseInt(this.state.numberOfLandsToAdd);
-        console.log(numberOfLandsToAdd)
-        this.props.addLandsToDeckAction(numberOfLandsToAdd);
-        this.setState({
-            numberOfLandsToAdd : 0,
-        })
+        if(isNaN(numberOfLandsToAdd)){
+            this.setState({
+                message : "You didn't enter a valid number, try again!"
+            })
+        } else {
+            this.props.addLandsToDeckAction(numberOfLandsToAdd);
+        }
     }
 
     removeFromDeck = card => {
         this.props.removeCardFromDeckAction(card);
     }
 
-    removeLandsFromDeck = () => {
-
+    removeLandsFromDeck = event => {
+        event.preventDefault();
+        const numberOfLandsToRemove = parseInt(this.state.numberOfLandsToRemove);
+        if(isNaN(numberOfLandsToRemove)){
+            this.setState({
+                message : "You didn't enter a valid number, try again!"
+            })
+        } else {
+            this.props.removeLandsFromDeckAction(numberOfLandsToRemove);
+        }
     }
 
     clearDeck = () => {
@@ -69,6 +78,7 @@ class CurrentDeck extends Component{
 
     render(){
         let cardDisplay;
+        console.log(this.props.deck)
         if(this.props.deck.cards.length === 0){
             cardDisplay = <div>NO CARDS YET!</div>;
         } else {
@@ -105,6 +115,7 @@ class CurrentDeck extends Component{
                 </div>
                 <button className={styles.clearDeckButton} onClick={this.clearDeck}>Clear Deck</button>
                 <div className={styles.cardsContainer}>
+                    <p>{this.props.deck.lands}</p>
                     {cardDisplay}
                 </div>
             </div>

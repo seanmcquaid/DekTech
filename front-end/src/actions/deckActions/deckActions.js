@@ -61,7 +61,7 @@ export const removeCardFromDeckAction = card => {
 export const removeLandsFromDeckAction = numberOfLandsToRemove => {
     const token = tokenConfig();
     const requestBody = {numberOfLandsToRemove};
-    const axiosPromise = axios.post(`${window.apiHost}/deck/removeLandsFromDeck`. requestBody, token);
+    const axiosPromise = axios.post(`${window.apiHost}/deck/removeLandsFromDeck`, requestBody, token);
     return {
         type : REMOVE_LANDS_FROM_DECK_ACTION,
         payload : axiosPromise,

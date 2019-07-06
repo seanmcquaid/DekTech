@@ -65,6 +65,8 @@ userSchema.methods.removeFromDeck = function(cardId){
 
 userSchema.methods.removeLandsFromDeck = function(numberOfLandsToRemove){
     // If number of lands is greater than current land amount, get rid of current land amount
+    this.deck.lands -= numberOfLandsToRemove;
+    return this.save();
 }
 
 userSchema.methods.clearDeck = function(){
