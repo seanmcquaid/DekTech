@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import styles from "./CardInfo.module.css";
 import axios from "axios";
 import {Link} from "react-router-dom";
-import {addToDeckAction} from "../../actions/deckActions/deckActions";
+import {addCardToDeckAction} from "../../actions/deckActions/deckActions";
 import { bindActionCreators } from "redux";
 import {connect} from "react-redux";
 
@@ -50,7 +50,7 @@ class CardInfo extends Component {
     }
 
     addToDeck = cardInfo => {
-        this.props.addToDeckAction(cardInfo);
+        this.props.addCardToDeckAction(cardInfo);
     }
 
     render(){
@@ -89,7 +89,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatcher => {
     return bindActionCreators({
-        addToDeckAction,
+        addCardToDeckAction,
     },dispatcher);
 }
 

@@ -25,6 +25,7 @@ const userSchema = new Schema({
         ],
         lands : {
             type : Number,
+            required : true,
         }
     },
 });

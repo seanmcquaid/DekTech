@@ -1,6 +1,11 @@
 import React, {Component} from "react";
 import styles from "./CurrentDeck.module.css";
-import { getDeckAction, removeFromDeckAction, clearDeckAction } from "../../actions/deckActions/deckActions";
+import { 
+    getDeckAction, 
+    addLandsToDeckAction, 
+    removeCardFromDeckAction, 
+    removeLandsFromDeckAction, 
+    clearDeckAction } from "../../actions/deckActions/deckActions";
 import {connect} from "react-redux";
 import { bindActionCreators} from "redux";
 import Card from "../../components/Utility/Card/Card";
@@ -27,12 +32,19 @@ class CurrentDeck extends Component{
         })
     }
 
-    addLandsToDeck = () => {
-
+    addLandsToDeck = event => {
+        event.preventDefault();
+        console.log("event firing off")
+        const numberOfLandsToAdd = parseInt(this.state.numberOfLandsToAdd);
+        console.log(numberOfLandsToAdd)
+        this.props.addLandsToDeckAction(numberOfLandsToAdd);
+        this.setState({
+            numberOfLandsToAdd : 0,
+        })
     }
 
     removeFromDeck = card => {
-        this.props.removeFromDeckAction(card);
+        this.props.removeCardFromDeckAction(card);
     }
 
     removeLandsFromDeck = () => {
@@ -109,7 +121,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatcher => {
     return bindActionCreators({
         getDeckAction,
-        removeFromDeckAction,
+        addLandsToDeckAction,
+        removeCardFromDeckAction,
+        removeLandsFromDeckAction,
         clearDeckAction
     }, dispatcher);
 };

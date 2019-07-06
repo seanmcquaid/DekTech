@@ -1,9 +1,11 @@
 import axios from "axios";
 import {
     GET_DECK_ACTION,
-    ADD_TO_DECK_ACTION,
-    REMOVE_FROM_DECK_ACTION,
+    ADD_CARD_TO_DECK_ACTION,
+    REMOVE_CARD_FROM_DECK_ACTION,
     CLEAR_DECK_ACTION,
+    ADD_LANDS_TO_DECK_ACTION,
+    REMOVE_LANDS_FROM_DECK_ACTION,
 } from "./deckActionTypes";
 import {tokenConfig} from "../authActions/authActions";
 
@@ -16,7 +18,7 @@ export const getDeckAction = () => {
     }
 }
 
-export const addToDeckAction = card => {
+export const addCardToDeckAction = card => {
     const token = tokenConfig();
     const requestBody = {
         name : card.name,
@@ -27,21 +29,41 @@ export const addToDeckAction = card => {
         cardText : card.oracle_text,
         cardId : card.id,
     };
-    const axiosPromise = axios.post(`${window.apiHost}/deck/addToDeck`, requestBody, token);
+    const axiosPromise = axios.post(`${window.apiHost}/deck/addCardToDeck`, requestBody, token);
     return {
-        type : ADD_TO_DECK_ACTION,
+        type : ADD_CARD_TO_DECK_ACTION,
         payload : axiosPromise,
     }
 }
 
-export const removeFromDeckAction = card => {
+export const addLandsToDeckAction = numberOfLandsToAdd => {
+    const token = tokenConfig();
+    const requestBody = {numberOfLandsToAdd};
+    const axiosPromise = axios.post(`${window.apiHost}/deck/addLandsToDeck`, requestBody, token);
+    return {
+        type : ADD_LANDS_TO_DECK_ACTION,
+        payload : axiosPromise,
+    }
+}
+
+export const removeCardFromDeckAction = card => {
     const token = tokenConfig();
     const requestBody = {
         cardId : card.cardId
     }
-    const axiosPromise = axios.post(`${window.apiHost}/deck/removeFromDeck`, requestBody, token);
+    const axiosPromise = axios.post(`${window.apiHost}/deck/removeCardFromDeck`, requestBody, token);
     return {
-        type : REMOVE_FROM_DECK_ACTION,
+        type : REMOVE_CARD_FROM_DECK_ACTION,
+        payload : axiosPromise,
+    }
+}
+
+export const removeLandsFromDeckAction = numberOfLandsToRemove => {
+    const token = tokenConfig();
+    const requestBody = {numberOfLandsToRemove};
+    const axiosPromise = axios.post(`${window.apiHost}/deck/removeLandsFromDeck`. requestBody, token);
+    return {
+        type : REMOVE_LANDS_FROM_DECK_ACTION,
         payload : axiosPromise,
     }
 }

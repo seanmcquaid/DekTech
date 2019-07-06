@@ -3,7 +3,7 @@ import styles from "./CardSearch.module.css";
 import axios from "axios";
 import Card from "../../components/Utility/Card/Card";
 import { bindActionCreators } from "redux";
-import {addToDeckAction} from "../../actions/deckActions/deckActions";
+import {addCardToDeckAction} from "../../actions/deckActions/deckActions";
 import { connect } from "react-redux";
 
 class CardSearch extends Component {
@@ -87,7 +87,7 @@ class CardSearch extends Component {
     };
 
     addToDeck = cardInfo => {
-        this.props.addToDeckAction(cardInfo);
+        this.props.addCardToDeckAction(cardInfo);
     }
 
     changeColor1 = event => {
@@ -208,7 +208,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatcher => {
     return bindActionCreators({
-        addToDeckAction
+        addCardToDeckAction
     }, dispatcher);
 }
 
