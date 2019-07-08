@@ -13,6 +13,8 @@ router.post("/removeCardFromDeck", auth, deckController.removeCardFromDeck);
 
 router.post("/removeLandsFromDeck", auth, deckController.removeLandsFromDeck);
 
+router.post("/setCommander", auth, deckController.setCommander);
+
 router.post("/clearDeck", auth, deckController.clearDeck);
 
 module.exports = router;

@@ -5,10 +5,12 @@ import {
     addLandsToDeckAction, 
     removeCardFromDeckAction, 
     removeLandsFromDeckAction, 
+    setCommanderAction,
     clearDeckAction } from "../../actions/deckActions/deckActions";
 import {connect} from "react-redux";
 import { bindActionCreators} from "redux";
 import Card from "../../components/Utility/Card/Card";
+import Aux from "../../hoc/Aux/Aux";
 
 
 class CurrentDeck extends Component{
@@ -60,6 +62,10 @@ class CurrentDeck extends Component{
         }
     }
 
+    setCommander = card => {
+        this.props.setCommanderAction(card);
+    }
+
     clearDeck = () => {
         this.props.clearDeckAction();
     }
@@ -83,14 +89,18 @@ class CurrentDeck extends Component{
             cardDisplay = <div>NO CARDS YET!</div>;
         } else {
             cardDisplay = this.props.deck.cards.map((cardInfo, i)=> {
-                return <Card
-                    key = {i}
+                return (
+                <Aux key={i}>
+                    <Card
+                    key = {i+1}
                     cardName={cardInfo.card.name}
                     buttonText={"Remove From Deck"}
                     cardId={cardInfo.card.cardId} 
                     imageUrl={cardInfo.card.imageUrl} 
-                    clicked={() => this.removeFromDeck(cardInfo.card)}
-                />;
+                    clicked={() => this.removeFromDeck(cardInfo.card)}/>
+                    <button key={i+2} className={styles.setCommanderButton} onClick={() => this.setCommander(cardInfo.card)}>Set Commander</button>
+                </Aux>
+                );
             })
         }
         return(
@@ -138,6 +148,7 @@ const mapDispatchToProps = dispatcher => {
         addLandsToDeckAction,
         removeCardFromDeckAction,
         removeLandsFromDeckAction,
+        setCommanderAction,
         clearDeckAction
     }, dispatcher);
 };

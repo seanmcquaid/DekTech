@@ -8,6 +8,7 @@ exports.getDeck = (req,res,next) => {
             res.json ({
                 cards : user.deck.cards,
                 lands : user.deck.lands,
+                commander : userInfo.deck.commander,
                 message : ""
             });
         })
@@ -33,6 +34,7 @@ exports.addCardToDeck = (req,res,next) => {
                 return res.json({
                     cards : user.deck.cards,
                     lands : user.deck.lands,
+                    commander : userInfo.deck.commander,
                     message : "You are at your 100 card limit"
                 })
             }
@@ -44,6 +46,7 @@ exports.addCardToDeck = (req,res,next) => {
                     return res.json({
                         cards : userInfo.deck.cards,
                         lands : userInfo.deck.lands,
+                        commander : userInfo.deck.commander,
                         message,
                     })
                 });
@@ -60,6 +63,7 @@ exports.addLandsToDeck = (req,res,next) => {
                 return res.json({
                     cards : user.deck.cards,
                     lands : user.deck.lands,
+                    commander : userInfo.deck.commander,
                     message : "You are at your 100 card limit"
                 })
             }
@@ -70,12 +74,14 @@ exports.addLandsToDeck = (req,res,next) => {
                                 return res.json({
                                     cards : userInfo.deck.cards,
                                     lands : userInfo.deck.lands,
+                                    commander : userInfo.deck.commander,
                                     message : "Added lands to deck"
                                 })
                             } else {
                                 return res.json({
                                     cards : userInfo.deck.cards,
                                     lands : userInfo.deck.lands,
+                                    commander : userInfo.deck.commander,
                                     message : "You tried adding too many lands!",
                                 })
                             }
@@ -95,6 +101,7 @@ exports.removeCardFromDeck = (req,res,next) => {
                         return res.json({
                             cards : userInfo.deck.cards,
                             lands : userInfo.deck.lands,
+                            commander : userInfo.deck.commander,
                             message : "Card removed from deck"
                         })
                     });
@@ -111,11 +118,29 @@ exports.removeLandsFromDeck = (req,res,next) => {
                             return res.json({
                                 cards : userInfo.deck.cards,
                                 lands : userInfo.deck.lands,
+                                commander : userInfo.deck.commander,
                                 message : "Lands removed from deck"
                             })
                         })
         })
         .catch(err => console.log(err));
+}
+
+exports.setCommander = (req,res,next) => {
+    const {cardInfo} = req.body;
+    User.findOne({_id : req.user.id})
+        .then(user => {
+            return user.setCommander(cardInfo)
+                        .then(userInfo => {
+                            return res.json({
+                                cards : userInfo.deck.cards,
+                                lands : userInfo.deck.lands,
+                                commander : userInfo.deck.commander,
+                                message : "Commander set!"
+                            })
+                        })
+        })
+        .catch(err => console.log(err))
 }
 
 exports.clearDeck = (req,res,next) => {
@@ -127,6 +152,7 @@ exports.clearDeck = (req,res,next) => {
                         res.json({
                             cards : userInfo.deck.cards,
                             lands : userInfo.deck.lands,
+                            commander : userInfo.deck.commander,
                             message : "Deck cleared"
                         })
                     });

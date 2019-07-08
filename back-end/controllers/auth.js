@@ -112,6 +112,7 @@ exports.postRegister = (req,res,next) => {
                                 deck : {
                                     cards : [],
                                     lands : 0,
+                                    commander : "",
                                 },
                             });
                             newUser.save();

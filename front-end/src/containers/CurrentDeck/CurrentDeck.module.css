@@ -40,3 +40,7 @@
 .cardInfo {
     margin: 2rem;
 }
+
+.setCommanderButton {
+    color: red;
+}

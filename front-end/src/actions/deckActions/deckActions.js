@@ -5,6 +5,7 @@ import {
     REMOVE_CARD_FROM_DECK_ACTION,
     CLEAR_DECK_ACTION,
     ADD_LANDS_TO_DECK_ACTION,
+    SET_COMMANDER_ACTION,
     REMOVE_LANDS_FROM_DECK_ACTION,
 } from "./deckActionTypes";
 import {tokenConfig} from "../authActions/authActions";
@@ -65,6 +66,16 @@ export const removeLandsFromDeckAction = numberOfLandsToRemove => {
     const axiosPromise = axios.post(`${window.apiHost}/deck/removeLandsFromDeck`, requestBody, token);
     return {
         type : REMOVE_LANDS_FROM_DECK_ACTION,
+        payload : axiosPromise,
+    }
+}
+
+export const setCommanderAction = cardInfo => {
+    const token = tokenConfig();
+    const requestBody = {cardInfo};
+    const axiosPromise = axios.post(`${window.apiHost}/deck/setCommander`, requestBody, token);
+    return {
+        type : SET_COMMANDER_ACTION,
         payload : axiosPromise,
     }
 }

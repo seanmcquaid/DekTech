@@ -26,6 +26,10 @@ const userSchema = new Schema({
         lands : {
             type : Number,
             required : true,
+        },
+        commander : {
+            type : Object,
+            required: true,
         }
     },
 });
@@ -66,6 +70,11 @@ userSchema.methods.removeFromDeck = function(cardId){
 userSchema.methods.removeLandsFromDeck = function(numberOfLandsToRemove){
     // If number of lands is greater than current land amount, get rid of current land amount
     this.deck.lands -= numberOfLandsToRemove;
+    return this.save();
+}
+
+userSchema.methods.setCommander = function(cardInfo){
+    this.deck.commander = cardInfo;
     return this.save();
 }
 
