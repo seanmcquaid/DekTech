@@ -14,7 +14,7 @@ exports.getDeck = (req,res,next) => {
 }
 
 exports.addCardToDeck = (req,res,next) => {
-    const {name, imageUrl, convertedManaCost, power, toughness, cardText, cardId} = req.body;
+    const {name, imageUrl, convertedManaCost, power, toughness, type, cardText, cardId} = req.body;
     let originalDeckLength;
     // check to see if length changed in then statement after adding to deck;
     User.findOne({_id : req.user.id})
@@ -25,6 +25,7 @@ exports.addCardToDeck = (req,res,next) => {
                 convertedManaCost,
                 power,
                 toughness,
+                type,
                 cardText,
                 cardId,
             );

@@ -17,6 +17,7 @@ class CardInfo extends Component {
             convertedManaCost : "",
             power : "",
             toughness : "",
+            type : "",
             cardText : "",
             searchResults : "",
         }
@@ -28,6 +29,7 @@ class CardInfo extends Component {
         const {cardId} = this.props.match.params;
         axios.get(`https://api.scryfall.com/cards/${cardId}`)
             .then(response => {
+                console.log(response.data)
                 this.setState({
                     cardName : response.data.name,
                     cardImageUrl : response.data.image_uris.small,
@@ -35,6 +37,7 @@ class CardInfo extends Component {
                     convertedManaCost : response.data.cmc,
                     power : response.data.power,
                     toughness : response.data.toughness,
+                    type : response.data.type_line,
                     cardText : response.data.oracle_text,
                     cardId : response.data.id,
                     searchResults : response.data,
@@ -68,6 +71,7 @@ class CardInfo extends Component {
                             <li className={styles.cardSpecificInfoBullet}>Converted Mana Cost : {this.state.convertedManaCost}</li>
                             <li className={styles.cardSpecificInfoBullet}>Power : {this.state.power}</li>
                             <li className={styles.cardSpecificInfoBullet}>Toughness : {this.state.toughness}</li>
+                            <li className={styles.cardSpecificInfoBullet}>Type : {this.state.type}</li>
                             <li className={styles.cardSpecificInfoBullet}>Card Text : {this.state.cardText}</li>
                         </ul>
                         <div className={styles.buttonsContainer}>

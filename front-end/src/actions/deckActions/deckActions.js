@@ -26,6 +26,7 @@ export const addCardToDeckAction = card => {
         convertedManaCost : card.cmc,
         power : card.power,
         toughness : card.toughness,
+        type : card.type_line,
         cardText : card.oracle_text,
         cardId : card.id,
     };

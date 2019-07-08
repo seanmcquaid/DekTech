@@ -79,7 +79,7 @@ class CurrentDeck extends Component{
     render(){
         let cardDisplay;
         console.log(this.props.deck)
-        if(this.props.deck.cards.length === 0){
+        if(this.props.deck.cards.length === 0 || this.props.deck.cards.length === null){
             cardDisplay = <div>NO CARDS YET!</div>;
         } else {
             cardDisplay = this.props.deck.cards.map((cardInfo, i)=> {
@@ -114,8 +114,11 @@ class CurrentDeck extends Component{
                     </div>
                 </div>
                 <button className={styles.clearDeckButton} onClick={this.clearDeck}>Clear Deck</button>
+                <div>
+                    <p>Total Deck Count: {this.props.deck.lands + this.props.deck.cards.length} </p>
+                    <p>Land Count : {this.props.deck.lands}</p>
+                </div>
                 <div className={styles.cardsContainer}>
-                    <p>{this.props.deck.lands}</p>
                     {cardDisplay}
                 </div>
             </div>
