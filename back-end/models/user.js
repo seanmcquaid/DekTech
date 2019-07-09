@@ -50,6 +50,7 @@ userSchema.methods.addCardToDeck = function(card){
 userSchema.methods.addLandsToDeck = function(numberOfLandsToAdd){
     // if lands added plus everything else is greater than or equal to 100, add lands up to 100
     if(numberOfLandsToAdd + this.deck.cards.length + this.deck.lands >= 100){
+        this.deck.lands = 100 - this.deck.cards.length - this.deck.lands;
         return this.save();
     }
     this.deck.lands += numberOfLandsToAdd;
@@ -69,7 +70,11 @@ userSchema.methods.removeFromDeck = function(cardId){
 
 userSchema.methods.removeLandsFromDeck = function(numberOfLandsToRemove){
     // If number of lands is greater than current land amount, get rid of current land amount
-    this.deck.lands -= numberOfLandsToRemove;
+    if(this.deck.lands <= numberOfLandsToRemove){
+        this.deck.lands = 0;
+    } else {
+        this.deck.lands -= numberOfLandsToRemove;
+    }
     return this.save();
 }
 
@@ -78,9 +83,15 @@ userSchema.methods.setCommander = function(cardInfo){
     return this.save();
 }
 
+userSchema.methods.removeCommander = function(){
+    this.deck.commander = "";
+    return this.save();
+}
+
 userSchema.methods.clearDeck = function(){
     this.deck.cards = [];
     this.deck.lands = 0;
+    this.deck.commander = "";
     return this.save();
 };
 

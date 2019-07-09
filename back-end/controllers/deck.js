@@ -143,6 +143,22 @@ exports.setCommander = (req,res,next) => {
         .catch(err => console.log(err))
 }
 
+exports.removeCommander = (req,res,next) => {
+    User.findOne({_id : req.user.id})
+        .then(user => {
+            return user.removeCommander()
+                        .then(userInfo => {
+                            return res.json({
+                                cards : userInfo.deck.cards,
+                                lands : userInfo.deck.lands,
+                                commander : userInfo.deck.commander,
+                                message : "Commander removed"
+                            })
+                        })
+        })
+        .catch(err => console.log(err));
+}
+
 exports.clearDeck = (req,res,next) => {
     User.findOne({_id : req.user.id})
         .then(user => {

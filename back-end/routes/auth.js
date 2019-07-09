@@ -3,7 +3,6 @@ const router = express.Router();
 const authController = require("../controllers/auth");
 const auth = require("../middleware/auth");
 
-/* GET users listing. */
 
 router.post("/login", authController.postLogin);
 
