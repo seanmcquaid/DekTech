@@ -6,6 +6,7 @@ import {
     removeCardFromDeckAction, 
     removeLandsFromDeckAction, 
     setCommanderAction,
+    removeCommanderAction,
     clearDeckAction } from "../../actions/deckActions/deckActions";
 import {connect} from "react-redux";
 import { bindActionCreators} from "redux";
@@ -66,6 +67,10 @@ class CurrentDeck extends Component{
         this.props.setCommanderAction(card);
     }
 
+    removeCommander = () => {
+        this.props.removeCommanderAction();
+    }
+
     clearDeck = () => {
         this.props.clearDeckAction();
     }
@@ -124,7 +129,9 @@ class CurrentDeck extends Component{
                     </div>
                 </div>
                 <button className={styles.clearDeckButton} onClick={this.clearDeck}>Clear Deck</button>
+                <button className={styles.removeCommanderButton} onClick={this.removeCommander}>Remove Commander</button>
                 <div>
+                    <p>Commander : {this.props.deck.commander}</p>
                     <p>Total Deck Count: {this.props.deck.lands + this.props.deck.cards.length} </p>
                     <p>Land Count : {this.props.deck.lands}</p>
                 </div>
@@ -149,7 +156,8 @@ const mapDispatchToProps = dispatcher => {
         removeCardFromDeckAction,
         removeLandsFromDeckAction,
         setCommanderAction,
-        clearDeckAction
+        removeCommanderAction,
+        clearDeckAction,
     }, dispatcher);
 };
 
