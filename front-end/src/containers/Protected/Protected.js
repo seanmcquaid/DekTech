@@ -10,38 +10,22 @@ import CurrentDeck from "../CurrentDeck/CurrentDeck";
 import CardSearch from "../CardSearch/CardSearch";
 import CardInfo from "../CardInfo/CardInfo";
 import ErrorPage from "../../components/ErrorPage/ErrorPage";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 class Protected extends Component {
 
     // check auth status and change allowed routes based on that
 
     render(){
-        let availableRoutes;
-        // console.log(this.props)
-        if(this.props.auth.isLoggedIn === true){
-            // console.log("currently logged in")
-            availableRoutes =
-            <Aux>
-                <Route exact path="/userHome" component={UserHome}/>
-            </Aux>;
-        } else {
-            // console.log(this.props.auth.isLoggedIn)
-            availableRoutes = 
-            <Aux>
-                <Route exact path="/" component={Splash}/>
-                <Route exact path="/register" component={Register}/>
-                <Route exact path="/login" component={Login}/>
-            </Aux>;
-        }
         return(
             <Switch>
                 <Route exact path="/" component={Splash}/>
                 <Route exact path="/register" component={Register}/>
                 <Route exact path="/login" component={Login}/>
-                <Route exact path="/userHome" component={UserHome}/>
-                <Route exact path="/currentDeck" component={CurrentDeck}/>
-                <Route exact path="/cardSearch" component={CardSearch}/>
-                <Route exact path={`/cardInfo/:cardId`} component={CardInfo}/>
+                <ProtectedRoute exact path="/userHome" component={UserHome}/>
+                <ProtectedRoute exact path="/currentDeck" component={CurrentDeck}/>
+                <ProtectedRoute exact path="/cardSearch" component={CardSearch}/>
+                <ProtectedRoute exact path={`/cardInfo/:cardId`} component={CardInfo}/>
                 <Route component={ErrorPage}/>
             </Switch>
         )

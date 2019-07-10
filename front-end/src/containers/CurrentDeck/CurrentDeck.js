@@ -131,9 +131,9 @@ class CurrentDeck extends Component{
                 <button className={styles.clearDeckButton} onClick={this.clearDeck}>Clear Deck</button>
                 <button className={styles.removeCommanderButton} onClick={this.removeCommander}>Remove Commander</button>
                 <div>
-                    <p>Commander : {this.props.deck.commander}</p>
+                    {/* <p>Commander : {this.props.deck.commander}</p>
                     <p>Total Deck Count: {this.props.deck.lands + this.props.deck.cards.length} </p>
-                    <p>Land Count : {this.props.deck.lands}</p>
+                    <p>Land Count : {this.props.deck.lands}</p> */}
                 </div>
                 <div className={styles.cardsContainer}>
                     {cardDisplay}
