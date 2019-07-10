@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Route, Redirect} from "react-router-dom";
+import {Route, Redirect, Switch} from "react-router-dom";
 import {connect} from "react-redux";
 import Aux from "../../hoc/Aux/Aux";
 import Splash from "../../components/Splash/Splash";
@@ -9,6 +9,7 @@ import UserHome from "../../components/UserHome/UserHome";
 import CurrentDeck from "../CurrentDeck/CurrentDeck";
 import CardSearch from "../CardSearch/CardSearch";
 import CardInfo from "../CardInfo/CardInfo";
+import ErrorPage from "../../components/ErrorPage/ErrorPage";
 
 class Protected extends Component {
 
@@ -33,7 +34,7 @@ class Protected extends Component {
             </Aux>;
         }
         return(
-            <Aux>
+            <Switch>
                 <Route exact path="/" component={Splash}/>
                 <Route exact path="/register" component={Register}/>
                 <Route exact path="/login" component={Login}/>
@@ -41,7 +42,8 @@ class Protected extends Component {
                 <Route exact path="/currentDeck" component={CurrentDeck}/>
                 <Route exact path="/cardSearch" component={CardSearch}/>
                 <Route exact path={`/cardInfo/:cardId`} component={CardInfo}/>
-            </Aux>
+                <Route component={ErrorPage}/>
+            </Switch>
         )
     }
 }
