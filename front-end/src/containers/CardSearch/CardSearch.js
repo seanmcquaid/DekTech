@@ -57,11 +57,20 @@ class CardSearch extends Component {
         // https://scryfall.com/docs/syntax
         // https://scryfall.com/docs/api/cards/search
         const {color1Choice, color2Choice, color3Choice, cardTypeChoice, convertedManaCostChoice, rarityChoice} = this.state;
-        const colorChoiceCombo = color1Choice + " " + color2Choice + " " + color3Choice;
-        // still need to fix more elegant way to approach colors
         let baseUrl = "https://api.scryfall.com/cards/search?q=";
-        if(colorChoiceCombo !== ""){
-            const colorParam = `c:${colorChoiceCombo} `;
+        if(color1Choice !== ""){
+            const color1Letter = color1Choice.slice(0,1);
+            const colorParam = color1Choice === "Blue" ?`c:u `: `c:${color1Letter}`;
+            baseUrl += colorParam;
+        }
+        if(color2Choice !== ""){
+            const color2Letter = color2Choice.slice(0,1);
+            const colorParam = color2Choice === "Blue" ?`c:u `: `c:${color2Letter}`;
+            baseUrl += colorParam;
+        }
+        if(color3Choice !== ""){
+            const color3Letter = color3Choice.slice(0,1);
+            const colorParam = color3Choice === "Blue" ?`c:u `: `c:${color3Letter}`;
             baseUrl += colorParam;
         }
         if(cardTypeChoice !== ""){
@@ -91,39 +100,39 @@ class CardSearch extends Component {
     }
 
     changeColor1 = event => {
-        this.setState({
-            color1Choice : event.target.value
-        });
+        event.target.value === "Choose a color!" ?
+        this.setState({color1Choice : ""}) :
+        this.setState({color1Choice : event.target.value});
     }
 
     changeColor2 = event => {
-        this.setState({
-            color2Choice : event.target.value
-        });
+        event.target.value === "Choose a color!" ?
+        this.setState({color2Choice : ""}) :
+        this.setState({color2Choice : event.target.value});
     }
 
     changeColor3 = event => {
-        this.setState({
-            color3Choice : event.target.value
-        });
+        event.target.value === "Choose a color!" ?
+        this.setState({color3Choice : ""}) :
+        this.setState({color3Choice : event.target.value});
     }
     
     changeCardType = event => {
-        this.setState({
-            cardTypeChoice : event.target.value
-        });
+        event.target.value === "Choose a Card Type!" ?
+        this.setState({cardTypeChoice : ""}) :
+        this.setState({cardTypeChoice : event.target.value});
     }
 
     changeRarityChoice = event => {
-        this.setState({
-            rarityChoice : event.target.value
-        });
+        event.target.value === "Choose a rarity!" ? 
+        this.setState({rarityChoice : ""}) :
+        this.setState({rarityChoice : event.target.value});
     }
 
     changeConvertedManaCost = event => {
-        this.setState({
-            convertedManaCostChoice : event.target.value 
-        });
+        event.target.value === "Choose the Converted Mana Cost!" ? 
+        this.setState({changeConvertedManaCost : ""}) :
+        this.setState({convertedManaCostChoice : event.target.value});
     }
     
     
@@ -186,7 +195,7 @@ class CardSearch extends Component {
                             {cardTypeOptions}
                         </select>
                         <select className={styles.dropDown} onChange={this.changeRarityChoice}>
-                            <option defaultValue="">Choose a rarity</option>
+                            <option defaultValue="">Choose a rarity!</option>
                             {rarityOptions}
                         </select>
                     </div>

@@ -1,7 +1,6 @@
 import React, {Component} from "react";
-import {Route, Redirect, Switch} from "react-router-dom";
+import {Route, Switch} from "react-router-dom";
 import {connect} from "react-redux";
-import Aux from "../../hoc/Aux/Aux";
 import Splash from "../../components/Splash/Splash";
 import Register from "../Users/Register/Register";
 import Login from "../Users/Login/Login";
