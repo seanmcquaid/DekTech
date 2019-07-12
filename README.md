@@ -32,10 +32,11 @@ The MTG Deck Builder is a MERN stack web application that will allow users to cr
 * Refactoring UI to be made with reusable components/ Reorganizing
 * State refactoring / reconceptualizing
 * MVC Architecture with middleware
+* Protected Routing
 
 ## MVP
 * User should be able to create an account - Done
-* User should be able to search for cards using various conditions (Mana color, Converted Mana Cost, Power, etc)
+* User should be able to search for cards using various conditions (Mana color, Converted Mana Cost, Power, etc) - Done
 * User should be able to create a deck of 100 cards - Done
 
 
