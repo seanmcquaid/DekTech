@@ -23,9 +23,14 @@ class Navbar extends Component {
             <Aux>
                 <div className={styles.rightNavLinks}><Link to="/currentDeck" className={styles.rightNavLink}>Current Deck</Link></div>
                 <div className={styles.rightNavLinks}><Link to="/cardSearch" className={styles.rightNavLink}>Card Search</Link></div>
-                <div className={styles.rightNavLinks}><Link to="/userProfile" className={styles.rightNavLink}>Profile</Link></div>
                 <div className={styles.rightNavLinks}><button className={styles.rightNavLinkButton} onClick={() => this.props.logoutAction()}>Logout</button></div>
             </Aux>;
+            rightNavMobileLinks = 
+            <div>
+                <div className={styles.rightNavMobileLinks}><Link to="/currentDeck" className={styles.rightNavLink}>Current Deck</Link></div>
+                <div className={styles.rightNavMobileLinks}><Link to="/cardSearch" className={styles.rightNavLink}>Card Search</Link></div>
+                <div className={styles.rightNavMobileLinks}><button className={styles.rightNavLinkButton} onClick={() => this.props.logoutAction()}>Logout</button></div>
+            </div>;
         } else {
             leftNavHomeLink = "/";
             rightNavLinks = 
@@ -33,6 +38,11 @@ class Navbar extends Component {
                 <div className={styles.rightNavLinks}><Link to="/register" className={styles.rightNavLink}>Register</Link></div>       
                 <div className={styles.rightNavLinks}><Link to="/login" className={styles.rightNavLink}>Login</Link></div>
             </Aux>;
+            rightNavMobileLinks =
+            <div>
+                <div className={styles.rightNavMobileLinks}><Link to="/register" className={styles.rightNavLink}>Register</Link></div>       
+                <div className={styles.rightNavMobileLinks}><Link to="/login" className={styles.rightNavLink}>Login</Link></div>
+            </div>;
         }
         return(
             <div className={styles.navBar}>
@@ -41,6 +51,7 @@ class Navbar extends Component {
                 </div>
                 <div className={styles.rightNav}>
                     {rightNavLinks}
+                    {/* {rightNavMobileLinks} */}
                 </div>
             </div>
         )
