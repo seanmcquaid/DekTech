@@ -1,14 +1,14 @@
 import React from 'react';
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import Layout from './components/Layout/Layout';
-import Protected from './containers/Protected/Protected';
+import ProtectedRoutes from './components/Routing/ProtectedRoutes/ProtectedRoutes';
 
 
 const App = () => {
   return (
     <Router>
       <Layout>
-        <Route path="/" component={Protected}/>
+        <Route path="/" component={ProtectedRoutes}/>
       </Layout>
     </Router>
   );
