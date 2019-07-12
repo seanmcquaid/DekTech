@@ -148,7 +148,7 @@ class CardSearch extends Component {
         });
 
         const searchResults = this.state.searchResults.map((card, i) => {
-            if(card.image_uris.small === undefined){
+            if(card.image_uris === undefined){
                 return null;
             }
             return <Card 

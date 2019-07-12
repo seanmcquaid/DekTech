@@ -7,7 +7,7 @@ const Card = (props) => {
         <div className={styles.cardContainer}>
             <h5>{props.cardName}</h5>
             <Link to={`/cardInfo/${props.cardId}`}>
-                <img src={props.imageUrl} alt={props.cardName}/>
+                <img src={props.imageUrl} alt={props.cardName} className={styles.cardImage}/>
             </Link>
             <div className={styles.buttonContainer}>
                 <Link className={styles.viewCardLink} to={`/cardInfo/${props.cardId}`}>View Card</Link>
