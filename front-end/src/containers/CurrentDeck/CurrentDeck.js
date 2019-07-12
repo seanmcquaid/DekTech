@@ -88,25 +88,34 @@ class CurrentDeck extends Component{
     }
 
     render(){
-        let cardDisplay;
+        let cardDisplay, deckInfo;
         console.log(this.props.deck)
-        if(this.props.deck.cards.length === 0 || this.props.deck.cards.length === null){
+        if(this.props.deck.cards === undefined){
             cardDisplay = <div>NO CARDS YET!</div>;
         } else {
-            cardDisplay = this.props.deck.cards.map((cardInfo, i)=> {
-                return (
-                <Aux key={i}>
-                    <Card
-                    key = {i+1}
-                    cardName={cardInfo.card.name}
-                    buttonText={"Remove From Deck"}
-                    cardId={cardInfo.card.cardId} 
-                    imageUrl={cardInfo.card.imageUrl} 
-                    clicked={() => this.removeFromDeck(cardInfo.card)}/>
-                    <button key={i+2} className={styles.setCommanderButton} onClick={() => this.setCommander(cardInfo.card)}>Set Commander</button>
-                </Aux>
-                );
-            })
+            if(this.props.deck.cards.length === 0){
+                cardDisplay = <div>NO CARDS YET!</div>;
+            } else {
+                deckInfo = <Aux>
+                    <p>Commander : {this.props.deck.commander}</p>
+                    <p>Total Deck Count: {this.props.deck.lands + this.props.deck.cards.length} </p>
+                    <p>Land Count : {this.props.deck.lands}</p>
+                </Aux>;
+                cardDisplay = this.props.deck.cards.map((cardInfo, i)=> {
+                    return (
+                    <Aux key={i}>
+                        <Card
+                        key = {i+1}
+                        cardName={cardInfo.card.name}
+                        buttonText={"Remove From Deck"}
+                        cardId={cardInfo.card.cardId} 
+                        imageUrl={cardInfo.card.imageUrl} 
+                        clicked={() => this.removeFromDeck(cardInfo.card)}/>
+                        <button key={i+2} className={styles.setCommanderButton} onClick={() => this.setCommander(cardInfo.card)}>Set Commander</button>
+                    </Aux>
+                    );
+                })
+            }
         }
         return(
             <div className={styles.currentDeckContainer}>
@@ -131,9 +140,7 @@ class CurrentDeck extends Component{
                 <button className={styles.clearDeckButton} onClick={this.clearDeck}>Clear Deck</button>
                 <button className={styles.removeCommanderButton} onClick={this.removeCommander}>Remove Commander</button>
                 <div>
-                    <p>Commander : {this.props.deck.commander}</p>
-                    <p>Total Deck Count: {this.props.deck.lands + this.props.deck.cards.length} </p>
-                    <p>Land Count : {this.props.deck.lands}</p>
+                    {deckInfo}
                 </div>
                 <div className={styles.cardsContainer}>
                     {cardDisplay}
