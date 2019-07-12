@@ -58,20 +58,15 @@ class CardSearch extends Component {
         // https://scryfall.com/docs/api/cards/search
         const {color1Choice, color2Choice, color3Choice, cardTypeChoice, convertedManaCostChoice, rarityChoice} = this.state;
         let baseUrl = "https://api.scryfall.com/cards/search?q=";
-        if(color1Choice !== ""){
+        if(color1Choice !== "" || color2Choice !== "" || color3Choice !== ""){
+            const baseColorParam = "c:"
             const color1Letter = color1Choice.slice(0,1);
-            const colorParam = color1Choice === "Blue" ?`c:u `: `c:${color1Letter}`;
-            baseUrl += colorParam;
-        }
-        if(color2Choice !== ""){
             const color2Letter = color2Choice.slice(0,1);
-            const colorParam = color2Choice === "Blue" ?`c:u `: `c:${color2Letter}`;
-            baseUrl += colorParam;
-        }
-        if(color3Choice !== ""){
             const color3Letter = color3Choice.slice(0,1);
-            const colorParam = color3Choice === "Blue" ?`c:u `: `c:${color3Letter}`;
-            baseUrl += colorParam;
+            const color1Param = color1Choice === "Blue" ? "U": `${color1Letter}`;
+            const color2Param = color2Choice === "Blue" ? "U": `${color2Letter}`;
+            const color3Param = color3Choice === "Blue" ? "U": `${color3Letter}`;
+            baseUrl += baseColorParam + color1Param + color2Param + color3Param + " ";
         }
         if(cardTypeChoice !== ""){
             const cardTypeParam = `t:${cardTypeChoice} `;
@@ -131,7 +126,7 @@ class CardSearch extends Component {
 
     changeConvertedManaCost = event => {
         event.target.value === "Choose the Converted Mana Cost!" ? 
-        this.setState({changeConvertedManaCost : ""}) :
+        this.setState({convertedManaCostChoice : ""}) :
         this.setState({convertedManaCostChoice : event.target.value});
     }
     
