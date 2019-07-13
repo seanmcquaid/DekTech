@@ -97,22 +97,23 @@ class CurrentDeck extends Component{
                 cardDisplay = <div>NO CARDS YET!</div>;
             } else {
                 deckInfo = <Aux>
-                    <p>Commander : {this.props.deck.commander}</p>
+                    <p>Commander : {this.props.deck.commander.name}</p>
                     <p>Total Deck Count: {this.props.deck.lands + this.props.deck.cards.length} </p>
                     <p>Land Count : {this.props.deck.lands}</p>
                 </Aux>;
                 cardDisplay = this.props.deck.cards.map((cardInfo, i)=> {
                     return (
-                    <Aux key={i}>
+                    <div className={styles.cardInfo} key={i}>
                         <Card
-                        key = {i+1}
-                        cardName={cardInfo.card.name}
-                        buttonText={"Remove From Deck"}
-                        cardId={cardInfo.card.cardId} 
-                        imageUrl={cardInfo.card.imageUrl} 
-                        clicked={() => this.removeFromDeck(cardInfo.card)}/>
+                            key = {i+1}
+                            cardName={cardInfo.card.name}
+                            buttonText={"Remove From Deck"}
+                            cardId={cardInfo.card.cardId} 
+                            imageUrl={cardInfo.card.imageUrl} 
+                            clicked={() => this.removeFromDeck(cardInfo.card)}
+                        />
                         <button key={i+2} className={styles.setCommanderButton} onClick={() => this.setCommander(cardInfo.card)}>Set Commander</button>
-                    </Aux>
+                    </div>
                     );
                 })
             }

@@ -8,7 +8,7 @@ exports.getDeck = (req,res,next) => {
             res.json ({
                 cards : user.deck.cards,
                 lands : user.deck.lands,
-                commander : userInfo.deck.commander,
+                commander : user.deck.commander,
                 message : ""
             });
         })

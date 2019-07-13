@@ -55,7 +55,7 @@ export default (state = initialState, action) => {
             }
         case LOGOUT_ACTION :
             return {
-                ...initialState
+                ...action.payload.data.userInfo.deck
             }
         default :
             return {

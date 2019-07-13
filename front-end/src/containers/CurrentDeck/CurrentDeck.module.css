@@ -17,9 +17,13 @@
 
 
 .cardsContainer {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
     width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 8rem;
 }
 
 .clearDeckButton {
@@ -38,9 +42,21 @@
 }
 
 .cardInfo {
-    margin: 2rem;
+    margin: 1rem;
 }
 
 .setCommanderButton {
-    color: red;
+    text-decoration: none;
+    margin: 0.5rem;
+    outline : none;
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.75rem;
+    border-radius: 10px;
+    padding: 1rem;
+    width: 100%;
+    max-width: 10rem;
+    text-align: center;
+    border: 1px solid #50514F;
+    background-color:  #F25F5C;
+    color: white;
 }
