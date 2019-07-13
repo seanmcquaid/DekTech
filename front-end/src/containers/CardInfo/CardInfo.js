@@ -26,6 +26,7 @@ class CardInfo extends Component {
 
     componentDidMount = () => {
         // make call to api with scryfall card Id to pull card info
+        console.log(this.props);
         const {cardId} = this.props.match.params;
         axios.get(`https://api.scryfall.com/cards/${cardId}`)
             .then(response => {

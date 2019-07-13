@@ -1,5 +1,5 @@
 import React from "react";
-import {Route, Switch} from "react-router-dom";
+import {Route, Switch, Redirect} from "react-router-dom";
 import Splash from "../../Splash/Splash";
 import Register from "../../../containers/Users/Register/Register";
 import Login from "../../../containers/Users/Login/Login";
@@ -8,21 +8,29 @@ import CurrentDeck from "../../../containers/CurrentDeck/CurrentDeck";
 import CardSearch from "../../../containers/CardSearch/CardSearch";
 import CardInfo from "../../../containers/CardInfo/CardInfo";
 import ErrorPage from "../../ErrorPage/ErrorPage";
-import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import {connect} from "react-redux";
 
 const ProtectedRoutes = props => {
+    console.log(props)
+    const protectedRoute = (component) => props.auth.isAuthenticated? component : <Redirect to="/"/>;
     return(
         <Switch>
             <Route exact path="/" component={Splash}/>
             <Route exact path="/register" component={Register}/>
             <Route exact path="/login" component={Login}/>
-            <ProtectedRoute exact path="/userHome" component={UserHome}/>
-            <ProtectedRoute exact path="/currentDeck" component={CurrentDeck}/>
-            <ProtectedRoute exact path="/cardSearch" component={CardSearch}/>
-            <ProtectedRoute exact path={`/cardInfo/:cardId`} component={CardInfo}/>
+            <Route exact path="/userHome" component={() => protectedRoute(UserHome)}/>
+            <Route exact path="/currentDeck" component={() => protectedRoute(CurrentDeck)}/>
+            <Route exact path="/cardSearch" component={() => protectedRoute(CardSearch)}/>
+            <Route exact path={`/cardInfo/:cardId`} component={() => protectedRoute(CardInfo)}/>
             <Route component={ErrorPage}/>
         </Switch>
     )
 }
 
-export default ProtectedRoutes;
+const mapStateToProps = (state) =>{
+    return{
+        auth : state.auth
+    }
+}
+
+export default connect(mapStateToProps,null)(ProtectedRoutes);
