@@ -10,7 +10,6 @@ const UserHome = props => {
             <div className={styles.userHomeMenuOptions}>
                 <MenuButton route="/currentDeck">Current Deck</MenuButton>
                 <MenuButton route="/cardSearch">Card Search</MenuButton>
-                <MenuButton route="/userProfile">User Profile</MenuButton>
             </div>
         </div>
     )
