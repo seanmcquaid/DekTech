@@ -138,6 +138,9 @@ exports.postLogout = (req,res,next) => {
         token : null,
         message : "Successfully logged out!",
         isAuthenticated : false,
-        userInfo : null
+        userInfo : {
+            user : null,
+            deck : {}
+        }
     });
 }

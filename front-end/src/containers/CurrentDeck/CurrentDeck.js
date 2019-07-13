@@ -89,7 +89,6 @@ class CurrentDeck extends Component{
 
     render(){
         let cardDisplay, deckInfo;
-        console.log(this.props.deck)
         if(this.props.deck.cards === undefined){
             cardDisplay = <div>NO CARDS YET!</div>;
         } else {
@@ -122,26 +121,28 @@ class CurrentDeck extends Component{
             <div className={styles.currentDeckContainer}>
                 <h1 className={styles.currentDeckTitle}>Current Deck</h1>
                 <p>{this.state.message}</p>
-                <div>
-                    <div>
-                        <h4>Type in a number of lands to add below!</h4>
-                        <form onSubmit={this.addLandsToDeck} className={styles.addLandsToDeckForm}>
-                            <input type="text" placeholder={0} onChange={this.changeNumberOfLandsToAdd}/>
-                            <button type="submit">Submit</button>
-                        </form>
+                <div className={styles.topContainer}>
+                    <div className={styles.changeLandsContainer}>
+                        <div className={styles.changeLandsContainer}>
+                            <h4>Type in a number of lands to add below!</h4>
+                            <form onSubmit={this.addLandsToDeck} className={styles.addLandsToDeckForm}>
+                                <input className={styles.formInput} type="text" placeholder={0} onChange={this.changeNumberOfLandsToAdd}/>
+                                <button className={styles.submitFormButton} type="submit">Submit</button>
+                            </form>
+                        </div>
+                        <div className={styles.changeLandsContainer}>
+                            <h4>Type in a number of lands to remove below!</h4>
+                            <form onSubmit={this.removeLandsFromDeck} className={styles.removeLandsFromDeckForm}>
+                                <input className={styles.formInput} type="text" placeholder={0} onChange={this.changeNumberOfLandsToRemove}/>
+                                <button className={styles.submitFormButton} type="submit">Submit</button>
+                            </form>
+                        </div>
                     </div>
-                    <div>
-                        <h4>Type in a number of lands to remove below!</h4>
-                        <form onSubmit={this.removeLandsFromDeck} className={styles.removeLandsFromDeckForm}>
-                            <input type="text" placeholder={0} onChange={this.changeNumberOfLandsToRemove}/>
-                            <button type="submit">Submit</button>
-                        </form>
+                    <div className={styles.deckInfoContainer}>
+                        {deckInfo}
+                        <button className={styles.clearDeckButton} onClick={this.clearDeck}>Clear Deck</button>
+                        <button className={styles.removeCommanderButton} onClick={this.removeCommander}>Remove Commander</button>
                     </div>
-                </div>
-                <button className={styles.clearDeckButton} onClick={this.clearDeck}>Clear Deck</button>
-                <button className={styles.removeCommanderButton} onClick={this.removeCommander}>Remove Commander</button>
-                <div>
-                    {deckInfo}
                 </div>
                 <div className={styles.cardsContainer}>
                     {cardDisplay}

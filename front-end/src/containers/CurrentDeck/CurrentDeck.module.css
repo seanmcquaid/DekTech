@@ -9,6 +9,19 @@
     width: 100%;
 }
 
+.topContainer, .changeLandsContainer, .deckInfoContainer {
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.changeLandsContainer, .deckInfoContainer {
+    flex-direction: column;
+}
+
 .currentDeckTitle {
     color: #F25F5C;
     font-size: 2rem;
@@ -26,7 +39,7 @@
     margin-bottom: 8rem;
 }
 
-.clearDeckButton {
+.clearDeckButton,.removeCommanderButton, .submitFormButton, .setCommanderButton {
     margin: 0.5rem;
     outline : none;
     font-family: 'Raleway', sans-serif;
@@ -41,22 +54,25 @@
     color: white;
 }
 
+.formInput {
+    margin: 0.5rem;
+    font-size: 0.75rem;
+    width: 100%;
+    max-width: 12rem;
+    padding: 0.5rem;
+    border-radius: 16px;
+    font-family: 'Raleway', sans-serif;
+    border: 1px solid #50514F;
+    outline: none;
+}
+
+
 .cardInfo {
     margin: 1rem;
 }
 
-.setCommanderButton {
-    text-decoration: none;
-    margin: 0.5rem;
-    outline : none;
-    font-family: 'Raleway', sans-serif;
-    font-size: 0.75rem;
-    border-radius: 10px;
-    padding: 1rem;
-    width: 100%;
-    max-width: 10rem;
-    text-align: center;
-    border: 1px solid #50514F;
-    background-color:  #F25F5C;
-    color: white;
+@media(max-width: 600px){
+    .topContainer {
+        flex-direction: column;
+    }
 }
