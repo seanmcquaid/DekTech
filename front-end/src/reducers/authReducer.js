@@ -24,7 +24,10 @@ export default (state = initialState, action) => {
                 ...action.payload.data,
             };
         case LOGIN_ACTION:
+            console.log(action.payload.data)
+            if(action.payload.data.token !== ""){
                 localStorage.setItem("token", action.payload.data.token)
+            }
             return {
                 ...action.payload.data,
             };
@@ -34,7 +37,9 @@ export default (state = initialState, action) => {
                 ...action.payload.data,
             };
         case REGISTER_ACTION:
-            localStorage.setItem("token", action.payload.data.token);
+            if(action.payload.data.token !== ""){
+                localStorage.setItem("token", action.payload.data.token)
+            }
             return {
                 ...action.payload.data,
             }

@@ -34,7 +34,7 @@ exports.postLogin = (req,res,next) => {
     const {username, password} = req.body;
     if(!username || !password){
         return res.json({
-            token : null,
+            token : "",
             message : "Please enter all fields!",
             isAuthenticated : false,
             userInfo : null,
@@ -46,7 +46,7 @@ exports.postLogin = (req,res,next) => {
             console.log(user)
             if(!user){
                 return res.json({
-                    token : null,
+                    token : "",
                     message : "User doesn't exist!",
                     isAuthenticated : false,
                     userInfo : null,
@@ -57,7 +57,7 @@ exports.postLogin = (req,res,next) => {
                 .then(isMatch => {
                     if(!isMatch){
                         return res.json({
-                            token : null,
+                            token : "",
                             message : "Incorrect password, try again!",
                             isAuthenticated : false,
                             userInfo : null,
@@ -88,7 +88,7 @@ exports.postRegister = (req,res,next) => {
     const {username, password} = req.body;
     if(!username || !password){
         return res.json({
-            token : null,
+            token : "",
             message : "Be sure to fill out all fields!",
             isAuthenticated : false,
             userInfo : null
@@ -98,7 +98,7 @@ exports.postRegister = (req,res,next) => {
         .then(user => {
             if(user){
                 return res.json({
-                    token : null,
+                    token : "",
                     message : "User already exists",
                     isAuthenticated : false,
                     userInfo : null

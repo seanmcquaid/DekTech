@@ -8,25 +8,45 @@ import Aux from "../../hoc/Aux/Aux";
 import styles from "./Navbar.module.css"
 
 class Navbar extends Component {
+    constructor(){
+        super();
+        this.state = {
+            toggleMobileNavRight : false,
+        }
+    }
+
+
     componentDidMount = () => {
         if(this.props.auth.token){
             this.props.checkTokenAction();
         }
     }
 
+    toggleMobleNavRightMenu = () => {
+        this.setState({
+            toggleMobileNavRight : !this.state.toggleMobileNavRight
+        })
+    }
+
     render(){
         // console.log(this.props)
+        let toggleNavRight;
+        if(this.state.toggleMobileNavRight){
+            toggleNavRight = "inline"
+        } else {
+            toggleNavRight = "none"
+        }
         let leftNavHomeLink, rightNavLinks, rightNavMobileLinks;
         if(this.props.auth.isAuthenticated){
             leftNavHomeLink = "/userHome";
             rightNavLinks = 
-            <Aux>
+            <div className={styles.rightNavLinksContainer}>
                 <div className={styles.rightNavLinks}><Link to="/currentDeck" className={styles.rightNavLink}>Current Deck</Link></div>
                 <div className={styles.rightNavLinks}><Link to="/cardSearch" className={styles.rightNavLink}>Card Search</Link></div>
                 <div className={styles.rightNavLinks}><button className={styles.rightNavLinkButton} onClick={() => this.props.logoutAction()}>Logout</button></div>
-            </Aux>;
+            </div>;
             rightNavMobileLinks = 
-            <div className={styles.rightNavMobileLinksContainer}>
+            <div className={styles.rightNavMobileLinksContainer} style={{display : toggleNavRight}}>
                 <div className={styles.rightNavMobileLinks}><Link to="/currentDeck" className={styles.rightNavLink}>Current Deck</Link></div>
                 <div className={styles.rightNavMobileLinks}><Link to="/cardSearch" className={styles.rightNavLink}>Card Search</Link></div>
                 <div className={styles.rightNavMobileLinks}><button className={styles.rightNavLinkButton} onClick={() => this.props.logoutAction()}>Logout</button></div>
@@ -34,12 +54,12 @@ class Navbar extends Component {
         } else {
             leftNavHomeLink = "/";
             rightNavLinks = 
-            <div className={styles.rightNavMobileLinksContainer}>
+            <div className={styles.rightNavLinksContainer}>
                 <div className={styles.rightNavLinks}><Link to="/register" className={styles.rightNavLink}>Register</Link></div>       
                 <div className={styles.rightNavLinks}><Link to="/login" className={styles.rightNavLink}>Login</Link></div>
             </div>;
             rightNavMobileLinks =
-            <div className={styles.rightNavMobileLinksContainer}>
+            <div style={{display : toggleNavRight}} className={styles.rightNavMobileLinksContainer} style={{display : toggleNavRight}}>
                 <div className={styles.rightNavMobileLinks}><Link to="/register" className={styles.rightNavLink}>Register</Link></div>       
                 <div className={styles.rightNavMobileLinks}><Link to="/login" className={styles.rightNavLink}>Login</Link></div>
             </div>;
@@ -50,6 +70,9 @@ class Navbar extends Component {
                     <div className={styles.leftNavLinks}><Link className={styles.leftNavLink} to={leftNavHomeLink}>Dek Tech</Link></div>
                 </div>
                 <div className={styles.rightNav}>
+                    <div className={styles.dropDownToggleButton} onClick={() => this.toggleMobleNavRightMenu()}>
+                        <i className="fas fa-bars"></i>
+                    </div>
                     {rightNavLinks}
                     {rightNavMobileLinks}
                 </div>

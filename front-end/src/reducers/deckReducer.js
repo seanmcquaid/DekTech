@@ -50,6 +50,11 @@ export default (state = initialState, action) => {
                 ...action.payload.data,
             }
         case LOGIN_ACTION :
+            if(action.payload.data.userInfo.deck === undefined){
+                return {
+                    ...state
+                }
+            }
             return {
                 ...action.payload.data.userInfo.deck
             }

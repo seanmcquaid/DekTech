@@ -33,6 +33,13 @@
     align-content: center;
 }
 
+.rightNavLinksContainer {
+    display: flex;
+    flex-direction : row;
+    justify-content: center;
+    align-items: center;
+}
+
 .rightNavLinks {
     margin-right: 1.5rem;
 }
@@ -48,4 +55,44 @@
     border: none;
     font-family: 'Raleway', sans-serif;
     font-size: 1rem;
+}
+
+.rightNavMobileLinksContainer {
+    display : none;
+}
+
+.dropDownToggleButton {
+    display: none;
+}
+
+@media(max-width : 700px) {
+    .rightNavMobileLinksContainer {
+        position: fixed;
+        display : flex;
+        flex-direction : column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 2.5rem;
+        padding: 0.5rem;
+        background-color : #70C1B3;
+    }
+
+    .rightNavLinkButton {
+        background-color : #70C1B3;
+    }
+
+    .rightNavMobileLinks {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .rightNavLinksContainer {
+        display : none;
+    }
+
+    .dropDownToggleButton {
+        display: inline;
+        margin-right: 1.5rem;
+        font-size: 1.25rem;
+    }
 }
