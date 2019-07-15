@@ -8,7 +8,7 @@ import {
     REMOVE_COMMANDER_ACTION,
     CLEAR_DECK_ACTION,
 } from "../actions/deckActions/deckActionTypes";
-import {LOGOUT_ACTION, LOGIN_ACTION} from "../actions/authActions/authActionTypes";
+import {LOGOUT_ACTION, LOGIN_ACTION, CHECK_TOKEN_ACTION} from "../actions/authActions/authActionTypes";
 
 const initialState = {
     cards : [],
@@ -19,6 +19,14 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch(action.type){
+        case CHECK_TOKEN_ACTION : {
+            return {
+                cards : action.payload.data.deck.cards,
+                lands : action.payload.data.deck.lands,
+                commander : action.payload.data.deck.commander,
+                message : action.payload.data.deck.message,
+            }
+        }
         case GET_DECK_ACTION :
             return {
                 ...action.payload.data
