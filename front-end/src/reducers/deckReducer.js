@@ -11,8 +11,10 @@ import {
 import {LOGOUT_ACTION, LOGIN_ACTION} from "../actions/authActions/authActionTypes";
 
 const initialState = {
-    deck : [],
-    message : "",
+    cards : [],
+    lands : 0,
+    commander : "",
+    message : ""
 }
 
 export default (state = initialState, action) => {
@@ -50,13 +52,11 @@ export default (state = initialState, action) => {
                 ...action.payload.data,
             }
         case LOGIN_ACTION :
-            if(action.payload.data.userInfo.deck === undefined){
-                return {
-                    ...state
-                }
-            }
             return {
-                ...action.payload.data.userInfo.deck
+                cards : action.payload.data.userInfo.cards,
+                lands : action.payload.data.userInfo.lands,
+                commander : action.payload.data.userInfo.commander,
+                message : action.payload.data.userInfo.deck.message
             }
         case LOGOUT_ACTION :
             return {

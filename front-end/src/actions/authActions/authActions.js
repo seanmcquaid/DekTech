@@ -59,12 +59,10 @@ export const loginAction = loginData => {
     };
 
     const axiosPromise = axios.post(`${window.apiHost}/auth/login`, loginData, config);
-
-    return {
+    return ({
         type : LOGIN_ACTION,
         payload : axiosPromise
-    }
-        
+    })   
 
 };
 

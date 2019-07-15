@@ -24,7 +24,6 @@ exports.checkToken = (req,res,next) => {
                 token: token,
                 message : "Valid token",
                 isAuthenticated : true,
-                userInfo : user,
             });
         })
         .catch(err => console.log(err));
@@ -43,19 +42,23 @@ exports.postLogin = (req,res,next) => {
 
     User.findOne({username})
         .then(user => {
-            console.log(user)
             if(!user){
                 return res.json({
                     token : "",
                     message : "User doesn't exist!",
                     isAuthenticated : false,
-                    userInfo : null,
+                    userInfo : {
+                        user : "",
+                        deck : [],
+                        message : ""
+                    }
                 });
             }
 
             return bcrypt.compare(password, user.password)
                 .then(isMatch => {
                     if(!isMatch){
+                        console.log('no password match')
                         return res.json({
                             token : "",
                             message : "Incorrect password, try again!",

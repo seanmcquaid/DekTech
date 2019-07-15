@@ -6,10 +6,9 @@ import {
 } from "../actions/authActions/authActionTypes";
 
 const initialState = {
-    token : localStorage.getItem("token"),
+    token : "",
     message : "",
     isAuthenticated : null,
-    userInfo : null
 };
 
 export default (state = initialState, action) => {
@@ -25,12 +24,12 @@ export default (state = initialState, action) => {
             };
         case LOGIN_ACTION:
             console.log(action.payload.data)
-            if(action.payload.data.token !== ""){
-                localStorage.setItem("token", action.payload.data.token)
-            }
-            return {
-                ...action.payload.data,
-            };
+            localStorage.setItem("token", action.payload.data.token)
+            return ({
+                token : action.payload.data.token,
+                message : action.payload.data.message,
+                isAuthenticated : action.payload.data.isAuthenticated,
+            });
         case LOGOUT_ACTION:
             localStorage.removeItem("token");
             return {
@@ -39,6 +38,8 @@ export default (state = initialState, action) => {
         case REGISTER_ACTION:
             if(action.payload.data.token !== ""){
                 localStorage.setItem("token", action.payload.data.token)
+            } else {
+                localStorage.setItem("token", "")
             }
             return {
                 ...action.payload.data,

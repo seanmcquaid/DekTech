@@ -88,6 +88,7 @@ class CurrentDeck extends Component{
     }
 
     render(){
+        console.log(this.props)
         let cardDisplay, deckInfo;
         if(this.props.deck.cards === undefined){
             cardDisplay = <div>NO CARDS YET!</div>;

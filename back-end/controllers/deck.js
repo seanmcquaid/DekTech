@@ -4,7 +4,6 @@ const Card = require("../models/card");
 exports.getDeck = (req,res,next) => {
     User.findOne({_id : req.user.id})
         .then(user => {
-            console.log(user.deck)
             res.json ({
                 cards : user.deck.cards,
                 lands : user.deck.lands,
