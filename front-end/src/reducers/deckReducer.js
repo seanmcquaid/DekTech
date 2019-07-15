@@ -53,14 +53,17 @@ export default (state = initialState, action) => {
             }
         case LOGIN_ACTION :
             return {
-                cards : action.payload.data.userInfo.cards,
-                lands : action.payload.data.userInfo.lands,
-                commander : action.payload.data.userInfo.commander,
-                message : action.payload.data.userInfo.deck.message
+                cards : action.payload.data.deck.cards,
+                lands : action.payload.data.deck.lands,
+                commander : action.payload.data.deck.commander,
+                message : action.payload.data.deck.message,
             }
         case LOGOUT_ACTION :
             return {
-                ...action.payload.data.userInfo.deck
+                cards : action.payload.data.deck.cards,
+                lands : action.payload.data.deck.lands,
+                commander : action.payload.data.deck.commander,
+                message : action.payload.data.deck.message,
             }
         default :
             return {

@@ -1,15 +1,7 @@
 const User = require("../models/user");
-const nodemailer = require("nodemailer");
-const sendGridTransport = require("nodemailer-sendgrid-transport");
 const config = require("../config");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-
-const transporter = nodemailer.createTransport(sendGridTransport({
-    auth: {
-        apiKey : config.sendGridKey
-    }
-}));
 
 exports.checkToken = (req,res,next) => {
     const userId = req.user.id;
@@ -24,6 +16,12 @@ exports.checkToken = (req,res,next) => {
                 token: token,
                 message : "Valid token",
                 isAuthenticated : true,
+                deck : {
+                    cards : user.deck.cards,
+                    lands : user.deck.lands,
+                    commander : user.deck.commander,
+                    message : ""
+                }
             });
         })
         .catch(err => console.log(err));
@@ -33,10 +31,15 @@ exports.postLogin = (req,res,next) => {
     const {username, password} = req.body;
     if(!username || !password){
         return res.json({
-            token : "",
+            token : null,
             message : "Please enter all fields!",
             isAuthenticated : false,
-            userInfo : null,
+            deck : {
+                cards : [],
+                lands : 0,
+                commander : "",
+                message : "",
+            }
         });
     }
 
@@ -44,13 +47,14 @@ exports.postLogin = (req,res,next) => {
         .then(user => {
             if(!user){
                 return res.json({
-                    token : "",
+                    token : null,
                     message : "User doesn't exist!",
                     isAuthenticated : false,
-                    userInfo : {
-                        user : "",
-                        deck : [],
-                        message : ""
+                    deck : {
+                        cards : [],
+                        lands : 0,
+                        commander : "",
+                        message : "",
                     }
                 });
             }
@@ -58,12 +62,16 @@ exports.postLogin = (req,res,next) => {
             return bcrypt.compare(password, user.password)
                 .then(isMatch => {
                     if(!isMatch){
-                        console.log('no password match')
                         return res.json({
-                            token : "",
+                            token : null,
                             message : "Incorrect password, try again!",
                             isAuthenticated : false,
-                            userInfo : null,
+                            deck : {
+                                cards : [],
+                                lands : 0,
+                                commander : "",
+                                message : "",
+                            }
                         });
                     };
 
@@ -77,7 +85,12 @@ exports.postLogin = (req,res,next) => {
                         token,
                         message : "Successfully logged in!",
                         isAuthenticated : true,
-                        userInfo : user,
+                        deck : {
+                            cards : user.deck.cards,
+                            lands : user.deck.lands,
+                            commander : user.deck.commander,
+                            message : ""
+                        }
                     });
 
                 })
@@ -91,20 +104,30 @@ exports.postRegister = (req,res,next) => {
     const {username, password} = req.body;
     if(!username || !password){
         return res.json({
-            token : "",
+            token : null,
             message : "Be sure to fill out all fields!",
             isAuthenticated : false,
-            userInfo : null
+            deck : {
+                cards : [],
+                lands : 0,
+                commander : "",
+                message : "",
+            }
         });
     }
     User.findOne({username})
         .then(user => {
             if(user){
                 return res.json({
-                    token : "",
+                    token : null,
                     message : "User already exists",
                     isAuthenticated : false,
-                    userInfo : null
+                    deck : {
+                        cards : [],
+                        lands : 0,
+                        commander : "",
+                        message : "",
+                    }
                 });
             }
             return bcrypt.hash(password, 12)
@@ -141,9 +164,11 @@ exports.postLogout = (req,res,next) => {
         token : null,
         message : "Successfully logged out!",
         isAuthenticated : false,
-        userInfo : {
-            user : null,
-            deck : {}
+        deck : {
+            cards : [],
+            lands : 0,
+            commander : "",
+            message : "",
         }
     });
 }

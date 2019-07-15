@@ -6,9 +6,9 @@ import {
 } from "../actions/authActions/authActionTypes";
 
 const initialState = {
-    token : "",
+    token : null,
     message : "",
-    isAuthenticated : null,
+    isAuthenticated : false,
 };
 
 export default (state = initialState, action) => {
@@ -20,29 +20,30 @@ export default (state = initialState, action) => {
                 localStorage.removeItem("token");
             }
             return {
-                ...action.payload.data,
-            };
-        case LOGIN_ACTION:
-            console.log(action.payload.data)
-            localStorage.setItem("token", action.payload.data.token)
-            return ({
                 token : action.payload.data.token,
                 message : action.payload.data.message,
                 isAuthenticated : action.payload.data.isAuthenticated,
-            });
+            };
+        case LOGIN_ACTION:
+            localStorage.setItem("token", action.payload.data.token);
+            return {
+                token : action.payload.data.token,
+                message : action.payload.data.message,
+                isAuthenticated : action.payload.data.isAuthenticated,
+            }
         case LOGOUT_ACTION:
             localStorage.removeItem("token");
             return {
-                ...action.payload.data,
+                token : action.payload.data.token,
+                message : action.payload.data.message,
+                isAuthenticated : action.payload.data.isAuthenticated,
             };
         case REGISTER_ACTION:
-            if(action.payload.data.token !== ""){
-                localStorage.setItem("token", action.payload.data.token)
-            } else {
-                localStorage.setItem("token", "")
-            }
+            localStorage.setItem("token", action.payload.data.token)
             return {
-                ...action.payload.data,
+                token : action.payload.data.token,
+                message : action.payload.data.message,
+                isAuthenticated : action.payload.data.isAuthenticated,
             }
         default :
             return {
