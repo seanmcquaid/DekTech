@@ -9,7 +9,12 @@ const auth = (req, res, next) => {
             token : null,
             message : "No valid token found",
             isAuthenticated : false,
-            userInfo : null,
+            deck : {
+                cards : [],
+                lands : 0,
+                commander : "",
+                message : "",
+            }
         });
     };
     
@@ -22,7 +27,12 @@ const auth = (req, res, next) => {
             token : null,
             message : "Expired token",
             isAuthenticated : false,
-            userInfo : null,
+            deck : {
+                cards : [],
+                lands : 0,
+                commander : "",
+                message : "",
+            }
         })
     };
 };
