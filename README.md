@@ -157,6 +157,11 @@ export const checkTokenAction = () => {
 
 ## Screenshots
 * Coming Soon!
-- Pic of each step
-- Pic of Home page
-- Pic of each page
+* Home Page
+![Home Page](./front-end/public/images/homePage.png)
+* Register
+![Register](./front-end/public/images/register.png)
+* Current Deck
+![Home Page](./front-end/public/images/currentDeck.png)
+* Card Search
+![Home Page](./front-end/public/images/cardSearch.png)

@@ -3,7 +3,6 @@ import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {Link} from "react-router-dom";
 import {checkTokenAction, logoutAction} from "../../actions/authActions/authActions";
-import Aux from "../../hoc/Aux/Aux";
 
 import styles from "./Navbar.module.css"
 
@@ -59,7 +58,7 @@ class Navbar extends Component {
                 <div className={styles.rightNavLinks}><Link to="/login" className={styles.rightNavLink}>Login</Link></div>
             </div>;
             rightNavMobileLinks =
-            <div style={{display : toggleNavRight}} className={styles.rightNavMobileLinksContainer} style={{display : toggleNavRight}}>
+            <div className={styles.rightNavMobileLinksContainer} style={{display : toggleNavRight}}>
                 <div className={styles.rightNavMobileLinks}><Link to="/register" className={styles.rightNavLink}>Register</Link></div>       
                 <div className={styles.rightNavMobileLinks}><Link to="/login" className={styles.rightNavLink}>Login</Link></div>
             </div>;
