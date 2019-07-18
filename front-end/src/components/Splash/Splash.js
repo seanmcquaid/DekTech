@@ -26,7 +26,7 @@ const Splash = props => {
                             <p className={styles.paragraphText}>Create An Account</p>
                         </div>
                         <div className={styles.middleSectionImage}>
-                            <img className={styles.middleImage}src="https://via.placeholder.com/200" alt="placeholder"/>
+                            <img className={styles.middleImage}src="/images/register.png" alt="register"/>
                         </div>
                     </div>
 
@@ -35,7 +35,7 @@ const Splash = props => {
                             <p className={styles.paragraphText}>Create A Deck</p>
                         </div>
                         <div className={styles.middleSectionImage}>
-                            <img className={styles.middleImage}src="https://via.placeholder.com/200" alt="placeholder"/>
+                            <img className={styles.middleImage}src="/images/currentDeck.png" alt="currentDeck"/>
                         </div>
                     </div>
 
@@ -44,7 +44,7 @@ const Splash = props => {
                             <p className={styles.paragraphText}>Start Searching and Adding Cards!</p>
                         </div>
                         <div className={styles.middleSectionImage}>
-                            <img className={styles.middleImage}src="https://via.placeholder.com/200" alt="placeholder"/>
+                            <img className={styles.middleImage}src="/images/cardSearch.png" alt="cardSearch"/>
                         </div>
                     </div>
 

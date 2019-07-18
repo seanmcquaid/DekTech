@@ -55,6 +55,13 @@
 
 .middleSectionImage{
     margin: 1rem;
+    max-width: 100%;
+    border: 2px solid #50514f;
+    border-radius: 6px;
+}
+
+.middleImage{
+    width: 100%;
 }
 
 .appDescription{
