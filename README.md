@@ -156,7 +156,6 @@ export const checkTokenAction = () => {
 * Users can see a chart of the different types of cards in the deck - Incomplete
 
 ## Screenshots
-* Coming Soon!
 * Home Page
 ![Home Page](./front-end/public/images/homePage.png)
 * Register
