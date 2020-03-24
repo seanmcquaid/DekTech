@@ -1,4 +1,4 @@
-# MTG Deck Builder
+# Dek Tech
 
 ## Contents
 * Description
